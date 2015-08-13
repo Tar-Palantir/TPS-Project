@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1770B82D-79E5-4A33-9F0C-1D4A761EE96E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TPS.WeiXin.Entrance.Web</RootNamespace>
+    <AssemblyName>TPS.WeiXin.Entrance.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\packages\L4N.1.2.13\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\..\..\packages\IOC.2.1.0\lib\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\..\..\packages\IOC.2.1.0\lib\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\NJson.6.0.6\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Zeus.Common.DataAccess.Entities, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Common.DA.Entities.2.2.0\lib\Zeus.Common.DataAccess.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Zeus.Common.DataAccess.Implement, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Common.DA.Implement.2.3.0\lib\Zeus.Common.DataAccess.Implement.dll</HintPath>
+    </Reference>
+    <Reference Include="Zeus.Common.DataAccess.Interface, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Common.DA.Interface.2.2.0\lib\Zeus.Common.DataAccess.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Zeus.Common.DataStatus">
+      <HintPath>..\..\..\packages\Common.DS.2.1.0\lib\Zeus.Common.DataStatus.dll</HintPath>
+    </Reference>
+    <Reference Include="Zeus.Common.Helper">
+      <HintPath>..\..\..\packages\Common.Helper.2.0.2\lib\Zeus.Common.Helper.dll</HintPath>
+    </Reference>
+    <Reference Include="Zeus.Common.Log">
+      <HintPath>..\..\..\packages\Common.Log.2.1.0\lib\Zeus.Common.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="Zeus.Common.Service.MCService">
+      <HintPath>..\..\..\packages\Common.SVC.MCService.2.1.0\lib\Zeus.Common.Service.MCService.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomMenuController.cs" />
+    <Compile Include="Controllers\HiddenController.cs" />
+    <Compile Include="Controllers\SendMsgController.cs" />
+    <Compile Include="Controllers\RecieveController.cs" />
+    <Compile Include="Enums\EnumApiType.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="FunctionIoc.config" />
+    <Content Include="EventConfig.config" />
+    <None Include="Properties\PublishProfiles\Test.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Test.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\TPS.Common.Event\TPS.Common.Event.csproj">
+      <Project>{a48fdd4e-9b1b-4df6-a0aa-1f4f66dfd2db}</Project>
+      <Name>TPS.Common.Event</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\TPS.Common.Utility\TPS.Common.Utility.csproj">
+      <Project>{02644bde-21e5-4096-a1b2-1f83f3d160d8}</Project>
+      <Name>TPS.Common.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.Model\TPS.WeiXin.Common.Model.csproj">
+      <Project>{fc7c1967-c6b6-49ed-a376-ece4da7a62bf}</Project>
+      <Name>TPS.WeiXin.Common.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.Utility\TPS.WeiXin.Common.Utility.csproj">
+      <Project>{b10420dd-eedf-408d-a8f3-d1647376f399}</Project>
+      <Name>TPS.WeiXin.Common.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataAccess\TPS.WeiXin.DataAccess.Entities\TPS.WeiXin.DataAccess.Entities.csproj">
+      <Project>{59197B8C-7106-47D5-A057-D46B0B26AE25}</Project>
+      <Name>TPS.WeiXin.DataAccess.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataAccess\TPS.WeiXin.DataAccess.Implement\TPS.WeiXin.DataAccess.Implement.csproj">
+      <Project>{11347721-45D0-436B-879A-C841E888FD7C}</Project>
+      <Name>TPS.WeiXin.DataAccess.Implement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Extentions\TPS.WeiXin.Extentions.BaseFunction\TPS.WeiXin.Extentions.BaseFunction.csproj">
+      <Project>{d8ad0533-c9db-449b-8c9f-fcf810c594cf}</Project>
+      <Name>TPS.WeiXin.Extentions.BaseFunction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Extentions\TPS.WeiXin.Extentions.IEvent\TPS.WeiXin.Extentions.IEvent.csproj">
+      <Project>{A89EA90D-0A1B-4250-9206-C90C02078A54}</Project>
+      <Name>TPS.WeiXin.Extentions.IEvent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Extentions\TPS.WeiXin.Extentions.IFunction\TPS.WeiXin.Extentions.IFunction.csproj">
+      <Project>{EA2310DA-8889-4D8D-8784-217DCBC2C2F6}</Project>
+      <Name>TPS.WeiXin.Extentions.IFunction</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Views\Api\" />
+    <Folder Include="Views\CustomMenu\" />
+    <Folder Include="Views\Hidden\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>12905</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:12905/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

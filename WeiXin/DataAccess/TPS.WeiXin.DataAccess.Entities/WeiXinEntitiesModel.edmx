@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TPS.WeiXinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WeiXinNum" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AppID" Type="char" MaxLength="18" Nullable="false" />
+          <Property Name="AppSecret" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="Token" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomMenu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="ParentMenuID" Type="uniqueidentifier" />
+          <Property Name="Key" Type="varchar" MaxLength="20" />
+          <Property Name="View_Url" Type="nchar" MaxLength="10" />
+          <Property Name="TypeFullName" Type="varchar" MaxLength="200" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="AccountID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reply">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ReplyType" Type="int" Nullable="false" />
+          <Property Name="Txt_Content" Type="nvarchar(max)" />
+          <Property Name="KeyType" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Article_Content" Type="nvarchar(max)" />
+          <Property Name="AccountID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TPSWeiXinModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomMenu" EntityType="Self.CustomMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TPS.WeiXinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false">
+            <Documentation>
+              <Summary>ID</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="WeiXinNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false">
+            <Documentation>
+              <Summary>微信号</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="AppID" Type="String" MaxLength="18" FixedLength="true" Unicode="false" Nullable="false">
+            <Documentation>
+              <Summary>AppID</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="AppSecret" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false">
+            <Documentation>
+              <Summary>AppSecret</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false">
+            <Documentation>
+              <Summary>Token</Summary>
+            </Documentation>
+          </Property>
+        </EntityType>
+        <EntityType Name="CustomMenu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false">
+            <Documentation>
+              <Summary>ID</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false">
+            <Documentation>
+              <Summary>菜单名</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Type" Type="Int32" Nullable="false">
+            <Documentation>
+              <Summary>菜单类型 1、点击推事件 2、跳转Url</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ParentMenuID" Type="Guid">
+            <Documentation>
+              <Summary>父级菜单ID</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Key" Type="String" MaxLength="20" FixedLength="false" Unicode="false">
+            <Documentation>
+              <Summary>菜单Key值</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="View_Url" Type="String" MaxLength="10" FixedLength="true" Unicode="true">
+            <Documentation>
+              <Summary>跳转Url</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="TypeFullName" Type="String" MaxLength="200" FixedLength="false" Unicode="false">
+            <Documentation>
+              <Summary>类型全名</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Status" Type="Int32" Nullable="false">
+            <Documentation>
+              <Summary>数据状态</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="AccountID" Type="Guid" Nullable="false">
+            <Documentation>
+              <Summary>账户ID</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Sort" Type="Int32" Nullable="false">
+            <Documentation>
+              <Summary>排序</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3">
+            <Documentation>
+              <Summary>创建时间</Summary>
+            </Documentation>
+          </Property>
+        </EntityType>
+        <EntityType Name="Reply">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false">
+            <Documentation>
+              <Summary>ID</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Key" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false">
+            <Documentation>
+              <Summary>回复关键字</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="ReplyType" Type="Int32" Nullable="false">
+            <Documentation>
+              <Summary>回复类型</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Txt_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true">
+            <Documentation>
+              <Summary>文本内容</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="KeyType" Type="Int32" Nullable="false">
+            <Documentation>
+              <Summary>关键字类型 0、关键字 1、点击</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Status" Type="Int32" Nullable="false">
+            <Documentation>
+              <Summary>数据状态</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Article_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true">
+            <Documentation>
+              <Summary>图文内容</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="AccountID" Type="Guid" Nullable="false">
+            <Documentation>
+              <Summary>账号ID</Summary>
+            </Documentation>
+          </Property>
+        </EntityType>
+        <EntityContainer Name="WeiXinEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="CustomMenu" EntityType="Self.CustomMenu" />
+          <EntitySet Name="Reply" EntityType="Self.Reply" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TPSWeiXinModelStoreContainer" CdmEntityContainer="WeiXinEntities">
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="TPS.WeiXinModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WeiXinNum" ColumnName="WeiXinNum" />
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+                <ScalarProperty Name="AppSecret" ColumnName="AppSecret" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomMenu">
+            <EntityTypeMapping TypeName="TPS.WeiXinModel.CustomMenu">
+              <MappingFragment StoreEntitySet="CustomMenu">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ParentMenuID" ColumnName="ParentMenuID" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="View_Url" ColumnName="View_Url" />
+                <ScalarProperty Name="TypeFullName" ColumnName="TypeFullName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reply">
+            <EntityTypeMapping TypeName="TPS.WeiXinModel.Reply">
+              <MappingFragment StoreEntitySet="Reply">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="ReplyType" ColumnName="ReplyType" />
+                <ScalarProperty Name="Txt_Content" ColumnName="Txt_Content" />
+                <ScalarProperty Name="KeyType" ColumnName="KeyType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Article_Content" ColumnName="Article_Content" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

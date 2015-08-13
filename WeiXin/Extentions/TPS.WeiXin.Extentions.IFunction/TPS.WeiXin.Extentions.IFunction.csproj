@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EA2310DA-8889-4D8D-8784-217DCBC2C2F6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TPS.WeiXin.Extentions.IFunction</RootNamespace>
+    <AssemblyName>TPS.WeiXin.Extentions.IFunction</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Zeus.Common.DataAccess.Entities, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Common.DA.Entities.2.2.0\lib\Zeus.Common.DataAccess.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="Zeus.Common.DataStatus">
+      <HintPath>..\..\..\packages\Common.DS.2.1.0\lib\Zeus.Common.DataStatus.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountManage\IGenerateQrcode.cs" />
+    <Compile Include="AccountManage\ILong2ShortUrl.cs" />
+    <Compile Include="CustomMenu\ICreate.cs" />
+    <Compile Include="CustomMenu\IDelete.cs" />
+    <Compile Include="CustomMenu\IGetAll.cs" />
+    <Compile Include="CustomMenu\IGetAllInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Receive\IRecieve.cs" />
+    <Compile Include="SendMsg\ICustomerService.cs" />
+    <Compile Include="SendMsg\IGroupSend.cs" />
+    <Compile Include="SendMsg\IReply.cs" />
+    <Compile Include="SendMsg\ITemplateMsg.cs" />
+    <Compile Include="UserManage\IGetUserBaseInfo.cs" />
+    <Compile Include="UserManage\IGroup.cs" />
+    <Compile Include="UserManage\ISetRemark.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataStatistics\" />
+    <Folder Include="MaterialManage\" />
+    <Folder Include="MsgEncrypt\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.Model\TPS.WeiXin.Common.Model.csproj">
+      <Project>{FC7C1967-C6B6-49ED-A376-ECE4DA7A62BF}</Project>
+      <Name>TPS.WeiXin.Common.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DataAccess\TPS.WeiXin.DataAccess.Entities\TPS.WeiXin.DataAccess.Entities.csproj">
+      <Project>{59197B8C-7106-47D5-A057-D46B0B26AE25}</Project>
+      <Name>TPS.WeiXin.DataAccess.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
