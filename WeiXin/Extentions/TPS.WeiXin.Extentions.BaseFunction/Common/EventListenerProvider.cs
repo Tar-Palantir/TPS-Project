@@ -18,7 +18,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction.Common
             _section = (EventConfigurationSection)ConfigurationManager.GetSection("eventlistener");
         }
 
-        private static IList<T> GetEventListener<T>()
+        public static IList<T> GetEventListener<T>()
         {
             var typeT = typeof(T);
 

@@ -135,11 +135,12 @@
     <Compile Include="Controllers\CustomMenuController.cs" />
     <Compile Include="Controllers\HiddenController.cs" />
     <Compile Include="Controllers\SendMsgController.cs" />
-    <Compile Include="Controllers\RecieveController.cs" />
+    <Compile Include="Controllers\ReceiveController.cs" />
     <Compile Include="Enums\EnumApiType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\WeiXinHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -200,7 +201,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Views\Api\" />
     <Folder Include="Views\CustomMenu\" />
     <Folder Include="Views\Hidden\" />

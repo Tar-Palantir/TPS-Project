@@ -44,6 +44,9 @@
   <ItemGroup>
     <Compile Include="IWeiXinClickEvent.cs" />
     <Compile Include="IWeiXinEvent.cs" />
+    <Compile Include="IWeiXinScanEvent.cs" />
+    <Compile Include="IWeiXinUnsubscribeEvent.cs" />
+    <Compile Include="IWeiXinSubscribeEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

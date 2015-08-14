@@ -89,7 +89,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction
                         CustomMenu cMenu;
                         var clickEvents = EventListenerProvider.GetEventListener<IWeiXinClickEvent>(dicParams["EventKey"], out cMenu);
 
-                        var events = clickEvents.Aggregate(new Action<IDictionary<string, string>, CustomMenu>((a,b) => { }),
+                        var events = clickEvents.Aggregate(new Action<IDictionary<string, string>, CustomMenu>((a, b) => { }),
                             (s, c) => s + c.OnEventInvoke);
 
                         EventHelper.EventInvoke(events, dicParams, cMenu);
@@ -99,6 +99,41 @@ namespace TPS.WeiXin.Extentions.BaseFunction
                         return responseEvent.GetResponseString(dicParams, cMenu);
                     }
                 case "subscribe":
+                    {
+                        IList<IWeiXinEvent> sEvents;
+                        if (!dicParams.ContainsKey("EventKey"))
+                        {
+                            sEvents = EventListenerProvider.GetEventListener<IWeiXinSubscribeEvent>() as IList<IWeiXinEvent>;
+                        }
+                        else
+                        {
+                            sEvents = EventListenerProvider.GetEventListener<IWeiXinScanEvent>() as IList<IWeiXinEvent>;
+                        }
+                        if (sEvents != null)
+                        {
+                            var events = sEvents.Aggregate(
+                                new Action<IDictionary<string, string>, CustomMenu>((a, b) => { }),
+                                (s, c) => s + c.OnEventInvoke);
+                            EventHelper.EventInvoke(events, dicParams, null);
+                        }
+                        return string.Empty;
+                    }
+                case "unsubscribe":
+                    {
+                        var sEvents = EventListenerProvider.GetEventListener<IWeiXinUnsubscribeEvent>();
+                        
+                        if (sEvents != null)
+                        {
+                            var events = sEvents.Aggregate(
+                                new Action<IDictionary<string, string>, CustomMenu>((a, b) => { }),
+                                (s, c) => s + c.OnEventInvoke);
+                            EventHelper.EventInvoke(events, dicParams, null);
+                        }
+                        return string.Empty;
+                    }
+                case "SCAN":
+                    return null;
+                case "LOCATION":
                     return null;
                 default:
                     return null;

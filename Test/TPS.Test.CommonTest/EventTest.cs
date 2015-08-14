@@ -14,14 +14,13 @@ namespace TPS.Test.CommonTest
         [TestMethod]
         public void TestEvent()
         {
-            var name = "TestEvent";
-            var results = GetEventListener(name);
+            var results = GetEventListener();
 
             Assert.IsTrue(results != null && results.Any());
         }
 
 
-        private IList<Type> GetEventListener(string name)
+        private IList<Type> GetEventListener()
         {
             var _section = (EventConfigurationSection)ConfigurationManager.GetSection("eventlistener");
 
