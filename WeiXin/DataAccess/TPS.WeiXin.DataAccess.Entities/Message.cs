@@ -16,8 +16,14 @@ namespace TPS.WeiXin.DataAccess.Entities
 {
     
     [DataContract(IsReference = true)]
-    public partial class Account: IEntityBase
+    [KnownType(typeof(Reply))]
+    public partial class Message: IEntityBase
     {
+        public Message()
+        {
+            this.Reply = new HashSet<Reply>();
+        }
+    
         #region 基本属性
     
     	///<summary>
@@ -26,40 +32,28 @@ namespace TPS.WeiXin.DataAccess.Entities
         [DataMember]
         public System.Guid ID { get; set; }
     	///<summary>
-    	///微信号
+    	///内容
     	///</summary>
         [DataMember]
-        public string WeiXinNum { get; set; }
+        public string Content { get; set; }
     	///<summary>
-    	///AppID
+    	///是否是模板
     	///</summary>
         [DataMember]
-        public string AppID { get; set; }
+        public bool IsTemplate { get; set; }
     	///<summary>
-    	///AppSecret
+    	///类型 0、文本 1、图文 
     	///</summary>
         [DataMember]
-        public string AppSecret { get; set; }
-    	///<summary>
-    	///Token
-    	///</summary>
-        [DataMember]
-        public string Token { get; set; }
-    	///<summary>
-    	///消息体的加密Key
-    	///</summary>
-        [DataMember]
-        public string EncodingAESKey { get; set; }
-    	///<summary>
-    	///企业应用ID
-    	///</summary>
-        [DataMember]
-        public Nullable<int> AgentID { get; set; }
-    	///<summary>
-    	///是否是企业号
-    	///</summary>
-        [DataMember]
-        public bool IsCorp { get; set; }
+        public int Type { get; set; }
+    
+
+        #endregion
+
+        #region 导航属性
+    
+     	[DataMember]
+        public virtual ICollection<Reply> Reply { get; set; }
     
 
         #endregion

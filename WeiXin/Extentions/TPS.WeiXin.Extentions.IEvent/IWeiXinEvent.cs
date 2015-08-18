@@ -5,6 +5,6 @@ namespace TPS.WeiXin.Extentions.IEvent
 {
     public interface IWeiXinEvent
     {
-        void OnEventInvoke(IDictionary<string, string> args, CustomMenu cMenu);
+        void OnEventInvoke(IDictionary<string, string> args, Reply reply);
     }
 }

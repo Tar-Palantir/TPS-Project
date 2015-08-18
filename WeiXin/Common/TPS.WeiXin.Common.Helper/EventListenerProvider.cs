@@ -5,9 +5,10 @@ using System.Linq;
 using System.Reflection;
 using TPS.Common.Event;
 using TPS.WeiXin.DataAccess.Entities;
+using TPS.WeiXin.DataAccess.Entities.Enums;
 using TPS.WeiXin.DataAccess.Implement;
 
-namespace TPS.WeiXin.Extentions.BaseFunction.Common
+namespace TPS.WeiXin.Common.Helper
 {
     public static class EventListenerProvider
     {
@@ -44,11 +45,11 @@ namespace TPS.WeiXin.Extentions.BaseFunction.Common
             return results;
         }
 
-        public static IList<T> GetEventListener<T>(string key, out CustomMenu cMenu)
+        public static IList<T> GetEventListener<T>(string key, out Reply reply)
         {
-            CustomMenuRepository repository = new CustomMenuRepository();
-            cMenu = repository.GetByKey(key);
-            if (cMenu == null)
+            ReplyRepository repository = new ReplyRepository();
+            reply = repository.GetReply(key, EnumKeyType.Event);
+            if (reply == null)
             {
                 return null;
             }
@@ -56,14 +57,14 @@ namespace TPS.WeiXin.Extentions.BaseFunction.Common
             return GetEventListener<T>();
         }
 
-        public static T GetSpecialEvent<T>(IList<T> events, CustomMenu cMenu)
+        public static T GetSpecialEvent<T>(IList<T> events, Reply reply)
         {
-            if (string.IsNullOrEmpty(cMenu.TypeFullName))
+            if (string.IsNullOrEmpty(reply.TypeFullName))
             {
                 return (T)(object)null;
             }
 
-            return events.FirstOrDefault(p => p.GetType().Name == cMenu.TypeFullName);
+            return events.FirstOrDefault(p => p.GetType().Name == reply.TypeFullName);
         }
     }
 }

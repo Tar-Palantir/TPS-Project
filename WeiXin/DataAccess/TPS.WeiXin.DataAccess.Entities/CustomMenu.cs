@@ -51,11 +51,6 @@ namespace TPS.WeiXin.DataAccess.Entities
         [DataMember]
         public string View_Url { get; set; }
     	///<summary>
-    	///类型全名
-    	///</summary>
-        [DataMember]
-        public string TypeFullName { get; set; }
-    	///<summary>
     	///数据状态
     	///</summary>
         [DataMember]

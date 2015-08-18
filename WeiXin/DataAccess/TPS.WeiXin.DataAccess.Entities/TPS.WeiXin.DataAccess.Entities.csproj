@@ -67,6 +67,9 @@
     <Compile Include="Enums\EnumKeyType.cs" />
     <Compile Include="Enums\EnumMeunType.cs" />
     <Compile Include="Enums\EnumReplyType.cs" />
+    <Compile Include="Message.cs">
+      <DependentUpon>WeiXinEntitiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reply.cs">
       <DependentUpon>WeiXinEntitiesModel.tt</DependentUpon>

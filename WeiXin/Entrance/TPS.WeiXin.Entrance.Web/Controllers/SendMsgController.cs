@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using TPS.WeiXin.Common.Helper;
 using TPS.WeiXin.Common.Model;
-using TPS.WeiXin.Extentions.BaseFunction.Common;
 using TPS.WeiXin.Extentions.IFunction.SendMsg;
 using Zeus.Common.DataStatus;
 using Zeus.Common.Service.MCService;

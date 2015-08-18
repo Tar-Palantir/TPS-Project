@@ -16,6 +16,7 @@ namespace TPS.WeiXin.DataAccess.Entities
 {
     
     [DataContract(IsReference = true)]
+    [KnownType(typeof(Message))]
     public partial class Reply: IEntityBase
     {
         #region 基本属性
@@ -31,16 +32,6 @@ namespace TPS.WeiXin.DataAccess.Entities
         [DataMember]
         public string Key { get; set; }
     	///<summary>
-    	///回复类型
-    	///</summary>
-        [DataMember]
-        public int ReplyType { get; set; }
-    	///<summary>
-    	///文本内容
-    	///</summary>
-        [DataMember]
-        public string Txt_Content { get; set; }
-    	///<summary>
     	///关键字类型 0、关键字 1、点击
     	///</summary>
         [DataMember]
@@ -51,15 +42,28 @@ namespace TPS.WeiXin.DataAccess.Entities
         [DataMember]
         public int Status { get; set; }
     	///<summary>
-    	///图文内容
-    	///</summary>
-        [DataMember]
-        public string Article_Content { get; set; }
-    	///<summary>
     	///账号ID
     	///</summary>
         [DataMember]
         public System.Guid AccountID { get; set; }
+    	///<summary>
+    	///类型全名
+    	///</summary>
+        [DataMember]
+        public string TypeFullName { get; set; }
+    	///<summary>
+    	///无描述
+    	///</summary>
+        [DataMember]
+        public System.Guid MessageID { get; set; }
+    
+
+        #endregion
+
+        #region 导航属性
+    
+    	[DataMember]
+        public virtual Message Message { get; set; }
     
 
         #endregion

@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using TPS.WeiXin.Extentions.BaseFunction.Common;
+using TPS.WeiXin.Common.Helper;
 
 namespace TPS.WeiXin.Entrance.Web.Controllers
 {

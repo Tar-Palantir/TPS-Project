@@ -27,6 +27,7 @@ namespace TPS.WeiXin.DataAccess.Entities
     
         public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<CustomMenu> CustomMenu { get; set; }
+        public virtual DbSet<Message> Message { get; set; }
         public virtual DbSet<Reply> Reply { get; set; }
     }
 }

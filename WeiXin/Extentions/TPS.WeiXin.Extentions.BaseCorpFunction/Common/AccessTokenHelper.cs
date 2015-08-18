@@ -7,13 +7,13 @@ using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.DataAccess.Implement;
 using Zeus.Common.Helper.Web;
 
-namespace TPS.WeiXin.Extentions.BaseFunction.Common
+namespace TPS.WeiXin.Extentions.BaseCorpFunction.Common
 {
     public static class AccessTokenHelper
     {
         private static readonly Dictionary<Guid, AccessToken> DicAccessToken = new Dictionary<Guid, AccessToken>();
-        private const string GetTokenUrlFormat = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
-        
+        private const string GetTokenUrlFormat_Corp = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={0}&corpsecret={1}";
+
         public static string GetAccessToken(Guid accountID)
         {
             AccountRepository repository = new AccountRepository();
@@ -44,7 +44,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction.Common
                 }
             }
 
-            var result = HttpHelper.GetResponseResultByGet(string.Format(GetTokenUrlFormat, currentAccount.AppID, currentAccount.AppSecret));
+            var result = HttpHelper.GetResponseResultByGet(string.Format(GetTokenUrlFormat_Corp, currentAccount.AppID, currentAccount.AppSecret));
             if (result.Status != ResponseStatus.Success)
             {
                 return "";

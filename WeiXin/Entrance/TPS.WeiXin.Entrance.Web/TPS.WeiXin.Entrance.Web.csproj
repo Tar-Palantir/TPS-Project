@@ -140,7 +140,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\WeiXinHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +166,10 @@
     <ProjectReference Include="..\..\..\Common\TPS.Common.Utility\TPS.Common.Utility.csproj">
       <Project>{02644bde-21e5-4096-a1b2-1f83f3d160d8}</Project>
       <Name>TPS.Common.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.Helper\TPS.WeiXin.Common.Helper.csproj">
+      <Project>{C102B8C2-285F-4D32-827F-2E2BE1AC2179}</Project>
+      <Name>TPS.WeiXin.Common.Helper</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.Model\TPS.WeiXin.Common.Model.csproj">
       <Project>{fc7c1967-c6b6-49ed-a376-ece4da7a62bf}</Project>
@@ -201,6 +204,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="Views\Api\" />
     <Folder Include="Views\CustomMenu\" />
     <Folder Include="Views\Hidden\" />

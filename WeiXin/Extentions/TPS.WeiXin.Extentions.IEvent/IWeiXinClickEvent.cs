@@ -5,6 +5,6 @@ namespace TPS.WeiXin.Extentions.IEvent
 {
     public interface IWeiXinClickEvent : IWeiXinEvent
     {
-        string GetResponseString(IDictionary<string, string> dicParams, CustomMenu cMenu);
+        string GetResponseString(IDictionary<string, string> dicParams, Reply reply);
     }
 }

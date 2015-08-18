@@ -55,9 +55,8 @@ namespace TPS.WeiXin.DataAccess.Implement
                 return status;
             }
 
-            originEntity.ReplyType = entity.ReplyType;
-            originEntity.Txt_Content = entity.Txt_Content;
-            originEntity.Article_Content = entity.Article_Content;
+            originEntity.MessageID = entity.MessageID;
+            originEntity.TypeFullName = entity.TypeFullName;
 
             try
             {

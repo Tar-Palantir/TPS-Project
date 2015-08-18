@@ -57,7 +57,6 @@ namespace TPS.WeiXin.DataAccess.Implement
 
             originEntity.Type = entity.Type;
             originEntity.Name = entity.Name;
-            originEntity.TypeFullName = entity.TypeFullName;
             originEntity.View_Url = entity.View_Url;
 
             try

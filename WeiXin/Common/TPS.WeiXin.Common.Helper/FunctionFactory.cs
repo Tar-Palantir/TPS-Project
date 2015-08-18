@@ -2,7 +2,7 @@
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 
-namespace TPS.WeiXin.Extentions.BaseFunction.Common
+namespace TPS.WeiXin.Common.Helper
 {
     public static class FunctionFactory
     {

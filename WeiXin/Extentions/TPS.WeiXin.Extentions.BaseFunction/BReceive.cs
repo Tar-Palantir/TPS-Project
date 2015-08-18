@@ -5,10 +5,10 @@ using System.Linq;
 using System.Web;
 using System.Xml.Linq;
 using Newtonsoft.Json;
+using TPS.WeiXin.Common.Helper;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.DataAccess.Entities.Enums;
 using TPS.WeiXin.DataAccess.Implement;
-using TPS.WeiXin.Extentions.BaseFunction.Common;
 using TPS.WeiXin.Extentions.BaseFunction.Exts;
 using TPS.WeiXin.Extentions.IEvent;
 using TPS.WeiXin.Extentions.IFunction.Receive;
@@ -86,46 +86,47 @@ namespace TPS.WeiXin.Extentions.BaseFunction
                     {
                         if (!dicParams.ContainsKey("EventKey")) throw new Exception("没有获取到EventKey");
 
-                        CustomMenu cMenu;
-                        var clickEvents = EventListenerProvider.GetEventListener<IWeiXinClickEvent>(dicParams["EventKey"], out cMenu);
+                        Reply reply;
+                        var clickEvents = EventListenerProvider.GetEventListener<IWeiXinClickEvent>(dicParams["EventKey"], out reply);
 
-                        var events = clickEvents.Aggregate(new Action<IDictionary<string, string>, CustomMenu>((a, b) => { }),
+                        var events = clickEvents.Aggregate(new Action<IDictionary<string, string>, Reply>((a, b) => { }),
                             (s, c) => s + c.OnEventInvoke);
 
-                        EventHelper.EventInvoke(events, dicParams, cMenu);
+                        EventHelper.EventInvoke(events, dicParams, reply);
 
-                        var responseEvent = EventListenerProvider.GetSpecialEvent(clickEvents, cMenu);
+                        var responseEvent = EventListenerProvider.GetSpecialEvent(clickEvents, reply);
 
-                        return responseEvent.GetResponseString(dicParams, cMenu);
+                        return responseEvent.GetResponseString(dicParams, reply);
                     }
                 case "subscribe":
                     {
                         IList<IWeiXinEvent> sEvents;
+                        Reply reply;
                         if (!dicParams.ContainsKey("EventKey"))
                         {
-                            sEvents = EventListenerProvider.GetEventListener<IWeiXinSubscribeEvent>() as IList<IWeiXinEvent>;
+                            sEvents = EventListenerProvider.GetEventListener<IWeiXinSubscribeEvent>("subscribe", out reply) as IList<IWeiXinEvent>;
                         }
                         else
                         {
-                            sEvents = EventListenerProvider.GetEventListener<IWeiXinScanEvent>() as IList<IWeiXinEvent>;
+                            sEvents = EventListenerProvider.GetEventListener<IWeiXinScanEvent>("subscribe:" + dicParams["EventKey"], out reply) as IList<IWeiXinEvent>;
                         }
                         if (sEvents != null)
                         {
                             var events = sEvents.Aggregate(
-                                new Action<IDictionary<string, string>, CustomMenu>((a, b) => { }),
+                                new Action<IDictionary<string, string>, Reply>((a, b) => { }),
                                 (s, c) => s + c.OnEventInvoke);
-                            EventHelper.EventInvoke(events, dicParams, null);
+                            EventHelper.EventInvoke(events, dicParams, reply);
                         }
                         return string.Empty;
                     }
                 case "unsubscribe":
                     {
                         var sEvents = EventListenerProvider.GetEventListener<IWeiXinUnsubscribeEvent>();
-                        
+
                         if (sEvents != null)
                         {
                             var events = sEvents.Aggregate(
-                                new Action<IDictionary<string, string>, CustomMenu>((a, b) => { }),
+                                new Action<IDictionary<string, string>, Reply>((a, b) => { }),
                                 (s, c) => s + c.OnEventInvoke);
                             EventHelper.EventInvoke(events, dicParams, null);
                         }
@@ -150,15 +151,15 @@ namespace TPS.WeiXin.Extentions.BaseFunction
             Reply reply = replyRepository.GetReply(dicParams["Content"], EnumKeyType.Keyword);
 
             BaseReply returnReply;
-            switch (reply.ReplyType)
+            switch (reply.Message.Type)
             {
                 case (int)EnumReplyType.TextReply:
-                    returnReply = new TextReply { Content = reply.Txt_Content };
+                    returnReply = new TextReply { Content = reply.Message.Content };
                     break;
                 case (int)EnumReplyType.ArticleReply:
                     returnReply = new ArticleReply
                     {
-                        Articles = JsonConvert.DeserializeObject<List<ArticleReplyItem>>(reply.Article_Content)
+                        Articles = JsonConvert.DeserializeObject<List<ArticleReplyItem>>(reply.Message.Content)
                     };
                     break;
                 default:

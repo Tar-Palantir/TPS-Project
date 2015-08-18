@@ -4,6 +4,6 @@
     {
         Keyword = 0,
 
-        BtnClick = 1
+        Event = 1,
     }
 }

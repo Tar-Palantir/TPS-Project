@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D8AD0533-C9DB-449B-8C9F-FCF810C594CF}</ProjectGuid>
+    <ProjectGuid>{C102B8C2-285F-4D32-827F-2E2BE1AC2179}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TPS.WeiXin.Extentions.BaseFunction</RootNamespace>
-    <AssemblyName>TPS.WeiXin.Extentions.BaseFunction</AssemblyName>
+    <RootNamespace>TPS.WeiXin.Common.Helper</RootNamespace>
+    <AssemblyName>TPS.WeiXin.Common.Helper</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,13 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.Unity">
       <HintPath>..\..\..\packages\IOC.2.1.0\lib\Microsoft.Practices.Unity.dll</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.0.414.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
       <HintPath>..\..\..\packages\IOC.2.1.0\lib\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -60,62 +58,29 @@
     <Reference Include="Zeus.Common.DataAccess.Interface">
       <HintPath>..\..\..\packages\Common.DA.Interface.2.2.0\lib\Zeus.Common.DataAccess.Interface.dll</HintPath>
     </Reference>
-    <Reference Include="Zeus.Common.DataStatus">
-      <HintPath>..\..\..\packages\Common.DS.2.1.0\lib\Zeus.Common.DataStatus.dll</HintPath>
-    </Reference>
     <Reference Include="Zeus.Common.Helper">
       <HintPath>..\..\..\packages\Common.Helper.2.0.2\lib\Zeus.Common.Helper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BReceive.cs" />
-    <Compile Include="Common\AccessTokenHelper.cs" />
-    <Compile Include="BAccountManage.cs" />
-    <Compile Include="BCustomMenu.cs" />
-    <Compile Include="Common\JsSDKHelper.cs" />
-    <Compile Include="Exts\ArticleReply.cs" />
-    <Compile Include="Exts\BaseReply.cs" />
-    <Compile Include="DefaultClickEvent.cs" />
-    <Compile Include="Exts\Menu.cs" />
-    <Compile Include="Exts\MenuButton.cs" />
-    <Compile Include="Exts\TemplateMsg.cs" />
-    <Compile Include="Exts\TextReply.cs" />
+    <Compile Include="EventHelper.cs" />
+    <Compile Include="EventListenerProvider.cs" />
+    <Compile Include="FunctionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BSendMsg.cs" />
-    <Compile Include="BUserManage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\TPS.Common.Event\TPS.Common.Event.csproj">
       <Project>{A48FDD4E-9B1B-4DF6-A0AA-1F4F66DFD2DB}</Project>
       <Name>TPS.Common.Event</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.Helper\TPS.WeiXin.Common.Helper.csproj">
-      <Project>{C102B8C2-285F-4D32-827F-2E2BE1AC2179}</Project>
-      <Name>TPS.WeiXin.Common.Helper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.Model\TPS.WeiXin.Common.Model.csproj">
-      <Project>{FC7C1967-C6B6-49ED-A376-ECE4DA7A62BF}</Project>
-      <Name>TPS.WeiXin.Common.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\DataAccess\TPS.WeiXin.DataAccess.Entities\TPS.WeiXin.DataAccess.Entities.csproj">
-      <Project>{59197b8c-7106-47d5-a057-d46b0b26ae25}</Project>
+      <Project>{59197B8C-7106-47D5-A057-D46B0B26AE25}</Project>
       <Name>TPS.WeiXin.DataAccess.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\DataAccess\TPS.WeiXin.DataAccess.Implement\TPS.WeiXin.DataAccess.Implement.csproj">
       <Project>{11347721-45D0-436B-879A-C841E888FD7C}</Project>
       <Name>TPS.WeiXin.DataAccess.Implement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TPS.WeiXin.Extentions.IEvent\TPS.WeiXin.Extentions.IEvent.csproj">
-      <Project>{a89ea90d-0a1b-4250-9206-c90c02078a54}</Project>
-      <Name>TPS.WeiXin.Extentions.IEvent</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TPS.WeiXin.Extentions.IFunction\TPS.WeiXin.Extentions.IFunction.csproj">
-      <Project>{EA2310DA-8889-4D8D-8784-217DCBC2C2F6}</Project>
-      <Name>TPS.WeiXin.Extentions.IFunction</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

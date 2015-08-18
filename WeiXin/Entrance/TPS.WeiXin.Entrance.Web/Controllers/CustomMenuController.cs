@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using TPS.WeiXin.Common.Helper;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.DataAccess.Entities.Enums;
-using TPS.WeiXin.Extentions.BaseFunction.Common;
 using TPS.WeiXin.Extentions.IFunction.CustomMenu;
 using Zeus.Common.DataStatus;
 using Zeus.Common.Service.MCService;

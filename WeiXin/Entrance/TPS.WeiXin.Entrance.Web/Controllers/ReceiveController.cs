@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using TPS.WeiXin.Extentions.BaseFunction.Common;
+using TPS.WeiXin.Common.Helper;
 using TPS.WeiXin.Extentions.IFunction.Receive;
 using Zeus.Common.DataStatus;
 using Zeus.Common.Helper.Log;

@@ -1,7 +1,7 @@
 ﻿using System;
 using Zeus.Common.Helper.Log;
 
-namespace TPS.WeiXin.Extentions.BaseFunction.Common
+namespace TPS.WeiXin.Common.Helper
 {
     /// <summary>
     /// 事件帮助类

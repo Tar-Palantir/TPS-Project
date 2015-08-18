@@ -11,9 +11,12 @@
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="WeiXinNum" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="AppID" Type="char" MaxLength="18" Nullable="false" />
-          <Property Name="AppSecret" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="AppID" Type="char" MaxLength="18" />
+          <Property Name="AppSecret" Type="varchar" MaxLength="64" />
           <Property Name="Token" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EncodingAESKey" Type="char" MaxLength="43" />
+          <Property Name="AgentID" Type="int" />
+          <Property Name="IsCorp" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CustomMenu">
           <Key>
@@ -25,11 +28,19 @@
           <Property Name="ParentMenuID" Type="uniqueidentifier" />
           <Property Name="Key" Type="varchar" MaxLength="20" />
           <Property Name="View_Url" Type="nchar" MaxLength="10" />
-          <Property Name="TypeFullName" Type="varchar" MaxLength="200" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="AccountID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Sort" Type="int" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="IsTemplate" Type="bit" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Reply">
           <Key>
@@ -37,23 +48,51 @@
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Key" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="ReplyType" Type="int" Nullable="false" />
-          <Property Name="Txt_Content" Type="nvarchar(max)" />
           <Property Name="KeyType" Type="int" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
-          <Property Name="Article_Content" Type="nvarchar(max)" />
           <Property Name="AccountID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TypeFullName" Type="varchar" MaxLength="200" />
+          <Property Name="MessageID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <Association Name="Reply_Message">
+          <End Role="Message" Type="Self.Message" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="MessageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TPSWeiXinModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomMenu" EntityType="Self.CustomMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Reply_Message" Association="Self.Reply_Message">
+            <End Role="Message" EntitySet="Message" />
+            <End Role="Reply" EntitySet="Reply" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TPS.WeiXinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WeiXinEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account" EntityType="TPS.WeiXinModel.Account" />
+          <EntitySet Name="CustomMenu" EntityType="TPS.WeiXinModel.CustomMenu" />
+          <EntitySet Name="Message" EntityType="TPS.WeiXinModel.Message" />
+          <EntitySet Name="Reply" EntityType="TPS.WeiXinModel.Reply" />
+          <AssociationSet Name="Reply_Message" Association="TPS.WeiXinModel.Reply_Message">
+            <End Role="Message" EntitySet="Message" />
+            <End Role="Reply" EntitySet="Reply" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="ID" />
@@ -63,24 +102,39 @@
               <Summary>ID</Summary>
             </Documentation>
           </Property>
-          <Property Name="WeiXinNum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false">
+          <Property Name="WeiXinNum" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true">
             <Documentation>
               <Summary>微信号</Summary>
             </Documentation>
           </Property>
-          <Property Name="AppID" Type="String" MaxLength="18" FixedLength="true" Unicode="false" Nullable="false">
+          <Property Name="AppID" Type="String" MaxLength="18" FixedLength="true" Unicode="false">
             <Documentation>
               <Summary>AppID</Summary>
             </Documentation>
           </Property>
-          <Property Name="AppSecret" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false">
+          <Property Name="AppSecret" Type="String" MaxLength="64" FixedLength="false" Unicode="false">
             <Documentation>
               <Summary>AppSecret</Summary>
             </Documentation>
           </Property>
-          <Property Name="Token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false">
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false">
             <Documentation>
               <Summary>Token</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="EncodingAESKey" Type="String" MaxLength="43" FixedLength="true" Unicode="false">
+            <Documentation>
+              <Summary>消息体的加密Key</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="AgentID" Type="Int32">
+            <Documentation>
+              <Summary>企业应用ID</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="IsCorp" Type="Boolean" Nullable="false">
+            <Documentation>
+              <Summary>是否是企业号</Summary>
             </Documentation>
           </Property>
         </EntityType>
@@ -93,7 +147,7 @@
               <Summary>ID</Summary>
             </Documentation>
           </Property>
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false">
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true">
             <Documentation>
               <Summary>菜单名</Summary>
             </Documentation>
@@ -118,11 +172,6 @@
               <Summary>跳转Url</Summary>
             </Documentation>
           </Property>
-          <Property Name="TypeFullName" Type="String" MaxLength="200" FixedLength="false" Unicode="false">
-            <Documentation>
-              <Summary>类型全名</Summary>
-            </Documentation>
-          </Property>
           <Property Name="Status" Type="Int32" Nullable="false">
             <Documentation>
               <Summary>数据状态</Summary>
@@ -144,6 +193,32 @@
             </Documentation>
           </Property>
         </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false">
+            <Documentation>
+              <Summary>ID</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true">
+            <Documentation>
+              <Summary>内容</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="IsTemplate" Type="Boolean" Nullable="false">
+            <Documentation>
+              <Summary>是否是模板</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Type" Type="Int32" Nullable="false">
+            <Documentation>
+              <Summary>类型 0、文本 1、图文 </Summary>
+            </Documentation>
+          </Property>
+          <NavigationProperty Name="Reply" Relationship="TPS.WeiXinModel.Reply_Message" FromRole="Message" ToRole="Reply" />
+        </EntityType>
         <EntityType Name="Reply">
           <Key>
             <PropertyRef Name="ID" />
@@ -153,19 +228,9 @@
               <Summary>ID</Summary>
             </Documentation>
           </Property>
-          <Property Name="Key" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false">
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true">
             <Documentation>
               <Summary>回复关键字</Summary>
-            </Documentation>
-          </Property>
-          <Property Name="ReplyType" Type="Int32" Nullable="false">
-            <Documentation>
-              <Summary>回复类型</Summary>
-            </Documentation>
-          </Property>
-          <Property Name="Txt_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true">
-            <Documentation>
-              <Summary>文本内容</Summary>
             </Documentation>
           </Property>
           <Property Name="KeyType" Type="Int32" Nullable="false">
@@ -178,22 +243,33 @@
               <Summary>数据状态</Summary>
             </Documentation>
           </Property>
-          <Property Name="Article_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true">
-            <Documentation>
-              <Summary>图文内容</Summary>
-            </Documentation>
-          </Property>
           <Property Name="AccountID" Type="Guid" Nullable="false">
             <Documentation>
               <Summary>账号ID</Summary>
             </Documentation>
           </Property>
+          <Property Name="TypeFullName" Type="String" MaxLength="200" FixedLength="false" Unicode="false">
+            <Documentation>
+              <Summary>类型全名</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="MessageID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Message" Relationship="TPS.WeiXinModel.Reply_Message" FromRole="Reply" ToRole="Message" />
         </EntityType>
-        <EntityContainer Name="WeiXinEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Account" EntityType="Self.Account" />
-          <EntitySet Name="CustomMenu" EntityType="Self.CustomMenu" />
-          <EntitySet Name="Reply" EntityType="Self.Reply" />
-        </EntityContainer>
+        <Association Name="Reply_Message">
+          <End Type="TPS.WeiXinModel.Message" Role="Message" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="TPS.WeiXinModel.Reply" Role="Reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Message">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Reply">
+              <PropertyRef Name="MessageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -203,11 +279,14 @@
           <EntitySetMapping Name="Account">
             <EntityTypeMapping TypeName="TPS.WeiXinModel.Account">
               <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="WeiXinNum" ColumnName="WeiXinNum" />
-                <ScalarProperty Name="AppID" ColumnName="AppID" />
-                <ScalarProperty Name="AppSecret" ColumnName="AppSecret" />
+                <ScalarProperty Name="IsCorp" ColumnName="IsCorp" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+                <ScalarProperty Name="EncodingAESKey" ColumnName="EncodingAESKey" />
                 <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="AppSecret" ColumnName="AppSecret" />
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+                <ScalarProperty Name="WeiXinNum" ColumnName="WeiXinNum" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -216,29 +295,37 @@
               <MappingFragment StoreEntitySet="CustomMenu">
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="ParentMenuID" ColumnName="ParentMenuID" />
-                <ScalarProperty Name="Key" ColumnName="Key" />
-                <ScalarProperty Name="View_Url" ColumnName="View_Url" />
-                <ScalarProperty Name="TypeFullName" ColumnName="TypeFullName" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="View_Url" ColumnName="View_Url" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="ParentMenuID" ColumnName="ParentMenuID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message">
+            <EntityTypeMapping TypeName="TPS.WeiXinModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsTemplate" ColumnName="IsTemplate" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reply">
             <EntityTypeMapping TypeName="TPS.WeiXinModel.Reply">
               <MappingFragment StoreEntitySet="Reply">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Key" ColumnName="Key" />
-                <ScalarProperty Name="ReplyType" ColumnName="ReplyType" />
-                <ScalarProperty Name="Txt_Content" ColumnName="Txt_Content" />
-                <ScalarProperty Name="KeyType" ColumnName="KeyType" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Article_Content" ColumnName="Article_Content" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="TypeFullName" ColumnName="TypeFullName" />
                 <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="KeyType" ColumnName="KeyType" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
