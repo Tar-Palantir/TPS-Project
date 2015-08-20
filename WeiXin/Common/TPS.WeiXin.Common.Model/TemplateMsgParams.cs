@@ -1,5 +1,4 @@
-﻿using System;
-using TPS.WeiXin.Common.Model.Enums;
+﻿using TPS.WeiXin.Common.Model.Enums;
 
 namespace TPS.WeiXin.Common.Model
 {
@@ -12,7 +11,5 @@ namespace TPS.WeiXin.Common.Model
         public string Url { get; set; }
 
         public EnumMsgType MsgType { get; set; }
-
-        public Guid AccountID { get; set; }
     }
 }

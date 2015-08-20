@@ -66,6 +66,7 @@
     <Compile Include="EventHelper.cs" />
     <Compile Include="EventListenerProvider.cs" />
     <Compile Include="FunctionFactory.cs" />
+    <Compile Include="JsonExtentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿using TPS.WeiXin.Extentions.IFunction.AccountManage;
+﻿using TPS.WeiXin.Extentions.IFunction.Normal.AccountManage;
 
 namespace TPS.WeiXin.Extentions.BaseFunction
 {

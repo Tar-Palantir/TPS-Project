@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using TPS.WeiXin.Common.Helper;
-using TPS.WeiXin.Extentions.IFunction.Receive;
+using TPS.WeiXin.Entrance.Web.Models;
 using Zeus.Common.DataStatus;
 using Zeus.Common.Helper.Log;
 using Zeus.Common.Service.MCService;
@@ -23,8 +23,22 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
             }
             else
             {
-                var func = FunctionFactory.GetFunctionInstance<IReceive>();
-                status = func.Main(aID, signature, timestamp, nonce, echostr);
+                AccountServiceModel model = new AccountServiceModel();
+                var account = model.GetById(aID);
+                if (account == null)
+                {
+                    return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账户不存在" });
+                }
+                if (account.IsCorp)
+                {
+                    var func = FunctionFactory.GetFunctionInstance<Extentions.IFunction.Corp.Receive.IReceive>();
+                    status = func.Main(account, signature, timestamp, nonce, echostr);
+                }
+                else
+                {
+                    var func = FunctionFactory.GetFunctionInstance<Extentions.IFunction.Normal.Receive.IReceive>();
+                    status = func.Main(account, signature, timestamp, nonce, echostr);
+                }
             }
             return new ServiceResult(status);
         }

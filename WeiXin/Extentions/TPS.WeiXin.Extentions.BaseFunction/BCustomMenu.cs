@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.Extentions.BaseFunction.Common;
 using TPS.WeiXin.Extentions.BaseFunction.Exts;
-using TPS.WeiXin.Extentions.IFunction.CustomMenu;
+using TPS.WeiXin.Extentions.IFunction.Normal.CustomMenu;
 using Zeus.Common.DataStatus;
 using Zeus.Common.Helper.Web;
 
@@ -14,12 +14,12 @@ namespace TPS.WeiXin.Extentions.BaseFunction
     public sealed class BCustomMenu : ICreate, IDelete, IGetAll, IGetAllInfo
     {
         private const string MenuCreateUrl = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=";
-        
-        public OperateStatus Create(Guid accountId, IList<CustomMenu> menus)
+
+        public OperateStatus Create(Account currentAccount, IList<CustomMenu> menus)
         {
             try
             {
-                string url = MenuCreateUrl + AccessTokenHelper.GetAccessToken(accountId);
+                string url = MenuCreateUrl + AccessTokenHelper.GetAccessToken(currentAccount);
 
                 var menu = new Menu();
                 menu.AddButtons(menus);

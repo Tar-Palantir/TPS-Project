@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TPS.WeiXin.Common.Helper;
 using TPS.WeiXin.Common.Model;
-using TPS.WeiXin.Extentions.IFunction.SendMsg;
+using TPS.WeiXin.Entrance.Web.Models;
+using TPS.WeiXin.Extentions.IFunction.Normal.SendMsg;
 using Zeus.Common.DataStatus;
 using Zeus.Common.Service.MCService;
 
@@ -17,10 +19,17 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
             get { return ""; }
         }
 
-        public ServiceResult TemplateMsg(TemplateMsgParams templateMsgParams, IList<TemplateParameter> parameters)
+        public ServiceResult TemplateMsg(Guid accountID, TemplateMsgParams templateMsgParams, IList<TemplateParameter> parameters)
         {
+            AccountServiceModel model = new AccountServiceModel();
+            var currentAccount = model.GetById(accountID);
+            if (currentAccount == null)
+            {
+                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账号不存在" });
+            }
+
             var func = FunctionFactory.GetFunctionInstance<ITemplateMsg>();
-            OperateStatus status = func.SendTemplateMsg(templateMsgParams, parameters);
+            OperateStatus status = func.SendTemplateMsg(currentAccount, templateMsgParams, parameters);
             return new ServiceResult(status);
         }
     }

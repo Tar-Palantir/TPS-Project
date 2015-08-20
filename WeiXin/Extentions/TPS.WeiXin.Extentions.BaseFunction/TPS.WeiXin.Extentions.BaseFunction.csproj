@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BAuthenticate.cs" />
     <Compile Include="BReceive.cs" />
     <Compile Include="Common\AccessTokenHelper.cs" />
     <Compile Include="BAccountManage.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Exts\MenuButton.cs" />
     <Compile Include="Exts\TemplateMsg.cs" />
     <Compile Include="Exts\TextReply.cs" />
+    <Compile Include="Exts\WeiXinJsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BSendMsg.cs" />
     <Compile Include="BUserManage.cs" />

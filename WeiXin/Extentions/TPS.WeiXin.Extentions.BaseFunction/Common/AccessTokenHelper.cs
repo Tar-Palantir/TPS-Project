@@ -13,18 +13,6 @@ namespace TPS.WeiXin.Extentions.BaseFunction.Common
     {
         private static readonly Dictionary<Guid, AccessToken> DicAccessToken = new Dictionary<Guid, AccessToken>();
         private const string GetTokenUrlFormat = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
-        
-        public static string GetAccessToken(Guid accountID)
-        {
-            AccountRepository repository = new AccountRepository();
-            Account currentAccount = repository.GetAccountByID(accountID);
-            if (currentAccount == null)
-            {
-                return "";
-            }
-
-            return GetAccessToken(currentAccount);
-        }
 
         /// <summary>
         /// 获取通行令

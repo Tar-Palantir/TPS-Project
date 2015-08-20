@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -19,7 +18,6 @@ namespace TPS.WeiXin.Extentions.BaseFunction.Exts
             TemplateID = templateMsgParams.TemplateID;
             Url = templateMsgParams.Url;
             TopColor = GetTopColor(templateMsgParams.MsgType);
-            AccountID = templateMsgParams.AccountID;
             Parameters = parameters;
         }
 
@@ -57,10 +55,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction.Exts
                 return new JObject(data);
             }
         }
-
-        [JsonIgnore]
-        public Guid AccountID { get; set; }
-
+        
         [JsonIgnore]
         public IList<TemplateParameter> Parameters { get; set; }
 

@@ -46,26 +46,55 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountManage\IGenerateQrcode.cs" />
-    <Compile Include="AccountManage\ILong2ShortUrl.cs" />
-    <Compile Include="CustomMenu\ICreate.cs" />
-    <Compile Include="CustomMenu\IDelete.cs" />
-    <Compile Include="CustomMenu\IGetAll.cs" />
-    <Compile Include="CustomMenu\IGetAllInfo.cs" />
+    <Compile Include="Corp\Authenticate\IConvert.cs" />
+    <Compile Include="Corp\Authenticate\IOAuth.cs" />
+    <Compile Include="Corp\CustomMenu\ICreate.cs" />
+    <Compile Include="Corp\CustomMenu\IDelete.cs" />
+    <Compile Include="Corp\CustomMenu\IGetAll.cs" />
+    <Compile Include="Corp\Receive\IRecieve.cs" />
+    <Compile Include="Corp\SendMsg\ISend.cs" />
+    <Compile Include="Normal\AccountManage\IGenerateQrcode.cs" />
+    <Compile Include="Normal\AccountManage\ILong2ShortUrl.cs" />
+    <Compile Include="Corp\Application\IGetAll.cs" />
+    <Compile Include="Corp\Application\IGetByID.cs" />
+    <Compile Include="Corp\Application\IUpdate.cs" />
+    <Compile Include="Corp\Contacts\IDepartmentCreate.cs" />
+    <Compile Include="Corp\Contacts\IDepartmentDelete.cs" />
+    <Compile Include="Corp\Contacts\IDepartmentGetAll.cs" />
+    <Compile Include="Corp\Contacts\IDepartmentUpdate.cs" />
+    <Compile Include="Corp\Contacts\ITagAddUser.cs" />
+    <Compile Include="Corp\Contacts\ITagCreate.cs" />
+    <Compile Include="Corp\Contacts\ITagDelete.cs" />
+    <Compile Include="Corp\Contacts\ITagDeleteUser.cs" />
+    <Compile Include="Corp\Contacts\ITagGetAll.cs" />
+    <Compile Include="Corp\Contacts\ITagGetUsers.cs" />
+    <Compile Include="Corp\Contacts\ITagUpdate.cs" />
+    <Compile Include="Corp\Contacts\IUserCreate.cs" />
+    <Compile Include="Corp\Contacts\IUserDelete.cs" />
+    <Compile Include="Corp\Contacts\IUserDeleteMany.cs" />
+    <Compile Include="Corp\Contacts\IUserGetByDepartment.cs" />
+    <Compile Include="Corp\Contacts\IUserGetByID.cs" />
+    <Compile Include="Corp\Contacts\IUserInvite.cs" />
+    <Compile Include="Corp\Contacts\IUserUpdate.cs" />
+    <Compile Include="Normal\Authenticate\IOAuth.cs" />
+    <Compile Include="Normal\CustomMenu\ICreate.cs" />
+    <Compile Include="Normal\CustomMenu\IDelete.cs" />
+    <Compile Include="Normal\CustomMenu\IGetAll.cs" />
+    <Compile Include="Normal\CustomMenu\IGetAllInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Receive\IRecieve.cs" />
-    <Compile Include="SendMsg\ICustomerService.cs" />
-    <Compile Include="SendMsg\IGroupSend.cs" />
-    <Compile Include="SendMsg\IReply.cs" />
-    <Compile Include="SendMsg\ITemplateMsg.cs" />
-    <Compile Include="UserManage\IGetUserBaseInfo.cs" />
-    <Compile Include="UserManage\IGroup.cs" />
-    <Compile Include="UserManage\ISetRemark.cs" />
+    <Compile Include="Normal\Receive\IRecieve.cs" />
+    <Compile Include="Normal\SendMsg\ICustomerService.cs" />
+    <Compile Include="Normal\SendMsg\IGroupSend.cs" />
+    <Compile Include="Normal\SendMsg\IReply.cs" />
+    <Compile Include="Normal\SendMsg\ITemplateMsg.cs" />
+    <Compile Include="Normal\UserManage\IGetUserBaseInfo.cs" />
+    <Compile Include="Normal\UserManage\IGroup.cs" />
+    <Compile Include="Normal\UserManage\ISetRemark.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataStatistics\" />
-    <Folder Include="MaterialManage\" />
-    <Folder Include="MsgEncrypt\" />
+    <Folder Include="Normal\DataStatistics\" />
+    <Folder Include="Normal\MaterialManage\" />
+    <Folder Include="Normal\MsgEncrypt\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

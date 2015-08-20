@@ -4,6 +4,7 @@ using System.Web;
 using Newtonsoft.Json;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.DataAccess.Implement;
+using TPS.WeiXin.Extentions.BaseFunction.Exts;
 using Zeus.Common.Helper;
 using Zeus.Common.Helper.Cryptography;
 using Zeus.Common.Helper.Web;
@@ -23,7 +24,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction.Common
         public static WeiXinJsData GetJsData(Guid accountID)
         {
             AccountRepository repository = new AccountRepository();
-            Account currentAccount = repository.GetAccountByID(accountID);
+            Account currentAccount = repository.GetById(accountID);
             if (currentAccount == null)
             {
                 return null;
@@ -103,47 +104,21 @@ namespace TPS.WeiXin.Extentions.BaseFunction.Common
             HttpContext.Current.Response.End();
             return "";
         }
-    }
-
-    /// <summary>
-    /// 微信数据
-    /// </summary>
-    internal class WeiXinData
-    {
-        /// <summary>
-        /// 票据
-        /// </summary>
-        public string Ticket { get; set; }
 
         /// <summary>
-        /// 过期时间
+        /// 微信数据
         /// </summary>
-        public DateTime ExpiredTime { get; set; }
-    }
+        class WeiXinData
+        {
+            /// <summary>
+            /// 票据
+            /// </summary>
+            public string Ticket { get; set; }
 
-    /// <summary>
-    /// 微信JS请求数据
-    /// </summary>
-    public class WeiXinJsData
-    {
-        /// <summary>
-        /// AppID
-        /// </summary>
-        public string AppID { get; set; }
-
-        /// <summary>
-        /// 随机字符串
-        /// </summary>
-        public string NonceStr { get; set; }
-
-        /// <summary>
-        /// 时间戳
-        /// </summary>
-        public string Timestamp { get; set; }
-
-        /// <summary>
-        /// 签名
-        /// </summary>
-        public string Signature { get; set; }
+            /// <summary>
+            /// 过期时间
+            /// </summary>
+            public DateTime ExpiredTime { get; set; }
+        }
     }
 }

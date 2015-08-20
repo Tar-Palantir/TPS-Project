@@ -17,9 +17,5 @@ namespace TPS.WeiXin.DataAccess.Implement
         {
             get { return _context; }
         }
-        public Account GetAccountByID(Guid accountId)
-        {
-            return ObjectQuery.FirstOrDefault(p => p.ID == accountId);
-        }
     }
 }

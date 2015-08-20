@@ -4,7 +4,6 @@ using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TPS.WeiXin.DataAccess.Entities;
-using TPS.WeiXin.DataAccess.Implement;
 using Zeus.Common.Helper.Web;
 
 namespace TPS.WeiXin.Extentions.BaseCorpFunction.Common
@@ -13,18 +12,6 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction.Common
     {
         private static readonly Dictionary<Guid, AccessToken> DicAccessToken = new Dictionary<Guid, AccessToken>();
         private const string GetTokenUrlFormat_Corp = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={0}&corpsecret={1}";
-
-        public static string GetAccessToken(Guid accountID)
-        {
-            AccountRepository repository = new AccountRepository();
-            Account currentAccount = repository.GetAccountByID(accountID);
-            if (currentAccount == null)
-            {
-                return "";
-            }
-
-            return GetAccessToken(currentAccount);
-        }
 
         /// <summary>
         /// 获取通行令

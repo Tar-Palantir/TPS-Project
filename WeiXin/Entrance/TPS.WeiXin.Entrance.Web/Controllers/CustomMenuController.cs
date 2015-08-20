@@ -4,7 +4,7 @@ using System.Web.Mvc;
 using TPS.WeiXin.Common.Helper;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.DataAccess.Entities.Enums;
-using TPS.WeiXin.Extentions.IFunction.CustomMenu;
+using TPS.WeiXin.Entrance.Web.Models;
 using Zeus.Common.DataStatus;
 using Zeus.Common.Service.MCService;
 
@@ -22,8 +22,24 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
 
         public ServiceResult CreateMenus(Guid accountID, IList<CustomMenu> menus)
         {
-            var func = FunctionFactory.GetFunctionInstance<ICreate>();
-            OperateStatus status = func.Create(accountID, menus);
+            AccountServiceModel model = new AccountServiceModel();
+            var account = model.GetById(accountID);
+            if (account == null)
+            {
+                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账户不存在" });
+            }
+            OperateStatus status;
+            if (account.IsCorp)
+            {
+                var func = FunctionFactory.GetFunctionInstance<Extentions.IFunction.Corp.CustomMenu.ICreate>();
+                status = func.Create(account, menus);
+            }
+            else
+            {
+                var func = FunctionFactory.GetFunctionInstance<Extentions.IFunction.Normal.CustomMenu.ICreate>();
+                status = func.Create(account, menus);
+            }
+
             return new ServiceResult(status);
         }
 
@@ -33,7 +49,7 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
             {
                 ID = Guid.NewGuid(),
                 Name = "点击跳转",
-                Type = (int) EnumMenuType.View,
+                Type = (int)EnumMenuType.View,
                 Key = "",
                 View_Url = "http://www.chataowanjia.com",
                 Sort = 0,
@@ -126,7 +142,7 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
             data.Add(forthSecond);
             data.Add(forthThird);
 
-            return Json(data,JsonRequestBehavior.AllowGet);
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
     }
 }

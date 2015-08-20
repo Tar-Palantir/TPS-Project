@@ -11,7 +11,7 @@ using TPS.WeiXin.DataAccess.Entities.Enums;
 using TPS.WeiXin.DataAccess.Implement;
 using TPS.WeiXin.Extentions.BaseFunction.Exts;
 using TPS.WeiXin.Extentions.IEvent;
-using TPS.WeiXin.Extentions.IFunction.Receive;
+using TPS.WeiXin.Extentions.IFunction.Normal.Receive;
 using Zeus.Common.DataStatus;
 using Zeus.Common.Helper.Cryptography;
 using Zeus.Common.Helper.Log;
@@ -20,16 +20,9 @@ namespace TPS.WeiXin.Extentions.BaseFunction
 {
     public sealed class BReceive : IReceive
     {
-        public OperateStatus Main(Guid accountID, string signature, string timestamp, string nonce, string echostr)
+        public OperateStatus Main(Account currentAccount, string signature, string timestamp, string nonce, string echostr)
         {
-            AccountRepository accountServiceModel = new AccountRepository();
-            var account = accountServiceModel.GetAccountByID(accountID);
-            if (account == null)
-            {
-                return new OperateStatus { ResultSign = ResultSign.Failed, Message = "账号不存在" };
-            }
-
-            if (!CheckSignature(account, signature, timestamp, nonce))
+            if (!CheckSignature(currentAccount, signature, timestamp, nonce))
             {
                 return new OperateStatus { ResultSign = ResultSign.Failed, Message = "验签不通过" };
             }

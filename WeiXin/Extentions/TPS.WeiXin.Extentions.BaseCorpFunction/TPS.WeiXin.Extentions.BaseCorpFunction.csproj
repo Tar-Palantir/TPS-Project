@@ -56,12 +56,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CAuthenticate.cs" />
+    <Compile Include="CCustomMenu.cs" />
     <Compile Include="Common\AccessTokenHelper.cs" />
     <Compile Include="Common\JsSDKHelper.cs" />
+    <Compile Include="CReceive.cs" />
+    <Compile Include="CSendMsg.cs" />
+    <Compile Include="DefaultClickEvent.cs" />
+    <Compile Include="Exts\WeiXinJsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.Model\TPS.WeiXin.Common.Model.csproj">
+      <Project>{FC7C1967-C6B6-49ED-A376-ECE4DA7A62BF}</Project>
+      <Name>TPS.WeiXin.Common.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DataAccess\TPS.WeiXin.DataAccess.Entities\TPS.WeiXin.DataAccess.Entities.csproj">
       <Project>{59197B8C-7106-47D5-A057-D46B0B26AE25}</Project>
       <Name>TPS.WeiXin.DataAccess.Entities</Name>
@@ -69,6 +79,18 @@
     <ProjectReference Include="..\..\DataAccess\TPS.WeiXin.DataAccess.Implement\TPS.WeiXin.DataAccess.Implement.csproj">
       <Project>{11347721-45D0-436B-879A-C841E888FD7C}</Project>
       <Name>TPS.WeiXin.DataAccess.Implement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPS.WeiXin.Extentions.BaseFunction\TPS.WeiXin.Extentions.BaseFunction.csproj">
+      <Project>{D8AD0533-C9DB-449B-8C9F-FCF810C594CF}</Project>
+      <Name>TPS.WeiXin.Extentions.BaseFunction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPS.WeiXin.Extentions.IEvent\TPS.WeiXin.Extentions.IEvent.csproj">
+      <Project>{A89EA90D-0A1B-4250-9206-C90C02078A54}</Project>
+      <Name>TPS.WeiXin.Extentions.IEvent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TPS.WeiXin.Extentions.IFunction\TPS.WeiXin.Extentions.IFunction.csproj">
+      <Project>{EA2310DA-8889-4D8D-8784-217DCBC2C2F6}</Project>
+      <Name>TPS.WeiXin.Extentions.IFunction</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
