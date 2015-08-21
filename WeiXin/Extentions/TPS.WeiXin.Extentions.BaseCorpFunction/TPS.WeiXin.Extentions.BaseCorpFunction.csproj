@@ -59,7 +59,10 @@
     <Compile Include="CAuthenticate.cs" />
     <Compile Include="CCustomMenu.cs" />
     <Compile Include="Common\AccessTokenHelper.cs" />
+    <Compile Include="Common\Cryptography.cs" />
     <Compile Include="Common\JsSDKHelper.cs" />
+    <Compile Include="Common\Sample.cs" />
+    <Compile Include="Common\WXBizMsgCrypt.cs" />
     <Compile Include="CReceive.cs" />
     <Compile Include="CSendMsg.cs" />
     <Compile Include="DefaultClickEvent.cs" />
