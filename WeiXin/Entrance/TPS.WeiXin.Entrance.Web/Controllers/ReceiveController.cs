@@ -10,7 +10,7 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
 {
     public class ReceiveController : BaseServiceController
     {
-        public ActionResult Main(string accountID, string signature, string timestamp, string nonce, string echostr)
+        public ActionResult Main(string accountID, string signature, string msg_signature, string timestamp, string nonce, string echostr)
         {
             FileLogHelper.WriteInfo(string.Format("accountID:{0}\r\nsignature:{1}\r\ntimestamp:{2}\r\nnonce:{3}\r\nechostr:{4}",
                 accountID, signature, timestamp, nonce, echostr));
@@ -31,8 +31,8 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
                 }
                 if (account.IsCorp)
                 {
-                    var func = FunctionFactory.GetFunctionInstance<Extentions.IFunction.Corp.Receive.IReceive>();
-                    status = func.Main(account, signature, timestamp, nonce, echostr);
+                    var func = FunctionFactory.GetCorpFunctionInstance<Extentions.IFunction.Corp.Receive.IReceive>();
+                    status = func.Main(account, msg_signature, timestamp, nonce, echostr);
                 }
                 else
                 {

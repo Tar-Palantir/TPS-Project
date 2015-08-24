@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using System.Xml.Linq;
 using Newtonsoft.Json;
 using TPS.WeiXin.Common.Helper;
+using TPS.WeiXin.Common.Model;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.DataAccess.Entities.Enums;
 using TPS.WeiXin.DataAccess.Implement;
@@ -44,7 +44,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction
             {
                 return new OperateStatus { ResultSign = ResultSign.Failed, Message = "请求参数内容不存在" };
             }
-            var dicParams = ConvertMsg(content);
+            var dicParams = XmlHelper.ConvertToDictionary(content);
             FileLogHelper.WriteInfo(dicParams);
 
             if (!dicParams.ContainsKey("MsgType"))
@@ -55,10 +55,10 @@ namespace TPS.WeiXin.Extentions.BaseFunction
             switch (dicParams["MsgType"])
             {
                 case "text":
-                    responseStr = GetResponseForText(dicParams);
+                    responseStr = GetResponseForText(currentAccount, dicParams);
                     break;
                 case "event":
-                    responseStr = GetResponseForEvent(dicParams);
+                    responseStr = GetResponseForEvent(currentAccount, dicParams);
                     break;
                 default:
                     responseStr = "暂时不支持";
@@ -70,7 +70,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction
 
         }
 
-        private string GetResponseForEvent(Dictionary<string, string> dicParams)
+        private string GetResponseForEvent(Account currentAccount, Dictionary<string, string> dicParams)
         {
             if (!dicParams.ContainsKey("Event")) throw new Exception("没有获取到Event");
             switch (dicParams["Event"])
@@ -80,7 +80,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction
                         if (!dicParams.ContainsKey("EventKey")) throw new Exception("没有获取到EventKey");
 
                         Reply reply;
-                        var clickEvents = EventListenerProvider.GetEventListener<IWeiXinClickEvent>(dicParams["EventKey"], out reply);
+                        var clickEvents = EventListenerProvider.GetEventListener<IWeiXinClickEvent>(currentAccount.ID, dicParams["EventKey"], out reply);
 
                         var events = clickEvents.Aggregate(new Action<IDictionary<string, string>, Reply>((a, b) => { }),
                             (s, c) => s + c.OnEventInvoke);
@@ -97,11 +97,11 @@ namespace TPS.WeiXin.Extentions.BaseFunction
                         Reply reply;
                         if (!dicParams.ContainsKey("EventKey"))
                         {
-                            sEvents = EventListenerProvider.GetEventListener<IWeiXinSubscribeEvent>("subscribe", out reply) as IList<IWeiXinEvent>;
+                            sEvents = EventListenerProvider.GetEventListener<IWeiXinSubscribeEvent>(currentAccount.ID, "subscribe", out reply) as IList<IWeiXinEvent>;
                         }
                         else
                         {
-                            sEvents = EventListenerProvider.GetEventListener<IWeiXinScanEvent>("subscribe:" + dicParams["EventKey"], out reply) as IList<IWeiXinEvent>;
+                            sEvents = EventListenerProvider.GetEventListener<IWeiXinScanEvent>(currentAccount.ID, "subscribe:" + dicParams["EventKey"], out reply) as IList<IWeiXinEvent>;
                         }
                         if (sEvents != null)
                         {
@@ -114,7 +114,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction
                     }
                 case "unsubscribe":
                     {
-                        var sEvents = EventListenerProvider.GetEventListener<IWeiXinUnsubscribeEvent>();
+                        var sEvents = EventListenerProvider.GetEventListener<IWeiXinUnsubscribeEvent>(currentAccount.ID);
 
                         if (sEvents != null)
                         {
@@ -134,14 +134,14 @@ namespace TPS.WeiXin.Extentions.BaseFunction
             }
         }
 
-        private string GetResponseForText(Dictionary<string, string> dicParams)
+        private string GetResponseForText(Account currentAccount, Dictionary<string, string> dicParams)
         {
             if (!dicParams.ContainsKey("ToUserName")) throw new Exception("没有获取到ToUserName");
             if (!dicParams.ContainsKey("FromUserName")) throw new Exception("没有获取到FromUserName");
             if (!dicParams.ContainsKey("Content")) throw new Exception("没有获取到Content");
 
             var replyRepository = new ReplyRepository();
-            Reply reply = replyRepository.GetReply(dicParams["Content"], EnumKeyType.Keyword);
+            Reply reply = replyRepository.GetReply(currentAccount.ID, dicParams["Content"], EnumKeyType.Keyword);
 
             BaseReply returnReply;
             switch (reply.Message.Type)
@@ -171,22 +171,6 @@ namespace TPS.WeiXin.Extentions.BaseFunction
             var currentSignature = HashCryptography.Sha1Encrypt(paramList.Aggregate((o, t) => o + t));
             FileLogHelper.WriteInfo("CheckSignature:" + currentSignature);
             return currentSignature == signature;
-        }
-
-        private Dictionary<string, string> ConvertMsg(string xmlMsg)
-        {
-            try
-            {
-                var sr = new StringReader(xmlMsg);
-                var xElement = XElement.Load(sr);
-                var nodes = xElement.Elements();
-                var result = nodes.ToDictionary(node => node.Name.LocalName, node => node.Value);
-                return result;
-            }
-            catch (Exception e)
-            {
-                throw new Exception(string.Format("将xml内容转换为对象失败，xml内容【{0}】失败【{1}】", xmlMsg, e));
-            }
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using TPS.WeiXin.Common.Model;
-using TPS.WeiXin.Common.Model.Enums;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.Extentions.BaseCorpFunction.Common;
 using TPS.WeiXin.Extentions.IFunction.Corp.Authenticate;

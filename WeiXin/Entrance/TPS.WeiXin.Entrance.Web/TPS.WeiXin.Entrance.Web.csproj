@@ -150,6 +150,9 @@
     <Content Include="packages.config" />
     <Content Include="FunctionIoc.config" />
     <Content Include="EventConfig.config" />
+    <Content Include="CorpFunctionIoc.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

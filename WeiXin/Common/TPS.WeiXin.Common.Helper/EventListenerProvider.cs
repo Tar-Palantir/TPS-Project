@@ -19,11 +19,11 @@ namespace TPS.WeiXin.Common.Helper
             _section = (EventConfigurationSection)ConfigurationManager.GetSection("eventlistener");
         }
 
-        public static IList<T> GetEventListener<T>()
+        public static IList<T> GetEventListener<T>(Guid accountID)
         {
             var typeT = typeof(T);
-
-            var events = _section.Events.Where(p => p.EventName == typeT.Name);
+            var accountIDStr = accountID.ToString().ToLower();
+            var events = _section.Events.Where(p => p.AccountID == accountIDStr || p.AccountID == string.Empty).Where(p => p.EventName == typeT.Name);
 
             IList<T> results = new List<T>();
             foreach (var e in events)
@@ -45,16 +45,16 @@ namespace TPS.WeiXin.Common.Helper
             return results;
         }
 
-        public static IList<T> GetEventListener<T>(string key, out Reply reply)
+        public static IList<T> GetEventListener<T>(Guid accountID, string key, out Reply reply)
         {
             ReplyRepository repository = new ReplyRepository();
-            reply = repository.GetReply(key, EnumKeyType.Event);
+            reply = repository.GetReply(accountID, key, EnumKeyType.Event);
             if (reply == null)
             {
                 return null;
             }
 
-            return GetEventListener<T>();
+            return GetEventListener<T>(accountID);
         }
 
         public static T GetSpecialEvent<T>(IList<T> events, Reply reply)

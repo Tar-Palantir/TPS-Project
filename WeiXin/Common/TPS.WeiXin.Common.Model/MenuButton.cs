@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace TPS.WeiXin.Extentions.BaseFunction.Exts
+namespace TPS.WeiXin.Common.Model
 {
     public class MenuButton
     {

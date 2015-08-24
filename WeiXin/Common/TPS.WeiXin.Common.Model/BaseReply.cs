@@ -2,7 +2,7 @@
 using System.Text;
 using Zeus.Common.Helper;
 
-namespace TPS.WeiXin.Extentions.BaseFunction.Exts
+namespace TPS.WeiXin.Common.Model
 {
     public abstract class BaseReply
     {

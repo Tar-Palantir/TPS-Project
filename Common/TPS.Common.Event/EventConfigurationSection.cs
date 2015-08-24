@@ -30,7 +30,8 @@ namespace TPS.Common.Event
                         EventName = node.Attributes["eventname"].Value,
                         Type = node.Attributes["type"].Value,
                         Key = node.Attributes["key"].Value, 
-                        Assembly = node.Attributes["assembly"].Value
+                        Assembly = node.Attributes["assembly"].Value,
+                        AccountID = node.Attributes["accountid"].Value.ToLower()
                     }).ToList();
 
                 eventConfigurationSection.Events = eventList;

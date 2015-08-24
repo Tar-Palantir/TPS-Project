@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.DataAccess.Entities.Enums;
-using TPS.WeiXin.Extentions.BaseFunction.Exts;
 using TPS.WeiXin.Extentions.IEvent;
 
-namespace TPS.WeiXin.Extentions.BaseFunction
+namespace TPS.WeiXin.Common.Model
 {
     public sealed class DefaultClickEvent : IWeiXinClickEvent
     {

@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.Extentions.BaseFunction.Common;
-using TPS.WeiXin.Extentions.BaseFunction.Exts;
 using TPS.WeiXin.Extentions.IFunction.Normal.CustomMenu;
 using Zeus.Common.DataStatus;
 using Zeus.Common.Helper.Web;
+using TPS.WeiXin.Common.Model;
 
 namespace TPS.WeiXin.Extentions.BaseFunction
 {

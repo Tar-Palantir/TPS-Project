@@ -51,6 +51,10 @@
     <Reference Include="Zeus.Common.DataAccess.Interface">
       <HintPath>..\..\..\packages\Common.DA.Interface.2.2.0\lib\Zeus.Common.DataAccess.Interface.dll</HintPath>
     </Reference>
+    <Reference Include="Zeus.Common.DataStatus, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Common.DS.2.1.0\lib\Zeus.Common.DataStatus.dll</HintPath>
+    </Reference>
     <Reference Include="Zeus.Common.Helper">
       <HintPath>..\..\..\packages\Common.Helper.2.0.2\lib\Zeus.Common.Helper.dll</HintPath>
     </Reference>
@@ -59,18 +63,21 @@
     <Compile Include="CAuthenticate.cs" />
     <Compile Include="CCustomMenu.cs" />
     <Compile Include="Common\AccessTokenHelper.cs" />
-    <Compile Include="Common\Cryptography.cs" />
+    <Compile Include="Common\WXCryptHelper.cs" />
     <Compile Include="Common\JsSDKHelper.cs" />
-    <Compile Include="Common\Sample.cs" />
-    <Compile Include="Common\WXBizMsgCrypt.cs" />
+    <Compile Include="Common\WXBizMsgCryptHelper.cs" />
     <Compile Include="CReceive.cs" />
     <Compile Include="CSendMsg.cs" />
-    <Compile Include="DefaultClickEvent.cs" />
+    <Compile Include="Exts\EnumWXBizMsgCryptErrorCode.cs" />
     <Compile Include="Exts\WeiXinJsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.Helper\TPS.WeiXin.Common.Helper.csproj">
+      <Project>{C102B8C2-285F-4D32-827F-2E2BE1AC2179}</Project>
+      <Name>TPS.WeiXin.Common.Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.Model\TPS.WeiXin.Common.Model.csproj">
       <Project>{FC7C1967-C6B6-49ED-A376-ECE4DA7A62BF}</Project>
       <Name>TPS.WeiXin.Common.Model</Name>
@@ -82,10 +89,6 @@
     <ProjectReference Include="..\..\DataAccess\TPS.WeiXin.DataAccess.Implement\TPS.WeiXin.DataAccess.Implement.csproj">
       <Project>{11347721-45D0-436B-879A-C841E888FD7C}</Project>
       <Name>TPS.WeiXin.DataAccess.Implement</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TPS.WeiXin.Extentions.BaseFunction\TPS.WeiXin.Extentions.BaseFunction.csproj">
-      <Project>{D8AD0533-C9DB-449B-8C9F-FCF810C594CF}</Project>
-      <Name>TPS.WeiXin.Extentions.BaseFunction</Name>
     </ProjectReference>
     <ProjectReference Include="..\TPS.WeiXin.Extentions.IEvent\TPS.WeiXin.Extentions.IEvent.csproj">
       <Project>{A89EA90D-0A1B-4250-9206-C90C02078A54}</Project>

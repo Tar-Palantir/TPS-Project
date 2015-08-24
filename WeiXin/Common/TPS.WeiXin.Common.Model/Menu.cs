@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.DataAccess.Entities.Enums;
 
-namespace TPS.WeiXin.Extentions.BaseFunction.Exts
+namespace TPS.WeiXin.Common.Model
 {
     public class Menu
     {

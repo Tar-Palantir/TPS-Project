@@ -105,9 +105,9 @@ namespace TPS.WeiXin.DataAccess.Implement
             return status;
         }
 
-        public Reply GetReply(string key, EnumKeyType keyType)
+        public Reply GetReply(Guid accountID, string key, EnumKeyType keyType)
         {
-            return ObjectQuery.Where(p => p.KeyType == (int)keyType)
+            return ObjectQuery.Where(p => p.KeyType == (int)keyType).Where(p => p.AccountID == accountID)
                 .Where(p => p.Key == key).FirstOrDefault(p => p.Status == (int)StateSign.Normal);
         }
     }

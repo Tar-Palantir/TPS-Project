@@ -9,5 +9,7 @@
         public string Key { set; get; }
 
         public string Assembly { set; get; }
+
+        public string AccountID { get; set; }
     }
 }

@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Security.Cryptography;
 using System.IO;
 using System.Net;
-namespace Tencent
+using System.Security.Cryptography;
+using System.Text;
+
+namespace TPS.WeiXin.Extentions.BaseCorpFunction.Common
 {
-    class Cryptography
+    public class WXCryptHelper
     {
         public static UInt32 HostToNetworkOrder(UInt32 inval)
         {
@@ -24,20 +23,20 @@ namespace Tencent
                 outval = (outval << 8) + ((inval >> (i * 8)) & 255);
             return outval;
         }
+
         /// <summary>
         /// 解密方法
         /// </summary>
         /// <param name="Input">密文</param>
         /// <param name="EncodingAESKey"></param>
+        /// <param name="corpid"></param>
         /// <returns></returns>
-        /// 
-        public static string AES_decrypt(String Input, string EncodingAESKey, ref string corpid)
+        public static string AES_Decrypt(String Input, string EncodingAESKey, out string corpid)
         {
-            byte[] Key;
-            Key = Convert.FromBase64String(EncodingAESKey + "=");
+            var Key = Convert.FromBase64String(EncodingAESKey + "=");
             byte[] Iv = new byte[16];
             Array.Copy(Key, Iv, 16);
-            byte[] btmpMsg = AES_decrypt(Input, Iv, Key);
+            byte[] btmpMsg = AES_Decrypt(Input, Iv, Key);
 
             int len = BitConverter.ToInt32(btmpMsg, 16);
             len = IPAddress.NetworkToHostOrder(len);
@@ -46,20 +45,19 @@ namespace Tencent
             byte[] bMsg = new byte[len];
             byte[] bCorpid = new byte[btmpMsg.Length - 20 - len];
             Array.Copy(btmpMsg, 20, bMsg, 0, len);
-            Array.Copy(btmpMsg, 20+len , bCorpid, 0, btmpMsg.Length - 20 - len);
+            Array.Copy(btmpMsg, 20 + len, bCorpid, 0, btmpMsg.Length - 20 - len);
             string oriMsg = Encoding.UTF8.GetString(bMsg);
             corpid = Encoding.UTF8.GetString(bCorpid);
 
-            
+
             return oriMsg;
         }
 
-        public static String AES_encrypt(String Input, string EncodingAESKey, string corpid)
+        public static String AES_Encrypt(String Input, string EncodingAESKey, string corpid)
         {
-            byte[] Key;
-            Key = Convert.FromBase64String(EncodingAESKey + "=");
-            byte[] Iv = new byte[16];
-            Array.Copy(Key, Iv, 16);
+            var key = Convert.FromBase64String(EncodingAESKey + "=");
+            byte[] iv = new byte[16];
+            Array.Copy(key, iv, 16);
             string Randcode = CreateRandCode(16);
             byte[] bRand = Encoding.UTF8.GetBytes(Randcode);
             byte[] bCorpid = Encoding.UTF8.GetBytes(corpid);
@@ -71,93 +69,54 @@ namespace Tencent
             Array.Copy(bMsgLen, 0, bMsg, bRand.Length, bMsgLen.Length);
             Array.Copy(btmpMsg, 0, bMsg, bRand.Length + bMsgLen.Length, btmpMsg.Length);
             Array.Copy(bCorpid, 0, bMsg, bRand.Length + bMsgLen.Length + btmpMsg.Length, bCorpid.Length);
-   
-            return AES_encrypt(bMsg, Iv, Key);
+
+            return AES_encrypt(bMsg, iv, key);
 
         }
         private static string CreateRandCode(int codeLen)
         {
-            string codeSerial = "2,3,4,5,6,7,a,c,d,e,f,h,i,j,k,m,n,p,r,s,t,A,C,D,E,F,G,H,J,K,M,N,P,Q,R,S,U,V,W,X,Y,Z";
+            const string codeSerial = "2,3,4,5,6,7,a,c,d,e,f,h,i,j,k,m,n,p,r,s,t,A,C,D,E,F,G,H,J,K,M,N,P,Q,R,S,U,V,W,X,Y,Z";
             if (codeLen == 0)
             {
                 codeLen = 16;
             }
             string[] arr = codeSerial.Split(',');
             string code = "";
-            int randValue = -1;
             Random rand = new Random(unchecked((int)DateTime.Now.Ticks));
             for (int i = 0; i < codeLen; i++)
             {
-                randValue = rand.Next(0, arr.Length - 1);
+                var randValue = rand.Next(0, arr.Length - 1);
                 code += arr[randValue];
             }
             return code;
         }
-
-        private static String AES_encrypt(String Input, byte[] Iv, byte[] Key)
+        
+        private static String AES_encrypt(byte[] inputByte, byte[] Iv, byte[] Key)
         {
-            var aes = new RijndaelManaged();
-            //秘钥的大小，以位为单位
-            aes.KeySize = 256;
-            //支持的块大小
-            aes.BlockSize = 128;
-            //填充模式
-            aes.Padding = PaddingMode.PKCS7;
-            aes.Mode = CipherMode.CBC;
-            aes.Key = Key;
-            aes.IV = Iv;
-            var encrypt = aes.CreateEncryptor(aes.Key, aes.IV);
-            byte[] xBuff = null;
-
-            using (var ms = new MemoryStream())
+            var aes = new RijndaelManaged
             {
-                using (var cs = new CryptoStream(ms, encrypt, CryptoStreamMode.Write))
-                {
-                    byte[] xXml = Encoding.UTF8.GetBytes(Input);
-                    cs.Write(xXml, 0, xXml.Length);
-                }
-                xBuff = ms.ToArray();
-            }
-            String Output = Convert.ToBase64String(xBuff);
-            return Output;
-        }
-
-        private static String AES_encrypt(byte[] Input, byte[] Iv, byte[] Key)
-        {
-            var aes = new RijndaelManaged();
+                KeySize = 256,
+                BlockSize = 128,
+                Padding = PaddingMode.None,
+                Mode = CipherMode.CBC,
+                Key = Key,
+                IV = Iv
+            };
             //秘钥的大小，以位为单位
-            aes.KeySize = 256;
             //支持的块大小
-            aes.BlockSize = 128;
             //填充模式
             //aes.Padding = PaddingMode.PKCS7;
-            aes.Padding = PaddingMode.None;
-            aes.Mode = CipherMode.CBC;
-            aes.Key = Key;
-            aes.IV = Iv;
             var encrypt = aes.CreateEncryptor(aes.Key, aes.IV);
-            byte[] xBuff = null;
 
-            #region 自己进行PKCS7补位，用系统自己带的不行
-            byte[] msg = new byte[Input.Length + 32 - Input.Length % 32];
-            Array.Copy(Input, msg, Input.Length);
-            byte[] pad = KCS7Encoder(Input.Length);
-            Array.Copy(pad, 0, msg, Input.Length, pad.Length);
+            #region 自己进行PKCS7补位
+            byte[] msg = new byte[inputByte.Length + 32 - inputByte.Length % 32];
+            Array.Copy(inputByte, msg, inputByte.Length);
+            byte[] pad = KCS7Encoder(inputByte.Length);
+            Array.Copy(pad, 0, msg, inputByte.Length, pad.Length);
             #endregion
 
-            #region 注释的也是一种方法，效果一样
             //ICryptoTransform transform = aes.CreateEncryptor();
-            //byte[] xBuff = transform.TransformFinalBlock(msg, 0, msg.Length);
-            #endregion
-
-            using (var ms = new MemoryStream())
-            {
-                using (var cs = new CryptoStream(ms, encrypt, CryptoStreamMode.Write))
-                {
-                    cs.Write(msg, 0, msg.Length);
-                }
-                xBuff = ms.ToArray();
-            }
+            byte[] xBuff = encrypt.TransformFinalBlock(msg, 0, msg.Length);
 
             String Output = Convert.ToBase64String(xBuff);
             return Output;
@@ -165,7 +124,7 @@ namespace Tencent
 
         private static byte[] KCS7Encoder(int text_length)
         {
-            int block_size = 32;
+            const int block_size = 32;
             // 计算需要填充的位数
             int amount_to_pad = block_size - (text_length % block_size);
             if (amount_to_pad == 0)
@@ -181,6 +140,7 @@ namespace Tencent
             }
             return Encoding.UTF8.GetBytes(tmp);
         }
+        
         /**
          * 将数字转化成ASCII码对应的字符，用于对明文进行补码
          * 
@@ -193,33 +153,33 @@ namespace Tencent
             byte target = (byte)(a & 0xFF);
             return (char)target;
         }
-        private static byte[] AES_decrypt(String Input, byte[] Iv, byte[] Key)
+        private static byte[] AES_Decrypt(String input, byte[] Iv, byte[] Key)
         {
-            RijndaelManaged aes = new RijndaelManaged();
-            aes.KeySize = 256;
-            aes.BlockSize = 128;
-            aes.Mode = CipherMode.CBC;
-            aes.Padding = PaddingMode.None;
-            aes.Key = Key;
-            aes.IV = Iv;
+            RijndaelManaged aes = new RijndaelManaged
+            {
+                KeySize = 256,
+                BlockSize = 128,
+                Mode = CipherMode.CBC,
+                Padding = PaddingMode.None,
+                Key = Key,
+                IV = Iv
+            };
             var decrypt = aes.CreateDecryptor(aes.Key, aes.IV);
-            byte[] xBuff = null;
+            byte[] xBuff;
             using (var ms = new MemoryStream())
             {
                 using (var cs = new CryptoStream(ms, decrypt, CryptoStreamMode.Write))
                 {
-                    byte[] xXml = Convert.FromBase64String(Input);
-                    byte[] msg = new byte[xXml.Length + 32 - xXml.Length % 32];
-                    Array.Copy(xXml, msg, xXml.Length);
+                    byte[] xXml = Convert.FromBase64String(input);
                     cs.Write(xXml, 0, xXml.Length);
                 }
-                xBuff = decode2(ms.ToArray());
+                xBuff = Decode2(ms.ToArray());
             }
             return xBuff;
         }
-        private static byte[] decode2(byte[] decrypted)
+        private static byte[] Decode2(byte[] decrypted)
         {
-            int pad = (int)decrypted[decrypted.Length - 1];
+            int pad = decrypted[decrypted.Length - 1];
             if (pad < 1 || pad > 32)
             {
                 pad = 0;

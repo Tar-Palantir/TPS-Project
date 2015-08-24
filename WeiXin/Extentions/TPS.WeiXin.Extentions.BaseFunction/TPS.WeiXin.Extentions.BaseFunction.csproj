@@ -74,13 +74,7 @@
     <Compile Include="BAccountManage.cs" />
     <Compile Include="BCustomMenu.cs" />
     <Compile Include="Common\JsSDKHelper.cs" />
-    <Compile Include="Exts\ArticleReply.cs" />
-    <Compile Include="Exts\BaseReply.cs" />
-    <Compile Include="DefaultClickEvent.cs" />
-    <Compile Include="Exts\Menu.cs" />
-    <Compile Include="Exts\MenuButton.cs" />
     <Compile Include="Exts\TemplateMsg.cs" />
-    <Compile Include="Exts\TextReply.cs" />
     <Compile Include="Exts\WeiXinJsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BSendMsg.cs" />

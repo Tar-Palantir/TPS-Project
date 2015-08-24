@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace TPS.WeiXin.Extentions.BaseFunction.Exts
+namespace TPS.WeiXin.Common.Model
 {
     public class ArticleReply : BaseReply
     {
@@ -37,16 +37,5 @@ namespace TPS.WeiXin.Extentions.BaseFunction.Exts
             return sb.ToString();
         }
 
-    }
-
-    public class ArticleReplyItem
-    {
-        public string Title { set; get; }
-
-        public string Description { set; get; }
-
-        public string PicUrl { set; get; }
-
-        public string Url { set; get; }
     }
 }
