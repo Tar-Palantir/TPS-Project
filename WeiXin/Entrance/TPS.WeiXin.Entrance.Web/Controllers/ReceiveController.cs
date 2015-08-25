@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using TPS.WeiXin.Common.Helper;
 using TPS.WeiXin.Entrance.Web.Models;
 using Zeus.Common.DataStatus;
@@ -12,8 +13,8 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
     {
         public ActionResult Main(string accountID, string signature, string msg_signature, string timestamp, string nonce, string echostr)
         {
-            FileLogHelper.WriteInfo(string.Format("accountID:{0}\r\nsignature:{1}\r\ntimestamp:{2}\r\nnonce:{3}\r\nechostr:{4}",
-                accountID, signature, timestamp, nonce, echostr));
+            FileLogHelper.WriteInfo(string.Format("accountID:{0}\r\nsignature:{1}\r\ntimestamp:{2}\r\nnonce:{3}\r\nechostr:{4}\r\nmsg_signature:{5}",
+                accountID, signature, timestamp, nonce, echostr, msg_signature));
 
             OperateStatus status;
             Guid aID;
@@ -40,6 +41,8 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
                     status = func.Main(account, signature, timestamp, nonce, echostr);
                 }
             }
+
+            FileLogHelper.WriteInfo(JsonConvert.SerializeObject(status));
             return new ServiceResult(status);
         }
 

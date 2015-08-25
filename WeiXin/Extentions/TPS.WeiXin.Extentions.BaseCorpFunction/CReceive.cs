@@ -42,20 +42,22 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
                 content = reader.ReadToEnd();
             }
 
-            FileLogHelper.WriteInfo("Content:" + content);
+            FileLogHelper.WriteInfo("Content:" + content, "CorpInfoLog");
             if (string.IsNullOrEmpty(content))
             {
                 return new OperateStatus { ResultSign = ResultSign.Failed, Message = "请求参数内容不存在" };
             }
+            
             string deContent;
             ret = wxcrptyHelper.DecryptMsg(currentAccount, signature, timestamp, nonce, content, out deContent);
             if (ret != EnumWXBizMsgCryptErrorCode.OK)
             {
                 return new OperateStatus { ResultSign = ResultSign.Failed, Message = "解密不通过" };
             }
+            FileLogHelper.WriteInfo("DeCentent:" + deContent, "CorpInfoLog");
 
             var dicParams = XmlHelper.ConvertToDictionary(deContent);
-            FileLogHelper.WriteInfo(dicParams);
+            FileLogHelper.WriteInfo(dicParams, "CorpInfoLog");
 
             if (!dicParams.ContainsKey("MsgType"))
             {
@@ -74,7 +76,7 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
                     responseStr = "暂时不支持";
                     break;
             }
-            FileLogHelper.WriteInfo("ResponseString:" + responseStr);
+            FileLogHelper.WriteInfo("ResponseString:" + responseStr, "CorpInfoLog");
 
             string enResponseStr;
             ret = wxcrptyHelper.EncryptMsg(currentAccount, responseStr, timestamp, nonce,
@@ -85,7 +87,6 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
             }
 
             return new OperateStatus { ResultSign = ResultSign.Success, ReturnValue = enResponseStr };
-
         }
 
         private string GetResponseForEvent(Account currentAccount, Dictionary<string, string> dicParams)
@@ -111,9 +112,8 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
                     }
                 case "subscribe":
                     {
-                        IList<IWeiXinEvent> sEvents;
                         Reply reply;
-                        sEvents = EventListenerProvider.GetEventListener<IWeiXinSubscribeEvent>(currentAccount.ID, "subscribe", out reply) as IList<IWeiXinEvent>;
+                        var sEvents = EventListenerProvider.GetEventListener<IWeiXinSubscribeEvent>(currentAccount.ID, "subscribe", out reply);
 
                         if (sEvents != null)
                         {

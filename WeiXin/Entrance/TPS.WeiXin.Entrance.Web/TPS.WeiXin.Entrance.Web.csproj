@@ -193,6 +193,10 @@
       <Project>{11347721-45D0-436B-879A-C841E888FD7C}</Project>
       <Name>TPS.WeiXin.DataAccess.Implement</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Extentions\TPS.WeiXin.Extentions.BaseCorpFunction\TPS.WeiXin.Extentions.BaseCorpFunction.csproj">
+      <Project>{404cd23d-d0a4-4721-a384-cfd8c7749dcb}</Project>
+      <Name>TPS.WeiXin.Extentions.BaseCorpFunction</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Extentions\TPS.WeiXin.Extentions.BaseFunction\TPS.WeiXin.Extentions.BaseFunction.csproj">
       <Project>{d8ad0533-c9db-449b-8c9f-fcf810c594cf}</Project>
       <Name>TPS.WeiXin.Extentions.BaseFunction</Name>

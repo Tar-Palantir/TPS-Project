@@ -15,6 +15,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction
     public sealed class BSendMsg : ICustomerService, IGroupSend, IReply, ITemplateMsg
     {
         private const string SendTemplateMsgUrl = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=";
+
         public OperateStatus SendTemplateMsg(Account currentAccount, TemplateMsgParams templateMsgParams, IList<TemplateParameter> parameters)
         {
             try
