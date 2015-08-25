@@ -1,0 +1,3625 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zeus.Common.Helper</name>
+    </assembly>
+    <members>
+        <member name="T:Zeus.Common.Helper.Async.LimitedConcurrencyLevelTaskScheduler">
+            <summary>
+            Provides a task scheduler that ensures a maximum concurrency level while  
+            running on top of the thread pool. 
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Async.LimitedConcurrencyLevelTaskScheduler.#ctor(System.Int32)">
+            <summary>
+            Creates a new instance with the specified degree of parallelism. 
+            </summary>
+            <param name="maxDegreeOfParallelism"></param>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="M:Zeus.Common.Helper.Async.LimitedConcurrencyLevelTaskScheduler.QueueTask(System.Threading.Tasks.Task)">
+            <summary>
+            Queues a task to the scheduler.  
+            </summary>
+            <param name="task"></param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Async.LimitedConcurrencyLevelTaskScheduler.NotifyThreadPoolOfPendingWork">
+            <summary>
+            Inform the ThreadPool that there's work to be executed for this scheduler.
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Async.LimitedConcurrencyLevelTaskScheduler.TryExecuteTaskInline(System.Threading.Tasks.Task,System.Boolean)">
+            <summary>
+            Attempts to execute the specified task on the current thread.  
+            </summary>
+            <param name="task"></param>
+            <param name="taskWasPreviouslyQueued"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Async.LimitedConcurrencyLevelTaskScheduler.TryDequeue(System.Threading.Tasks.Task)">
+            <summary>
+            Attempt to remove a previously scheduled task from the scheduler.
+            </summary>
+            <param name="task"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Async.LimitedConcurrencyLevelTaskScheduler.GetScheduledTasks">
+            <summary>
+            Gets an enumerable of the tasks currently scheduled on this scheduler. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Zeus.Common.Helper.Async.LimitedConcurrencyLevelTaskScheduler.MaximumConcurrencyLevel">
+            <summary>
+            Gets the maximum concurrency level supported by this scheduler. 
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Async.TaskAsyncHelper">
+            <summary>
+            异步任务帮助类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Async.TaskAsyncHelper.RunAsync(System.Action,System.Action)">
+            <summary>  
+            将一个方法function异步运行，在执行完毕时执行回调callback  
+            </summary>  
+            <param name="function">异步方法，该方法没有参数，返回类型必须是void</param>  
+            <param name="callback">异步方法执行完毕时执行的回调方法，该方法没有参数，返回类型必须是void</param>  
+        </member>
+        <member name="M:Zeus.Common.Helper.Async.TaskAsyncHelper.RunAsync``1(System.Func{``0},System.Action{``0})">
+            <summary>  
+            将一个方法function异步运行，在执行完毕时执行回调callback  
+            </summary>  
+            <typeparam name="TResult">异步方法的返回类型</typeparam>  
+            <param name="function">异步方法，该方法没有参数，返回类型必须是TResult</param>  
+            <param name="callback">异步方法执行完毕时执行的回调方法，该方法参数为TResult，返回类型必须是void</param>  
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ImageHelper">
+            <summary>
+            图片帮助类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ImageHelper.MakeThumbnail(System.String,System.String,Zeus.Common.Helper.File.ImageHelper.ThumbnailOptions)">
+            <summary>
+            生成缩略图
+            </summary>
+            <param name="originalImagePath">原图路径</param>
+            <param name="thumbnailPath">缩略图保存路径</param>
+            <param name="option">缩略图选项</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ImageHelper.GetImageFormat(System.String)">
+            <summary>
+            获取需要生成的图片格式
+            </summary>
+            <returns>返回图片格式</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ImageHelper.GetImageExifInfoGetter(System.String)">
+            <summary>
+            获取图片Exif信息获取器
+            </summary>
+            <param name="filePath">图片文件路径</param>
+            <returns>Exif管理器</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ImageHelper.GetImageExifInfoGetter(System.Drawing.Image)">
+            <summary>
+            获取图片Exif信息获取器
+            </summary>
+            <param name="image">图片</param>
+            <returns>Exif管理器</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ImageHelper.GetImageExifInfoGetter(System.Collections.Generic.IList{System.Drawing.Imaging.PropertyItem})">
+            <summary>
+            获取图片Exif信息获取器
+            </summary>
+            <param name="exifList">Exif信息集合</param>
+            <returns>Exif管理器</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ImageHelper.GetImageExifInfoSetter(System.String)">
+            <summary>
+            获取图片Exif信息设置器
+            </summary>
+            <param name="filePath">图片文件路径</param>
+            <returns>Exif管理器</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ImageHelper.GetImageExifInfoSetter(System.Drawing.Image)">
+            <summary>
+            获取图片Exif信息设置器
+            </summary>
+            <param name="image">图片</param>
+            <returns>Exif管理器</returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ImageHelper.ThumbnailOptions">
+            <summary>
+            缩略图选项
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.File.ImageHelper.ThumbnailOptions.Width">
+            <summary>
+            宽度
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.File.ImageHelper.ThumbnailOptions.Height">
+            <summary>
+            高度
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.File.ImageHelper.ThumbnailOptions.ZoomMode">
+            <summary>
+            缩放模式
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.File.ImageHelper.ThumbnailOptions.IsHighQuality">
+            <summary>
+            是否采用高质量生成
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ImageHelper.ZoomMode">
+            <summary>
+            缩放模式
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ImageHelper.ZoomMode.HeightWidthRatio">
+            <summary>
+            高宽比
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ImageHelper.ZoomMode.HeightRatio">
+            <summary>
+            定高，宽按比例
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ImageHelper.ZoomMode.WidthRatio">
+            <summary>
+            定宽，高按比例
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ImageHelper.ZoomMode.Cut">
+            <summary>
+            裁剪
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifSetter">
+            <summary>
+            Exif赋值器
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager">
+            <summary>
+            Exif管理器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifManager.SetEncoding(System.Text.Encoding)">
+            <summary>
+            设置字符串编码
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.ExifTagNames">
+            <summary>
+            所有EXIF的ID
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_VersionID">
+            <summary>
+            GPS版本Id
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_LatitudeRef">
+            <summary>
+            相对纬度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_Latitude">
+            <summary>
+            纬度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_LongitudeRef">
+            <summary>
+            相对经度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_Longitude">
+            <summary>
+            经度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_AltitudeRef">
+            <summary>
+            相对海拔
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_Altitude">
+            <summary>
+            海拔
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_TimeStamp">
+            <summary>
+            TimeStamp
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_Satellites">
+            <summary>
+            Satellites
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_Status">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_MeasureMode">
+            <summary>
+            MeasureMode
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_Dop">
+            <summary>
+            Dop
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_SpeedRef">
+            <summary>
+            SpeedRef
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_Speed">
+            <summary>
+            Speed
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_TrackRef">
+            <summary>
+            TrackRef
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_Track">
+            <summary>
+            Track
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_ImgDirectionRef">
+            <summary>
+            ImgDirectionRef
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_ImgDirection">
+            <summary>
+            ImgDirection
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_MapDatum">
+            <summary>
+            MapDatum
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_DestLatitudeRef">
+            <summary>
+            DestLatitudeRef
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_DestLatitude">
+            <summary>
+            DestLatitude
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_DestLongitudeRef">
+            <summary>
+            DestLongitudeRef
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_DestLongitude">
+            <summary>
+            DestLongitude
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_DestBearingRef">
+            <summary>
+            DestBearingRef
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_DestBearing">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_DestDistanceRef">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Gps_DestDistance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_ImageWidth">
+            <summary>
+            图片宽度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_ImageHeight">
+            <summary>
+            图片高度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_BitsPerSample">
+            <summary>
+            BitsPerSample
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_Compression">
+            <summary>
+            Compression
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_PhotometricInterp">
+            <summary>
+            PhotometricInterp
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_ImageDescription">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_EquipMake">
+            <summary>
+            设备制造方
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_EquipModel">
+            <summary>
+            设备模具
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_StripOffsets">
+            <summary>
+            StripOffsets
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_Orientation">
+            <summary>
+            图片方向
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_SamplesPerPixel">
+            <summary>
+            SamplesPerPixel
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_RowsPerStrip">
+            <summary>
+            RowsPerStrip
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_StripBytesCount">
+            <summary>
+            StripBytesCount
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_XResolution">
+            <summary>
+            水平分辨率
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_YResolution">
+            <summary>
+            垂直分辨率
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_PlanarConfig">
+            <summary>
+            PlanarConfig
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_ResolutionUnit">
+            <summary>
+            分辨率单位
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_TransferFuncition">
+            <summary>
+            TransferFuncition
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_SoftwareUsed">
+            <summary>
+            使用的软件
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_DateTime">
+            <summary>
+            最后一次修改时间
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_Artist">
+            <summary>
+            作者
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_WhitePoint">
+            <summary>
+            WhitePoint
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_PrimaryChromaticities">
+            <summary>
+            PrimaryChromaticities
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_JpegInterchangeFormat">
+            <summary>
+            JpegInterchangeFormat
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_JpegInterchagneFormatLength">
+            <summary>
+            JpegInterchagneFormatLength
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_YCbCrCoefficients">
+            <summary>
+            YCbCrCoefficients
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_YCbCrSubsampling">
+            <summary>
+            YCbCrSubsampling
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_YCbCrPositioning">
+            <summary>
+            YCbCrPositioning
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_RefenBlackWhite">
+            <summary>
+            RefenBlackWhite
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.Tiff_Copyright">
+            <summary>
+            版权
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ExposureTime">
+            <summary>
+            曝光时间
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_FNumber">
+            <summary>
+            FNumber
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ExifIFD">
+            <summary>
+            ExifIFD
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ExposureProgram">
+            <summary>
+            曝光程序
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SpectralSensitivity">
+            <summary>
+            SpectralSensitivity
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_GpsIFD">
+            <summary>
+            GpsIFD
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_PhotographicSensitivity">
+            <summary>
+            PhotographicSensitivity
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_OECF">
+            <summary>
+            OECF
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SensitivityType">
+            <summary>
+            SensitivityType
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_StandardOutputSensitivity">
+            <summary>
+            StandardOutputSensitivity
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_RecommendedExposureIndex">
+            <summary>
+            RecommendedExposureIndex
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ISOSpeed">
+            <summary>
+            感光度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ISOSpeedLatitudeyyy">
+            <summary>
+            ISOSpeedLatitudeyyy
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ISOSpeedLatitudezzz">
+            <summary>
+            ISOSpeedLatitudezzz
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ExifVersion">
+            <summary>
+            Exif版本
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_DateTimeOrig">
+            <summary>
+            原始时间
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_DateTimeDigitized">
+            <summary>
+            数字化时间
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ComponentConfig">
+            <summary>
+            ComponentConfig
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ComponentBPP">
+            <summary>
+            ComponentBPP
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ShutterSpeed">
+            <summary>
+            快门速度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_Aperture">
+            <summary>
+            光圈
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_BrightnessValue">
+            <summary>
+            亮度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ExposureBiasValue">
+            <summary>
+            ExposureBiasValue
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_MaxApertureValue">
+            <summary>
+            最大光圈
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SubjectDistance">
+            <summary>
+            物体距离
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_MeteringMode">
+            <summary>
+            测量模式
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_LightSource">
+            <summary>
+            光源
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_Flash">
+            <summary>
+            闪光灯模式
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_FocalLength">
+            <summary>
+            焦距
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SubjectArea">
+            <summary>
+            SubjectArea
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_MakerNote">
+            <summary>
+            MakerNote
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_UserComment">
+            <summary>
+            用户备注
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SubSecTime">
+            <summary>
+            SubSecTime
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SubSecTimeOrig">
+            <summary>
+            SubSecTimeOrig
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SubSecTimeDig">
+            <summary>
+            SubSecTimeDig
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_FlashpixVersion">
+            <summary>
+            FlashpixVersion
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ColorSpace">
+            <summary>
+            ColorSpace
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_PixelXDim">
+            <summary>
+            PixelXDim
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_PixelYDim">
+            <summary>
+            PixelYDim
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_RelatedSoundFile">
+            <summary>
+            RelatedSoundFile
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_InteroperablilityIFD">
+            <summary>
+            InteroperablilityIFD
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_FlashEnergy">
+            <summary>
+            FlashEnergy
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SpatialFreqResp">
+            <summary>
+            SpatialFrequencyResponse
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_FocalPlaneXResolution">
+            <summary>
+            FocalPlaneXResolution
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_FocalPlaneYResolution">
+            <summary>
+            FocalPlaneYResolution
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_FocalPlaneResolutionUnit">
+            <summary>
+            FocalPlaneResolutionUnit
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SubjectLocation">
+            <summary>
+            SubjectLocation
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ExposureIndex">
+            <summary>
+            ExposureIndex
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SensingMethod">
+            <summary>
+            SensingMethod
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_FileSource">
+            <summary>
+            FileSource
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SceneType">
+            <summary>
+            SceneType
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_CFAPattern">
+            <summary>
+            CFAPattern
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_CustomRendered">
+            <summary>
+            CustomRendered
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ExposureMode">
+            <summary>
+            曝光模式
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_WhiteBalance">
+            <summary>
+            白平衡
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_DigitalZoomRatio">
+            <summary>
+            DigitalZoomRatio
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_FocalLengthIn35mmFilm">
+            <summary>
+            FocalLengthIn35mmFilm
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SceneCaptureType">
+            <summary>
+            SceneCaptureType
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_GainControl">
+            <summary>
+            GainControl
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_Contrast">
+            <summary>
+            对比度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_Saturation">
+            <summary>
+            饱和度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_Sharpness">
+            <summary>
+            清晰度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_DeviceSettingDesc">
+            <summary>
+            DeviceSettingDescription
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_SubjectDistanceRange">
+            <summary>
+            SubjectDistanceRange
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_ImageUniqueID">
+            <summary>
+            ImageUniqueID
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_CameraOwnerName">
+            <summary>
+            CameraOwnerName
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_BodySerialnumber">
+            <summary>
+            BodySerialnumber
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_LensSpecification">
+            <summary>
+            LensSpecification
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_LensMake">
+            <summary>
+            LensMake
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_LensModel">
+            <summary>
+            LensModel
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_LensSerialNumber">
+            <summary>
+            LensSerialNumber
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifTagNames.IFD_Gamma">
+            <summary>
+            Gamma
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.Orientations">
+            <summary>
+            图片行列的实际方向
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Orientations.TopLeft">
+            <summary>
+            上左
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Orientations.TopRight">
+            <summary>
+            上右
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Orientations.BottomRight">
+            <summary>
+            下右
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Orientations.BottomLeft">
+            <summary>
+            下左
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Orientations.LeftTop">
+            <summary>
+            左上
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Orientations.RightTop">
+            <summary>
+            右上
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Orientations.RightBottom">
+            <summary>
+            右下
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Orientations.LeftBottom">
+            <summary>
+            左下
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.ExposurePrograms">
+            <summary>
+            曝光程序
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExposurePrograms.NotDefined">
+            <summary>
+            未定义
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExposurePrograms.Manual">
+            <summary>
+            手动
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExposurePrograms.Normal">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExposurePrograms.AperturePriority">
+            <summary>
+            光圈优先级
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExposurePrograms.ShutterPriority">
+            <summary>
+            快门优先级
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExposurePrograms.Creative">
+            <summary>
+            创作程序
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExposurePrograms.Action">
+            <summary>
+            操作程序
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExposurePrograms.Portrait">
+            <summary>
+            纵向模式
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExposurePrograms.Landscape">
+            <summary>
+            横向模式
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.MeteringModes">
+            <summary>
+            测量模式
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.MeteringModes.Unknown">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.MeteringModes.Average">
+            <summary>
+            平均
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.MeteringModes.CenterWeightedAverage">
+            <summary>
+            偏中心平均
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.MeteringModes.Spot">
+            <summary>
+            点
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.MeteringModes.MultiSpot">
+            <summary>
+            多点
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.MeteringModes.Pattern">
+            <summary>
+            图案
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.MeteringModes.Partial">
+            <summary>
+            部分
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.MeteringModes.Other">
+            <summary>
+            其他
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.FlashMode0">
+            <summary>
+            闪光灯模式,模式位1
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode0.NotFired_1">
+            <summary>
+            无闪光
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode0.Fired_0">
+            <summary>
+            闪光
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.FlashMode1">
+            <summary>
+            闪光灯模式,模式位2
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode1.DetectedSRL_11">
+            <summary>
+            带选通返回
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode1.NotDetectedSRL_10">
+            <summary>
+            无选通返回
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode1.Reserved_01">
+            <summary>
+            保留
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode1.NoSRL_00">
+            <summary>
+            无选通
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.FlashMode2">
+            <summary>
+            闪光灯模式,模式位3
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode2.AutoMode_11">
+            <summary>
+            自动
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode2.CompulsorySuppression_10">
+            <summary>
+            强制关闭
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode2.CompulsoryFire_01">
+            <summary>
+            强制开启
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode2.Unknown_00">
+            <summary>
+             未知
+             </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.FlashMode3">
+            <summary>
+            闪光灯模式,模式位4
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode3.NoFlash_1">
+            <summary>
+            无闪光功能
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode3.FlashPrecent_0">
+            <summary>
+            带闪光功能
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.FlashMode4">
+            <summary>
+            闪光灯模式,模式位5
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode4.RedEyeSupport_1">
+            <summary>
+            红眼
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.FlashMode4.NoRedEyeModeOrUnknown_0">
+            <summary>
+            无红眼或未知
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.LightSources">
+            <summary>
+            光源
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.Unknown">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.Daylight">
+            <summary>
+            日光灯
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.Fluorescent">
+            <summary>
+            荧光灯
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.Tungsten">
+            <summary>
+            钨丝灯
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.Flash">
+            <summary>
+            闪光灯
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.FineWeather">
+            <summary>
+            晴天
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.CloudyWeather">
+            <summary>
+            多云
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.Shade">
+            <summary>
+            阴天
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.DaylightFluorescent">
+            <summary>
+            日光荧光灯
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.DayWhiteFluorescent">
+            <summary>
+            日白荧光灯
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.CoolWhiteFluorescent">
+            <summary>
+            冷白荧光灯
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.WhiteFluorescent">
+            <summary>
+            白荧光灯
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.WarmWhiteFluorescent">
+            <summary>
+            暖白荧光灯
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.StandardLightA">
+            <summary>
+            标准光A
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.StandardLightB">
+            <summary>
+            标准光B
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.StandardLightC">
+            <summary>
+            标准光C
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.D55">
+            <summary>
+            D55
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.D65">
+            <summary>
+            D65
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.D75">
+            <summary>
+            D75
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.D50">
+            <summary>
+            D50
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.ISOStudioTungsten">
+            <summary>
+            摄影室钨丝灯
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.LightSources.Other">
+            <summary>
+            其他
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.Contrasts">
+            <summary>
+            对比度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Contrasts.Normal">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Contrasts.Soft">
+            <summary>
+            柔和
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Contrasts.Hard">
+            <summary>
+            强烈
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.Saturations">
+            <summary>
+            饱和度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Saturations.Normal">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Saturations.Low">
+            <summary>
+            低饱和
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Saturations.High">
+            <summary>
+            高饱和
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.Sharpnesses">
+            <summary>
+            清晰度
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Sharpnesses.Noraml">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Sharpnesses.Soft">
+            <summary>
+            柔和
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Sharpnesses.Hard">
+            <summary>
+            强烈
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.WhiteBalances">
+            <summary>
+            白平衡
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.WhiteBalances.Auto">
+            <summary>
+            自动
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.WhiteBalances.Manual">
+            <summary>
+            手动
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.ExifDataTypes">
+            <summary>
+            EXIF数据类型
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifDataTypes.Byte">
+            <summary>
+            Byte
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifDataTypes.AsciiString">
+            <summary>
+            AsciiString
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifDataTypes.UShort">
+            <summary>
+            UShort
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifDataTypes.ULong">
+            <summary>
+            ULong
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifDataTypes.URational">
+            <summary>
+            URational
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifDataTypes.Undefined">
+            <summary>
+            Undefined
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifDataTypes.Long">
+            <summary>
+            Long
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.ExifDataTypes.Rational">
+            <summary>
+            Rational
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifManager.Rational">
+            <summary>
+            分数形式
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Rational.Numerator">
+            <summary>
+            数值部分
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.ExifManager.Rational.Denominator">
+            <summary>
+            分母部分
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifManager.Rational.ToString">
+            <summary>
+            转String
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifManager.Rational.ToDouble">
+            <summary>
+            转Double
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifSetter.#ctor(System.Drawing.Image)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="image">图片</param>
+            <exception cref="T:System.ArgumentNullException">image为空</exception>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifSetter.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="fileName">图片路径</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifSetter.GetImage">
+            <summary>
+            获取图像副本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifSetter.SetPropertyString(System.Int32,System.String)">
+            <summary>
+            字符串数据形式设置指定数据
+            </summary>
+            <param name="pid">属性Id</param>
+            <param name="value">属性值</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifSetter.SetPropertyInt16(System.Int32,System.UInt16)">
+            <summary>
+            Int16数据形式设置指定数据
+            </summary>
+            <param name="pid">属性Id</param>
+            <param name="value">属性值</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifSetter.SetPropertyInt32(System.Int32,System.Int32)">
+            <summary>
+            Int32数据形式设置指定数据
+            </summary>
+            <param name="pid">属性Id</param>
+            <param name="value">属性值</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifSetter.SetProperty(System.Int32,System.Byte[],Zeus.Common.Helper.File.ExifManager.ExifDataTypes)">
+            <summary>
+            原生数据形式设置指定数据
+            </summary>
+            <param name="pid">属性Id</param>
+            <param name="data">属性值</param>
+            <param name="type">属性类型</param>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.ExifGetter">
+            <summary>
+            Exif取值器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifGetter.#ctor(System.Drawing.Image)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="image">图片</param>
+            <exception cref="T:System.ArgumentNullException">image为空</exception>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifGetter.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="fileName">图片路径</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifGetter.#ctor(System.Collections.Generic.IList{System.Drawing.Imaging.PropertyItem})">
+            <summary>
+            构造函数
+            </summary>
+            <param name="exifList">Exif集合</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifGetter.GetExifRaw">
+            <summary>
+            获取Exif的原始信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.ExifGetter.GetExifDictionary">
+            <summary>
+            获取Exif的键值对集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.Log.DateRollingFileAppender">
+            <summary>
+            带日期路径的滚动文件存储器
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Log.DateRollingFileAppender._currentDatePath">
+            <summary>
+            当前日期路径
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Log.DateRollingFileAppender.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Log.DateRollingFileAppender.SetCurrentFilePath">
+            <summary>
+            设置当前日期路径
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Log.DateRollingFileAppender.OpenFile(System.String,System.Boolean)">
+            <summary>
+            打开文件
+            </summary>
+            <param name="fileName">文件名</param>
+            <param name="append">是否是附加</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Log.DateRollingFileAppender.AdjustFileBeforeAppend">
+            <summary>
+            在附加信息前调整文件
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.Log.DateRollingFileAppender.DirectoryName">
+            <summary>
+            日志目录名称
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.Log.DateRollingFileAppender.IsUpdateDirectory">
+            <summary>
+            是否更新了目录
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Math.GCSHelper">
+            <summary>
+            GCS(Global Coodinate System 全球坐标系统)帮助类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.GCSHelper.WGS2GCJ(System.Double,System.Double,System.Double@,System.Double@)">
+            <summary>
+            World Geodetic System ==> Mars Geodetic System(Or GCJ)
+            </summary>
+            <param name="wgLat">WGS纬度</param>
+            <param name="wgLon">WGS经度</param>
+            <param name="mgLat">GCJ纬度</param>
+            <param name="mgLon">GCJ经度</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.GCSHelper.GCJ2BD(System.Double,System.Double,System.Double@,System.Double@)">
+            <summary>
+            将 GCJ-02 坐标转换成 BD-09 坐标
+            </summary>
+            <param name="ggLat">GCJ纬度</param>
+            <param name="ggLon">GCJ经度</param>
+            <param name="bdLat">百度纬度</param>
+            <param name="bdLon">百度经度</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.GCSHelper.BD2GCJ(System.Double,System.Double,System.Double@,System.Double@)">
+            <summary>
+            将 BD-09 坐标转换成  GCJ-02坐标
+            </summary>
+            <param name="ggLat">GCJ纬度</param>
+            <param name="ggLon">GCJ经度</param>
+            <param name="bdLat">百度纬度</param>
+            <param name="bdLon">百度经度</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.GCSHelper.OutOfChina(System.Double,System.Double)">
+            <summary>
+            是否是在中国境外
+            </summary>
+            <param name="lat">纬度</param>
+            <param name="lon">经度</param>
+            <returns>true为境外，false为境内</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.GCSHelper.TransformLat(System.Double,System.Double)">
+            <summary>
+            转换纬度
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.GCSHelper.TransformLon(System.Double,System.Double)">
+            <summary>
+            转换经度
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Math.MathHelper">
+            <summary>
+            数学帮助类
+            </summary>
+            <summary>
+            数学帮助类
+            </summary>
+            <summary>
+            在地球上的距离计算操作
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Math.MathHelper.EarthRadius">
+            <summary>
+            地球半径(m)
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Math.MathHelper.EarthCircumference">
+            <summary>
+            地球周长（m）
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Math.MathHelper.LatitudeR">
+            <summary>
+            纬度弧长(m)
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.MathHelper.GetLeastSquareResults(System.Int32,System.Collections.Generic.IList{System.Double},System.Collections.Generic.IList{System.Double})">
+            <summary>
+            获取最小二乘法结果
+            </summary>
+            <param name="n">最高次幂</param>
+            <param name="arrX">X值集合</param>
+            <param name="arrY">对应的Y值集合</param>
+            <returns>系数集合，从常数项开始，至最高次幂系数，数组大小为n+1</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.MathHelper.GetXPowSum(System.Collections.Generic.IList{System.Double},System.Int32)">
+            <summary> 
+            计算获取x散点的幂次和数组
+            </summary> 
+            <param name="arrX">x散点序列</param> 
+            <param name="n">函数拟合次数</param> 
+            <returns></returns> 
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.MathHelper.GetXPowYSum(System.Collections.Generic.IList{System.Double},System.Collections.Generic.IList{System.Double},System.Int32)">
+            <summary> 
+            计算获取xy的幂次和序列
+            </summary> 
+            <param name="arrX">x散点序列</param> 
+            <param name="arrY">y散点序列</param> 
+            <param name="n">拟合曲线次数</param> 
+            <returns></returns> 
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.MathHelper.GetGauss(System.Collections.Generic.IList{System.Double},System.Collections.Generic.IList{System.Double},System.Int32)">
+            <summary> 
+            获取高斯矩阵(增广矩阵) 
+            </summary> 
+            <param name="arrX">X的幂次和</param> 
+            <param name="arrXY">XY的幂次和</param> 
+            <param name="n">拟合曲线次数</param> 
+            <returns></returns> 
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.MathHelper.ComputeGauss(System.Double[0:,0:],System.Int32)">
+            <summary> 
+            求解拟合曲线的系数
+            </summary> 
+            <param name="gauss">线性方程的增广矩阵</param> 
+            <param name="n">方程次数</param> 
+            <returns></returns> 
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.MathHelper.AngleToRadian(System.Double)">
+            <summary>
+            角度转弧度
+            </summary>
+            <param name="angle">角度</param>
+            <returns>弧度</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.MathHelper.RadianToAngle(System.Double)">
+            <summary>
+            弧度转角度
+            </summary>
+            <param name="radian">弧度</param>
+            <returns>角度</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.MathHelper.Dichotomy(System.Collections.Generic.IList{System.Double},System.Double,System.Boolean)">
+            <summary>
+            二分法
+            </summary>
+            <param name="dataList">已排序数列</param>
+            <param name="targetValue">欲查找位置或计算的对象</param>
+            <param name="isAscSort">是否是正序排序的</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.MathHelper.GetEarthDistance(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            获得地球上两经纬度之间的距离（m）
+            </summary>
+            <param name="lng1">起点经度</param>
+            <param name="lat1">起点纬度</param>
+            <param name="lng2">终点经度</param>
+            <param name="lat2">终点纬度</param>
+            <returns>地球上两点距离长度（m）</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Math.MathHelper.GetAreaByDistance(System.Decimal,System.Decimal,System.Int32,System.Decimal@,System.Decimal@,System.Decimal@,System.Decimal@)">
+            <summary>
+            根据允许距离值获取当前点的附近范围区域
+            其中纬度一度使用距离常量111321.4m(由地球周长40075.7KM/360得出)
+            其中经度一度距离常量计算公式为111321.4m*cosθ(θ即当前位置的纬度)
+            </summary>
+            <param name="currentLongitude">当前点经度</param>
+            <param name="currentLatitude">当前点纬度</param>
+            <param name="distance">距离值（m）</param>
+            <param name="maxLongitude">最大经度</param>
+            <param name="minLongitude">最小经度</param>
+            <param name="maxLatitude">最大纬度</param>
+            <param name="minLatitude">最小纬度</param>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.CanBeNullAttribute">
+            <summary>
+            Indicates that the value of the marked element could be <c>null</c> sometimes,
+            so the check for <c>null</c> is necessary before its usage
+            </summary>
+            <example><code>
+            [CanBeNull] public object Test() { return null; }
+            public void UseTest() {
+              var p = Test();
+              var s = p.ToString(); // Warning: Possible 'System.NullReferenceException'
+            }
+            </code></example>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.NotNullAttribute">
+            <summary>
+            Indicates that the value of the marked element could never be <c>null</c>
+            </summary>
+            <example><code>
+            [NotNull] public object Foo() {
+              return null; // Warning: Possible 'null' assignment
+            }
+            </code></example>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.StringFormatMethodAttribute">
+            <summary>
+            Indicates that the marked method builds string by format pattern and (optional) arguments.
+            Parameter, which contains format string, should be given in constructor. The format string
+            should be in <see cref="M:System.String.Format(System.IFormatProvider,System.String,System.Object[])"/>-like form
+            </summary>
+            <example><code>
+            [StringFormatMethod("message")]
+            public void ShowError(string message, params object[] args) { /* do something */ }
+            public void Foo() {
+              ShowError("Failed: {0}"); // Warning: Non-existing argument in format string
+            }
+            </code></example>
+        </member>
+        <member name="M:Zeus.Common.Helper.Annotations.StringFormatMethodAttribute.#ctor(System.String)">
+            <param name="formatParameterName">
+            Specifies which parameter of an annotated method should be treated as format-string
+            </param>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.InvokerParameterNameAttribute">
+            <summary>
+            Indicates that the function argument should be string literal and match one
+            of the parameters of the caller function. For example, ReSharper annotates
+            the parameter of <see cref="!:System.ArgumentNullException"/>
+            </summary>
+            <example><code>
+            public void Foo(string param) {
+              if (param == null)
+                throw new ArgumentNullException("par"); // Warning: Cannot resolve symbol
+            }
+            </code></example>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.NotifyPropertyChangedInvocatorAttribute">
+             <summary>
+             Indicates that the method is contained in a type that implements
+             <see cref="!:System.ComponentModel.INotifyPropertyChanged"/> interface
+             and this method is used to notify that some property value changed
+             </summary>
+             <remarks>
+             The method should be non-static and conform to one of the supported signatures:
+             <list>
+             <item><c>NotifyChanged(string)</c></item>
+             <item><c>NotifyChanged(params string[])</c></item>
+             <item><c>NotifyChanged{T}(Expression{Func{T}})</c></item>
+             <item><c>NotifyChanged{T,U}(Expression{Func{T,U}})</c></item>
+             <item><c>SetProperty{T}(ref T, T, string)</c></item>
+             </list>
+             </remarks>
+             <example><code>
+             public class Foo : INotifyPropertyChanged {
+               public event PropertyChangedEventHandler PropertyChanged;
+               [NotifyPropertyChangedInvocator]
+               protected virtual void NotifyChanged(string propertyName) { ... }
+            
+               private string _name;
+               public string Name {
+                 get { return _name; }
+                 set { _name = value; NotifyChanged("LastName"); /* Warning */ }
+               }
+             }
+             </code>
+             Examples of generated notifications:
+             <list>
+             <item><c>NotifyChanged("Property")</c></item>
+             <item><c>NotifyChanged(() =&gt; Property)</c></item>
+             <item><c>NotifyChanged((VM x) =&gt; x.Property)</c></item>
+             <item><c>SetProperty(ref myField, value, "Property")</c></item>
+             </list>
+             </example>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.ContractAnnotationAttribute">
+            <summary>
+            Describes dependency between method input and output
+            </summary>
+            <syntax>
+            <p>Function Definition Table syntax:</p>
+            <list>
+            <item>FDT      ::= FDTRow [;FDTRow]*</item>
+            <item>FDTRow   ::= Input =&gt; Output | Output &lt;= Input</item>
+            <item>Input    ::= ParameterName: Value [, Input]*</item>
+            <item>Output   ::= [ParameterName: Value]* {halt|stop|void|nothing|Value}</item>
+            <item>Value    ::= true | false | null | notnull | canbenull</item>
+            </list>
+            If method has single input parameter, it's name could be omitted.<br/>
+            Using <c>halt</c> (or <c>void</c>/<c>nothing</c>, which is the same)
+            for method output means that the methos doesn't return normally.<br/>
+            <c>canbenull</c> annotation is only applicable for output parameters.<br/>
+            You can use multiple <c>[ContractAnnotation]</c> for each FDT row,
+            or use single attribute with rows separated by semicolon.<br/>
+            </syntax>
+            <examples><list>
+            <item><code>
+            [ContractAnnotation("=> halt")]
+            public void TerminationMethod()
+            </code></item>
+            <item><code>
+            [ContractAnnotation("halt &lt;= condition: false")]
+            public void Assert(bool condition, string text) // regular assertion method
+            </code></item>
+            <item><code>
+            [ContractAnnotation("s:null => true")]
+            public bool IsNullOrEmpty(string s) // string.IsNullOrEmpty()
+            </code></item>
+            <item><code>
+            // A method that returns null if the parameter is null, and not null if the parameter is not null
+            [ContractAnnotation("null => null; notnull => notnull")]
+            public object Transform(object data) 
+            </code></item>
+            <item><code>
+            [ContractAnnotation("s:null=>false; =>true,result:notnull; =>false, result:null")]
+            public bool TryParse(string s, out Person result)
+            </code></item>
+            </list></examples>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.LocalizationRequiredAttribute">
+            <summary>
+            Indicates that marked element should be localized or not
+            </summary>
+            <example><code>
+            [LocalizationRequiredAttribute(true)]
+            public class Foo {
+              private string str = "my string"; // Warning: Localizable string
+            }
+            </code></example>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.CannotApplyEqualityOperatorAttribute">
+            <summary>
+            Indicates that the value of the marked type (or its derivatives)
+            cannot be compared using '==' or '!=' operators and <c>Equals()</c>
+            should be used instead. However, using '==' or '!=' for comparison
+            with <c>null</c> is always permitted.
+            </summary>
+            <example><code>
+            [CannotApplyEqualityOperator]
+            class NoEquality { }
+            class UsesNoEquality {
+              public void Test() {
+                var ca1 = new NoEquality();
+                var ca2 = new NoEquality();
+                if (ca1 != null) { // OK
+                  bool condition = ca1 == ca2; // Warning
+                }
+              }
+            }
+            </code></example>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.BaseTypeRequiredAttribute">
+            <summary>
+            When applied to a target attribute, specifies a requirement for any type marked
+            with the target attribute to implement or inherit specific type or types.
+            </summary>
+            <example><code>
+            [BaseTypeRequired(typeof(IComponent)] // Specify requirement
+            public class ComponentAttribute : Attribute { }
+            [Component] // ComponentAttribute requires implementing IComponent interface
+            public class MyComponent : IComponent { }
+            </code></example>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.UsedImplicitlyAttribute">
+            <summary>
+            Indicates that the marked symbol is used implicitly
+            (e.g. via reflection, in external library), so this symbol
+            will not be marked as unused (as well as by other usage inspections)
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.MeansImplicitUseAttribute">
+            <summary>
+            Should be used on attributes and causes ReSharper
+            to not mark symbols marked with such attributes as unused
+            (as well as by other usage inspections)
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Annotations.ImplicitUseKindFlags.Access">
+            <summary>Only entity marked with attribute considered used</summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Annotations.ImplicitUseKindFlags.Assign">
+            <summary>Indicates implicit assignment to a member</summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Annotations.ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature">
+            <summary>
+            Indicates implicit instantiation of a type with fixed constructor signature.
+            That means any unused constructor parameters won't be reported as such.
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Annotations.ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature">
+            <summary>Indicates implicit instantiation of a type</summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.ImplicitUseTargetFlags">
+            <summary>
+            Specify what is considered used implicitly
+            when marked with <see cref="T:Zeus.Common.Helper.Annotations.MeansImplicitUseAttribute"/>
+            or <see cref="T:Zeus.Common.Helper.Annotations.UsedImplicitlyAttribute"/>
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Annotations.ImplicitUseTargetFlags.Members">
+            <summary>Members of entity marked with attribute are considered used</summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Annotations.ImplicitUseTargetFlags.WithMembers">
+            <summary>Entity marked with attribute and all its members considered used</summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.PublicAPIAttribute">
+            <summary>
+            This attribute is intended to mark publicly available API
+            which should not be removed and so is treated as used
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.InstantHandleAttribute">
+            <summary>
+            Tells code analysis engine if the parameter is completely handled
+            when the invoked method is on stack. If the parameter is a delegate,
+            indicates that delegate is executed while the method is executed.
+            If the parameter is an enumerable, indicates that it is enumerated
+            while the method is executed
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.PureAttribute">
+            <summary>
+            Indicates that a method does not make any observable state changes.
+            The same as <c>System.Diagnostics.Contracts.PureAttribute</c>
+            </summary>
+            <example><code>
+            [Pure] private int Multiply(int x, int y) { return x * y; }
+            public void Foo() {
+              const int a = 2, b = 2;
+              Multiply(a, b); // Waring: Return value of pure method is not used
+            }
+            </code></example>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.PathReferenceAttribute">
+            <summary>
+            Indicates that a parameter is a path to a file or a folder
+            within a web project. Path can be relative or absolute,
+            starting from web root (~)
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.AspMvcActionAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
+            is an MVC action. If applied to a method, the MVC action name is calculated
+            implicitly from the context. Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.AspMvcAreaAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC area.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.AspMvcControllerAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that
+            the parameter is an MVC controller. If applied to a method,
+            the MVC controller name is calculated implicitly from the context.
+            Use this attribute for custom wrappers similar to 
+            <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String, String)</c>
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.AspMvcMasterAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC Master.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Controller.View(String, String)</c>
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.AspMvcModelTypeAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC model type.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Controller.View(String, Object)</c>
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.AspMvcPartialViewAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that
+            the parameter is an MVC partial view. If applied to a method,
+            the MVC partial view name is calculated implicitly from the context.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.AspMvcSupressViewErrorAttribute">
+            <summary>
+            ASP.NET MVC attribute. Allows disabling all inspections
+            for MVC views within a class or a method.
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.AspMvcDisplayTemplateAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC display template.
+            Use this attribute for custom wrappers similar to 
+            <c>System.Web.Mvc.Html.DisplayExtensions.DisplayForModel(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.AspMvcEditorTemplateAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC editor template.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.EditorExtensions.EditorForModel(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.AspMvcTemplateAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC template.
+            Use this attribute for custom wrappers similar to
+            <c>System.ComponentModel.DataAnnotations.UIHintAttribute(System.String)</c>
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.AspMvcViewAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
+            is an MVC view. If applied to a method, the MVC view name is calculated implicitly
+            from the context. Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Controller.View(Object)</c>
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.AspMvcActionSelectorAttribute">
+            <summary>
+            ASP.NET MVC attribute. When applied to a parameter of an attribute,
+            indicates that this parameter is an MVC action name
+            </summary>
+            <example><code>
+            [ActionName("Foo")]
+            public ActionResult Login(string returnUrl) {
+              ViewBag.ReturnUrl = Url.Action("Foo"); // OK
+              return RedirectToAction("Bar"); // Error: Cannot resolve action
+            }
+            </code></example>
+        </member>
+        <member name="T:Zeus.Common.Helper.Annotations.RazorSectionAttribute">
+            <summary>
+            Razor attribute. Indicates that a parameter or a method is a Razor section.
+            Use this attribute for custom wrappers similar to 
+            <c>System.Web.WebPages.WebPageBase.RenderSection(String)</c>
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.StringHelper">
+            <summary>
+            汉子转换拼音
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.StringHelper.Pv">
+            
+            <summary> 
+            包含字符 ASC 码的整形数组。 
+            </summary> 
+        </member>
+        <member name="F:Zeus.Common.Helper.StringHelper.Ps">
+            
+            <summary> 
+            包含汉字拼音的字符串数组。 
+            </summary> 
+        </member>
+        <member name="M:Zeus.Common.Helper.StringHelper.Chs2PinyinConvert(System.String,System.String,System.Boolean)">
+            
+            <summary> 
+            将指定中文字符串转换为拼音形式。 
+            </summary> 
+            <param name="chs">要转换的中文字符串。</param> 
+            <param name="separator">连接拼音之间的分隔符。</param> 
+            <param name="initialCap">指定是否将首字母大写。</param> 
+            <returns>包含中文字符串的拼音的字符串。</returns> 
+        </member>
+        <member name="M:Zeus.Common.Helper.StringHelper.Chs2PinyinConvert(System.String,System.String)">
+            
+            <summary> 
+            将指定中文字符串转换为拼音形式。 
+            </summary> 
+            <param name="chs">要转换的中文字符串。</param> 
+            <param name="separator">连接拼音之间的分隔符。</param> 
+            <returns>包含中文字符串的拼音的字符串。</returns> 
+        </member>
+        <member name="M:Zeus.Common.Helper.StringHelper.Chs2PinyinConvert(System.String,System.Boolean)">
+            
+            <summary> 
+            将指定中文字符串转换为拼音形式。 
+            </summary> 
+            <param name="chs">要转换的中文字符串。</param> 
+            <param name="initialCap">指定是否将首字母大写。</param> 
+            <returns>包含中文字符串的拼音的字符串。</returns> 
+        </member>
+        <member name="M:Zeus.Common.Helper.StringHelper.Chs2PinyinConvert(System.String)">
+            
+            <summary> 
+            将指定中文字符串转换为拼音形式。 
+            </summary> 
+            <param name="chs">要转换的中文字符串。</param> 
+            <returns>包含中文字符串的拼音的字符串。</returns> 
+        </member>
+        <member name="M:Zeus.Common.Helper.StringHelper.GetPinyinFirstSpell(System.String)">
+            <summary>
+            获取中文字符串的首字母组合
+            </summary>
+            <param name="chineseStr">中文字符串</param>
+            <returns>首字母组合结果</returns>
+        </member>
+        <member name="P:Zeus.Common.Helper.StringHelper.MultiTonePhrase">
+            
+            <summary> 
+            设置或获取包含例外词组读音的键/值对的组合。 
+            </summary> 
+        </member>
+        <member name="T:Zeus.Common.Helper.Cryptography.AesCryptography">
+            <summary>
+            Aes密码
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Cryptography.AesCryptography.DefaultKey">
+            <summary>
+            默认公钥
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.AesCryptography.AesEncrypt(System.String,System.String,System.String,System.String)">
+            <summary>
+            AES加密方法，加密长度256位
+            </summary>
+            <param name="encryptStr">欲加密字符串</param>
+            <param name="encode">编码方式</param>
+            <param name="key">密钥</param>
+            <param name="iv">向量</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.AesCryptography.AesEncrypt(System.Byte[],System.String,System.String)">
+            <summary>
+            AES加密方法，加密长度256位
+            </summary>
+            <param name="encryptStr">欲加密字符数组</param>
+            <param name="key">密钥</param>
+            <param name="iv">向量</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.AesCryptography.AesDecrypt(System.String,System.String,System.String,System.String)">
+            <summary>
+            AES解密密方法，解密长度256位
+            </summary>
+            <param name="decryptStr">欲解密字符串</param>
+            <param name="encode">编码方式</param>
+            <param name="key">密钥</param>
+            <param name="iv">向量</param>
+            <returns>解密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.AesCryptography.AesDecrypt(System.Byte[],System.String,System.String,System.String)">
+            <summary>
+            AES解密密方法，解密长度256位
+            </summary>
+            <param name="decryptStr">欲解密字符数组</param>
+            <param name="encode">编码方式</param>
+            <param name="key">密钥</param>
+            <param name="iv">向量</param>
+            <returns>解密后字符串</returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.Cryptography.DesCryptography">
+            <summary>
+            Des密码
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Cryptography.DesCryptography.DefaultKey">
+            <summary>
+            默认公钥
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.DesCryptography.DesEncrypt(System.String,System.String,System.String,System.String)">
+            <summary>
+            DES加密方法
+            </summary>
+            <param name="encryptStr">欲加密字符串</param>
+            <param name="encode">编码方式</param>
+            <param name="key">密钥</param>
+            <param name="iv">向量</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.DesCryptography.DesEncrypt(System.Byte[],System.String,System.String)">
+            <summary>
+            DES加密方法
+            </summary>
+            <param name="encryptStr">欲加密字符数组</param>
+            <param name="key">密钥</param>
+            <param name="iv">向量</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.DesCryptography.DesDecrypt(System.String,System.String,System.String,System.String)">
+            <summary>
+            DES解密密方法，Base64
+            </summary>
+            <param name="decryptStr">欲解密字符串</param>
+            <param name="encode">编码方式</param>
+            <param name="key">密钥</param>
+            <param name="iv">向量</param>
+            <returns>解密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.DesCryptography.DesDecrypt(System.Byte[],System.String,System.String,System.String)">
+            <summary>
+            DES解密密方法
+            </summary>
+            <param name="decryptStr">欲解密字符数组</param>
+            <param name="encode">编码方式</param>
+            <param name="key">密钥</param>
+            <param name="iv">向量</param>
+            <returns>解密后字符串</returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.Cryptography.EncryptResultType">
+            <summary>
+            加密结果类型
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Cryptography.EncryptResultType.Prototype">
+            <summary>
+            原型
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Cryptography.EncryptResultType.Base64">
+            <summary>
+            Base64数字编码
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Cryptography.EncryptResultType.Hexadecimal">
+            <summary>
+            16进制结果，即输出为字节数的2倍长度，MD5为32位，SHA1为40位，SHA256为64位
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Cryptography.EncryptResultType.Denary">
+            <summary>
+            10进制结果，即输出为字节数的3倍长度
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Cryptography.HashCryptography">
+            <summary>
+            哈希密码
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.HashCryptography.Md5Encrypt(System.String,Zeus.Common.Helper.Cryptography.EncryptResultType,System.String)">
+            <summary>
+            MD5加密方法
+            </summary>
+            <param name="encryptStr">欲加密字符串</param>
+            <param name="type">加密结果类型</param>
+            <param name="encode">编码方式</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.HashCryptography.Md5Encrypt(System.Byte[],Zeus.Common.Helper.Cryptography.EncryptResultType)">
+            <summary>
+            MD5加密方法
+            </summary>
+            <param name="encryptStr">欲加密字符数组</param>
+            <param name="type">加密结果类型</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.HashCryptography.Md5Encrypt(System.String)">
+            <summary>
+            获取Md5哈希值
+            </summary>
+            <param name="value">返回值为32位的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.HashCryptography.Sha1Encrypt(System.String,Zeus.Common.Helper.Cryptography.EncryptResultType,System.String)">
+            <summary>
+            SHA1加密方法
+            </summary>
+            <param name="encryptStr">欲加密字符串</param>
+            <param name="type">加密结果类型</param>
+            <param name="encode">编码方式</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.HashCryptography.Sha1Encrypt(System.Byte[],Zeus.Common.Helper.Cryptography.EncryptResultType)">
+            <summary>
+            SHA1加密方法
+            </summary>
+            <param name="encryptStr">欲加密字符数组</param>
+            <param name="type">加密结果类型</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.HashCryptography.Sha256Encrypt(System.String,Zeus.Common.Helper.Cryptography.EncryptResultType,System.String)">
+            <summary>
+            SHA256加密方法
+            </summary>
+            <param name="encryptStr">欲加密字符串</param>
+            <param name="type">加密结果类型</param>
+            <param name="encode">编码方式</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.HashCryptography.Sha256Encrypt(System.Byte[],Zeus.Common.Helper.Cryptography.EncryptResultType)">
+            <summary>
+            SHA256加密方法
+            </summary>
+            <param name="encryptStr">欲加密字符数组</param>
+            <param name="type">加密结果类型</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.HashCryptography.HashEncrypt(System.String,System.Security.Cryptography.HashAlgorithm,System.String)">
+            <summary>
+            哈希加密方法
+            </summary>
+            <param name="encryptStr">欲加密字符串</param>
+            <param name="hasher">哈希算法</param>
+            <param name="encode">字符编码</param>
+            <returns>加密结果</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.HashCryptography.HashEncrypt(System.Byte[],System.Security.Cryptography.HashAlgorithm,Zeus.Common.Helper.Cryptography.EncryptResultType)">
+            <summary>
+            哈希加密方法
+            </summary>
+            <param name="encryptStr">欲加密字符数组</param>
+            <param name="type">加密结果类型</param>
+            <param name="hasher"></param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.Cryptography.RsaCryptography">
+            <summary>
+            RSA密码
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaEncryptFromCer(System.String,System.String,System.String,System.String,System.String,Zeus.Common.Helper.Cryptography.RsaKeyType)">
+            <summary>
+            RSA加密方法，根据证书加密
+            </summary>
+            <param name="encryptContent">加密内容</param>
+            <param name="keyCerPath">证书路径</param>
+            <param name="alias">证书别名</param>
+            <param name="pwd">证书密码</param>
+            <param name="encode">欲加密的字符编码</param>
+            <param name="keyType">RSA密钥类型</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaEncryptFromCer(System.Byte[],System.String,System.String,System.String,Zeus.Common.Helper.Cryptography.RsaKeyType)">
+            <summary>
+            RSA加密方法，根据证书加密
+            </summary>
+            <param name="encryptContent">加密内容</param>
+            <param name="keyCerPath">证书路径</param>
+            <param name="alias">证书别名</param>
+            <param name="pwd">证书密码</param>
+            <param name="keyType">RSA密钥类型</param>
+            <returns>加密后Byte数组</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaEncrypt(System.Byte[],System.IO.Stream,System.String,System.String,Zeus.Common.Helper.Cryptography.RsaKeyType)">
+            <summary>
+            RSA加密方法，根据证书加密
+            </summary>
+            <param name="encryptContent">加密内容</param>
+            <param name="alias">证书别名</param>
+            <param name="certificateStream">证书数据流</param>
+            <param name="pwd">证书密码</param>
+            <param name="keyType">RSA密钥类型</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaEncrypt(System.String,System.IO.Stream,System.String,System.String,Zeus.Common.Helper.Cryptography.RsaKeyType)">
+            <summary>
+            RSA加密方法，根据证书加密
+            </summary>
+            <param name="encryptContent">加密内容</param>
+            <param name="alias">证书别名</param>
+            <param name="pwd">证书密码</param>
+            <param name="certificateStream">证书数据流</param>
+            <param name="keyType">RSA密钥类型</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaDecryptFromCer(System.String,System.String,System.String,System.String,System.String,Zeus.Common.Helper.Cryptography.RsaKeyType)">
+            <summary>
+            RSA解密方法，根据证书解密
+            </summary>
+            <param name="encryptContent">解密内容</param>
+            <param name="keyCerPath">证书路径</param>
+            <param name="alias">证书别名</param>
+            <param name="pwd">证书密码</param>
+            <param name="encode">解密后字符编码</param>
+            <param name="keyType">RSA密钥类型</param>
+            <returns>解密密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaDecryptFromCer(System.Byte[],System.String,System.String,System.String,System.String,Zeus.Common.Helper.Cryptography.RsaKeyType)">
+            <summary>
+            RSA解密方法，根据证书解密
+            </summary>
+            <param name="encryptContent">解密内容</param>
+            <param name="keyCerPath">证书路径</param>
+            <param name="alias">证书别名</param>
+            <param name="pwd">证书密码</param>
+            <param name="encode">解密后字符编码</param>
+            <param name="keyType">RSA密钥类型</param>
+            <returns>解密密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaDecryptFromCer(System.Byte[],System.String,System.String,System.String,Zeus.Common.Helper.Cryptography.RsaKeyType)">
+            <summary>
+            RSA解密方法，根据证书解密
+            </summary>
+            <param name="encryptContent">解密内容</param>
+            <param name="keyCerPath">证书路径</param>
+            <param name="alias">证书别名</param>
+            <param name="pwd">证书密码</param>
+            <param name="keyType">RSA密钥类型</param>
+            <returns>解密密后的Byte数组</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaDecryptFromCer(System.String,System.String,System.String)">
+            <summary>
+            RSA解密方法，根据公钥证书解密
+            </summary>
+            <param name="encryptContent">解密内容</param>
+            <param name="pubCerPath">公钥证书路径</param>
+            <param name="encode">解密后字符编码</param>
+            <returns>解密密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaDecryptFromCer(System.Byte[],System.String,System.String)">
+            <summary>
+            RSA解密方法，根据公钥证书解密
+            </summary>
+            <param name="encryptContent">解密内容</param>
+            <param name="pubCerPath">公钥证书路径</param>
+            <param name="encode">解密后字符编码</param>
+            <returns>解密密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaDecryptFromCer(System.Byte[],System.String)">
+            <summary>
+            RSA解密方法，根据公钥证书解密
+            </summary>
+            <param name="encryptContent">解密内容</param>
+            <param name="pubCerPath">公钥证书路径</param>
+            <returns>解密密后的Byte数组</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaDecryptFromCer(System.Byte[],System.IO.Stream)">
+            <summary>
+            RSA解密方法，根据公钥证书解密
+            </summary>
+            <param name="encryptContent">解密内容</param>
+            <param name="pubCerStream">公钥证书数据流</param>
+            <returns>解密密后的Byte数组</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaSignatureFromCer(System.String,System.String,System.String,System.String,System.String,System.String,Zeus.Common.Helper.Cryptography.RsaSignatureStandard)">
+            <summary>
+            RSA生成签名
+            </summary>
+            <param name="encryptContent">加密内容</param>
+            <param name="privateCerPath">公钥证书路径</param>
+            <param name="alias">证书别名</param>
+            <param name="pwd">证书密码</param>
+            <param name="encode">欲加密的字符编码</param>
+            <param name="hashAlorithm">哈希算法名称</param>
+            <param name="standard">签名标准</param>
+            <returns>加密后字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaVerifySignature(System.String,System.String,System.String,System.String,System.String,Zeus.Common.Helper.Cryptography.RsaSignatureStandard)">
+            <summary>
+            RSA验证签名
+            </summary>
+            <param name="signature">签名</param>
+            <param name="preSignStr">验签字符串</param>
+            <param name="publicCerPath">公钥路径</param>
+            <param name="encode">欲验签的字符编码</param>
+            <param name="hashAlorithm">哈希算法名称</param>
+            <param name="standard">签名标准</param>
+            <returns>是否通过验证</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaVerifySignature(System.String,System.String,System.IO.Stream,System.String,System.String,Zeus.Common.Helper.Cryptography.RsaSignatureStandard)">
+            <summary>
+            RSA验证签名
+            </summary>
+            <param name="signature">签名</param>
+            <param name="preSignStr">验签字符串</param>
+            <param name="pubCerStream">公钥数据流</param>
+            <param name="encode">欲验签的字符编码</param>
+            <param name="hashAlorithm">哈希算法名称</param>
+            <param name="standard">签名标准</param>
+            <returns>是否通过验证</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.GeneratorPfxCer(System.Int64,System.Int32,System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            生成Pfx/P12证书
+            </summary>
+            <param name="pubExponent">公钥指数</param>
+            <param name="strength">密钥强度</param>
+            <param name="certainty">确信度</param>
+            <param name="name">证书名称</param>
+            <param name="password">证书密码</param>
+            <param name="alias">证书别名</param>
+            <param name="savePath">保存路径</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.GeneratorPubAndPriCer(System.Int64,System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            生成公钥和私钥保存文件
+            </summary>
+            <param name="pubExponent">公钥指数</param>
+            <param name="strength">密钥强度</param>
+            <param name="certainty">确信度</param>
+            <param name="pubSavePath">公钥保存路径</param>
+            <param name="priSavePath">私钥保存路径</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.GetKeyParameters(System.String,System.String,System.String,Zeus.Common.Helper.Cryptography.RsaKeyType)">
+            <summary>
+            获取Rsa密钥Key参数
+            </summary>
+            <param name="keyCerPath">证书路径</param>
+            <param name="alias">别名</param>
+            <param name="pwd">密码</param>
+            <param name="keyType">取出的密钥类型</param>
+            <returns>Key参数</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaKeyGenerator(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            RSA密钥生成器
+            </summary>
+            <param name="pubExponent">公钥指数</param>
+            <param name="strength">密钥强度</param>
+            <param name="certainty">确信度</param>
+            <returns>RSA密钥键值对</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Cryptography.RsaCryptography.RsaCryption(System.Boolean,System.Byte[],Org.BouncyCastle.Crypto.ICipherParameters)">
+            <summary>
+            RSA加密解密方法
+            </summary>
+            <param name="isEncryption">是否是加密</param>
+            <param name="content">加密或解密内容</param>
+            <param name="key">加密或解密的Key值</param>
+            <returns>加密或解密的结果</returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.Cryptography.RsaKeyType">
+            <summary>
+            RSA密钥类型
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Cryptography.RsaKeyType.PublicKey">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Cryptography.RsaKeyType.PrivateKey">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Cryptography.RsaSignatureStandard">
+            <summary>
+            RSA签名标准
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Cryptography.RsaSignatureStandard.Default">
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Cryptography.RsaSignatureStandard.Pkcs1">
+            <summary>
+            Pkcs#1
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Office.WordHelper">
+            <summary>
+            Word帮助类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.WordHelper.WordToPdf(System.String,System.String)">
+            <summary>
+            Word文档转PDF
+            </summary>
+            <param name="inPath">Word文档路径</param>
+            <param name="outpath">输出PDF路径</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.WordHelper.WordToHtmlTxt(System.String,System.String)">
+            <summary>
+            Word转Html，保存成Text文件
+            </summary>
+            <param name="inPath">Word文档路径</param>
+            <param name="outPath">输出Text路径</param>
+            <returns>返回转换后的内容，Body内部分</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.WordHelper.ProcessText(System.String)">
+            <summary>
+            文本处理方法，取出Body内部分，并修改内容中的资源路径
+            </summary>
+            <param name="txtPath">文本文件路径</param>
+            <returns>处理后的内容</returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.Extentions">
+            <summary>
+            时间扩展方法类
+            </summary>
+            <summary>
+            Ip地址扩展方法
+            </summary>
+            <summary>
+            枚举扩展方法类
+            </summary>
+            <summary>
+            字符串扩展方法类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Extentions.ToTimestamp(System.DateTime,System.DateTimeKind)">
+            <summary>
+            转换成时间戳
+            </summary>
+            <param name="dateTime">需要转换的时间</param>
+            <param name="kind">转换的时间类型（默认为UTC）</param>
+            <returns>时间戳</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Extentions.ToStandardFormat(System.DateTime)">
+            <summary>
+            转换成标准格式时间格式字符串
+            </summary>
+            <param name="dateTime">时间</param>
+            <returns>时间字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Extentions.SubtractToString(System.DateTime,System.DateTime)">
+            <summary>
+            从此实例中减去指定的日期和时间
+            </summary>
+            <param name="dateTimeOne">时间1</param>
+            <param name="dateTimeTwo">时间2</param>
+            <returns>两个时间差分钟小时与天数</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Extentions.ToBigEndianValue(System.Net.IPAddress)">
+            <summary>
+            将IPV4形式的IP转换成数值型
+            </summary>
+            <param name="ipAddress">IPV4形式的IP</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Extentions.ToLittleEndianValue(System.Net.IPAddress)">
+            <summary>
+            将IPV4形式的IP转换成数值型
+            </summary>
+            <param name="ipAddress">IPV4形式的IP</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Extentions.Description(System.Enum)">
+            <summary>
+            获取描述信息
+            </summary>
+            <param name="en">当前枚举</param>
+            <returns>枚举描述信息</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Extentions.RightSubString(System.String,System.Int32)">
+            <summary>
+             右取字符串
+            </summary>
+            <param name="inStr">输入字符串</param>
+            <param name="length">截取长度</param>
+            <returns>输出字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Extentions.GetPinyinFirstSpell(System.String)">
+            <summary>
+             汉字转拼音首字母缩写
+            </summary>
+            <param name="str">汉字字符串</param>
+            <returns>拼音首字母</returns>
+             <exception cref="T:System.ArgumentNullException">汉字转拼音首字母缩写字符串为空</exception>
+        </member>
+        <member name="T:Zeus.Common.Helper.System.SystemInfoHelper">
+            <summary>
+            系统消息帮助类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.System.SystemInfoHelper.#cctor">
+            <summary>
+            构造函数，初始化计数器等
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.System.SystemInfoHelper.MemoryAvailable(Zeus.Common.Helper.System.SystemInfoHelper.ByteUnit)">
+            <summary>
+            获取可用内存
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.System.SystemInfoHelper.MemoryUsed(Zeus.Common.Helper.System.SystemInfoHelper.ByteUnit)">
+            <summary>
+            
+            </summary>
+            <param name="unit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.System.SystemInfoHelper.CurrentProcessMemory(Zeus.Common.Helper.System.SystemInfoHelper.ByteUnit)">
+            <summary>
+            
+            </summary>
+            <param name="unit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.System.SystemInfoHelper.FindAllApps(System.Int32)">
+            <summary>
+            查找所有应用程序标题
+            </summary>
+            <param name="handle">Windows句柄</param>
+            <returns>应用程序标题范型</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.System.SystemInfoHelper.ConvertFromByte(System.Single,Zeus.Common.Helper.System.SystemInfoHelper.ByteUnit)">
+            <summary>
+            从字节转换到指定单位
+            </summary>
+            <param name="byteNumber">字节数</param>
+            <param name="targetUnit">指定单位</param>
+            <returns>转换结果</returns>
+        </member>
+        <member name="P:Zeus.Common.Helper.System.SystemInfoHelper.CpuCount">
+            <summary>
+            获取Cpu个数
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.System.SystemInfoHelper.CpuUsed">
+            <summary>
+            获取Cpu占用率
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.System.SystemInfoHelper.CurrentProcessCpu">
+            <summary>
+            当前进程Cpu占用率
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.System.SystemInfoHelper.CurrentCpuTimeTotal">
+            <summary>
+            Cpu计数器
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.System.SystemInfoHelper.CurrentProcess">
+            <summary>
+            当前进程
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.System.SystemInfoHelper.CurrentProcessCpuTime">
+            <summary>
+            当前进程Cpu计数
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.System.SystemInfoHelper.CurrentProcessWorkingSetPrivate">
+            <summary>
+            当前进程私有工作集
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.System.SystemInfoHelper.PhysicalMemory">
+            <summary>
+            获取物理内存
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.System.SystemInfoHelper.ByteUnit">
+            <summary>
+            字节单位
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.UploadFileHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.UploadFileHelper.SaveFiles(System.Web.HttpPostedFileBase)">
+            <summary>
+            保存文件
+            </summary>
+            <param name="file">文件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.UploadFileHelper.SaveFiles(System.Collections.Generic.IEnumerable{System.Web.HttpPostedFileBase})">
+            <summary>
+            保存文件
+            </summary>
+            <param name="files">文件集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.File.UploadFileHelper.SaveFile(System.Web.HttpPostedFileBase,System.Byte[],System.String)">
+            <summary>
+            保存文件
+            </summary>
+            <param name="postedFile">推送的文件</param>
+            <param name="fileBytes">文件字节数组</param>
+            <param name="ext">扩展名</param>
+            <returns>保存的文件相对路径</returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.UploadFileHelper.UploadSaveResult">
+            <summary>
+            上传保存结果
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.File.UploadFileHelper.UploadSaveResult.Status">
+            <summary>
+            上传保存状态
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.File.UploadFileHelper.UploadSaveResult.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.File.UploadFileHelper.UploadSaveResult.SavePath">
+            <summary>
+            保存路径
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.File.UploadFileHelper.UploadSaveStatus">
+            <summary>
+            响应状态
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.UploadFileHelper.UploadSaveStatus.Success">
+            <summary>
+            成功
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.UploadFileHelper.UploadSaveStatus.Fail">
+            <summary>
+            失败
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.File.UploadFileHelper.UploadSaveStatus.PartialSuccess">
+            <summary>
+            部分成功
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Web.HostHelper">
+            <summary>
+            主机信息帮助
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HostHelper.Host">
+            <summary>
+            获取主机地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HostHelper.GetDomainName(System.String)">
+            <summary>
+            获取指定连接的域名
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HostHelper.GetGlobalUrl(System.String)">
+            <summary>
+            获取全局路径
+            若无法从上下文中取得时，将从配置文件的AppSetting中查找HostAuthority
+            </summary>
+            <param name="url">url</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HostHelper.LittleEndianValueToIp(System.Int64)">
+            <summary>
+            将数值型的IP转换成IPV4形式的字符串
+            </summary>
+            <param name="ipValue">数值型IP</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HostHelper.GetHostIp4Address">
+            <summary>
+            获取服务端IPv4地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HostHelper.GetRequestIp4Address">
+            <summary>
+            获取客户端IPV4地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.Web.HtmlHelper">
+            <summary>
+            爬虫公共方法类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HtmlHelper.StripHtml(System.String)">
+            <summary>
+            获取描述信息,去除Html标签
+            </summary>
+            <param name="dataStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HtmlHelper.GetTrim(System.String)">
+            <summary>
+            把所有空格变为一个空格
+            </summary>
+            <param name="dataStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HtmlHelper.NoHtml(System.String)">
+            <summary>
+            正则表达式去掉所有html标签
+            </summary>
+            <param name="dataStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HtmlHelper.UnicodeToString(System.String)">
+            <summary>
+            内容中的Unicode编码转换
+            </summary>
+            <param name="dataStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HtmlHelper.BuildRequestPage(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.String,System.String,System.String)">
+            <summary>
+            建立请求页面
+            </summary>
+            <param name="charset">字符集</param>
+            <param name="dicPara">请求参数数组</param>
+            <param name="requestUrl"></param>
+            <param name="method"></param>
+            <param name="target">页面target，定义何处打开页面</param>
+            <returns>提交表单HTML文本</returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.CodeHelper">
+            <summary>
+            编号生成帮助类
+            </summary>
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.CodeHelper.VerifyCodeSessionKey">
+            <summary>
+            验证码在Session中存储的Key
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.CodeHelper.GenerateStrNum">
+            <summary>
+            生成包含字符的编号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.CodeHelper.GenerateNum">
+            <summary>
+            生成全数字编号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.CodeHelper.GetNo(System.String)">
+            <summary>
+            取得编号
+            如GetNo("No001"),返回"No002"
+            </summary>
+            <param name="strIn">基础编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.CodeHelper.GetVerifyCodeImage">
+            <summary>
+            获取验证码的图片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.CodeHelper.ValidateVerifyCodeValue(System.String)">
+            <summary>
+            获取验证码的值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.CodeHelper.CreateMobileCode(System.String,System.Int32)">
+            <summary>
+            生成验证码(暂支持纯数字)如果溢出或异常等将返回全0的字符串
+            </summary>
+            <param name="length">长度，默认6位</param>
+            <param name="mobile">手机号码</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.CodeHelper.CreateCodeLength6(System.String)">
+            <summary>
+            生成六位随机数字组成的字符串
+            </summary>
+            <param name="mobile">手机号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.CodeHelper.GetNumber6ByGuid">
+            <summary>
+            从随机GUID中获取一个百万级的数字（六位数字）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.CodeHelper.CreateGraphic(System.String)">
+            <summary>
+            创建图片
+            </summary>
+            <param name="verifyCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.CodeHelper.Compute(System.Int32,System.Int32,System.String)">
+            <summary>
+            根据指定的运算符对两个数字进行运算
+            </summary>
+            <param name="firstNumber"></param>
+            <param name="secondNumber"></param>
+            <param name="operate"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.DateTimeHelper">
+            <summary>
+            时间辅助类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.FromTimestamp(System.Int64)">
+            <summary>
+            从时间戳转换成本地时间
+            </summary>
+            <param name="timestamp">时间戳</param>
+            <returns>本地时间</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToDayStart(System.String)">
+            <summary>
+            将日期转换为本日的开始时间
+            </summary>
+            <param name="value">2001-01-01</param>
+            <returns>2001-01-01 00:00:00</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToDayStart(System.DateTime)">
+            <summary>
+            将日期转换为本日的开始时间
+            </summary>
+            <param name="value">任意时间</param>
+            <returns>2001-01-01 00:00:00</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToDayEnd(System.String)">
+            <summary>
+            将日期转换为本日的开始时间
+            </summary>
+            <param name="value">2001-01-01</param>
+            <returns>2001-01-01 23:59:59</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToDayEnd(System.DateTime)">
+            <summary>
+            将日期转换为本日的结束时间
+            </summary>
+            <param name="value">任意时间</param>
+            <returns>2001-01-01 23:59:59</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToWeekStart(System.String)">
+            <summary>
+            将日期转换为本周的开始时间
+            </summary>
+            <param name="value">2001-01-01</param>
+            <returns>2001-01-01 00:00:00</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToWeekStart(System.DateTime)">
+            <summary>
+            将日期转换为本周的开始时间
+            </summary>
+            <param name="value">任意时间</param>
+            <returns>2001-01-01 00:00:00</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToWeekEnd(System.String)">
+            <summary>
+            将日期转换为本周的结束时间
+            </summary>
+            <param name="value">2001-01-01</param>
+            <returns>2001-01-01 23:59:59</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToWeekEnd(System.DateTime)">
+            <summary>
+            将日期转换为本周的结束时间
+            </summary>
+            <param name="value">任意时间</param>
+            <returns>2001-01-01 23:59:59</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.GetWeekStartOrEnd(System.DateTime,System.Boolean)">
+            <summary>
+            获取本周的开始日期或结束日期
+            </summary>
+            <param name="date">用于计算的日期</param>
+            <param name="getWeekStart">是否是获取一周开始的日期</param>
+            <returns>日期</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToMonthStart(System.String)">
+            <summary>
+            将日期转换为本月的开始时间
+            </summary>
+            <param name="value">2001-01-01</param>
+            <returns>2001-01-01 00:00:00</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToMonthStart(System.DateTime)">
+            <summary>
+            将日期转换为本月的开始时间
+            </summary>
+            <param name="value">任意时间</param>
+            <returns>2001-01-01 00:00:00</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToMonthEnd(System.String)">
+            <summary>
+            将日期转换为本月的结束时间
+            </summary>
+            <param name="value">2001-01-01</param>
+            <returns>2001-01-31 23:59:59</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToMonthEnd(System.DateTime)">
+            <summary>
+            将日期转换为本月的结束时间
+            </summary>
+            <param name="value">任意时间</param>
+            <returns>2001-01-31 23:59:59</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToYearStart(System.String)">
+            <summary>
+            将日期转换为本年的开始时间
+            </summary>
+            <param name="value">2001-01-01</param>
+            <returns>2001-01-01 00:00:00</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToYearStart(System.DateTime)">
+            <summary>
+            将日期转换为本年的开始时间
+            </summary>
+            <param name="value">任意时间</param>
+            <returns>2001-01-01 00:00:00</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToYearEnd(System.String)">
+            <summary>
+            将日期转换为本年的结束时间
+            </summary>
+            <param name="value">2001-01-01</param>
+            <returns>2001-12-31 23:59:59</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.DateTimeHelper.ToYearEnd(System.DateTime)">
+            <summary>
+            将日期转换为本年的结束时间
+            </summary>
+            <param name="value">任意时间</param>
+            <returns>2001-12-31 23:59:59</returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.Runtime.DynamicClassHelper">
+            <summary>
+            动态类帮助类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Runtime.DynamicClassHelper.CreateAssembly(System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            创建新程序集动态类
+            </summary>
+            <returns>程序集</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Runtime.DynamicClassHelper.CreateProperty(System.Collections.Generic.KeyValuePair{System.String,System.String})">
+            <summary>
+            创建类属性
+            </summary>
+            <param name="property">属性(键值对如：int,Name)</param>
+            <returns>属性字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Runtime.DynamicClassHelper.SetProperty(System.Object,System.String,System.Object)">
+            <summary>
+            设置属性值
+            </summary>
+            <param name="objClass">实例对象</param>
+            <param name="propertyName">属性名</param>
+            <param name="value">属性值</param>
+        </member>
+        <member name="T:Zeus.Common.Helper.Web.HttpHelper">
+            <summary>
+            Http帮助类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HttpHelper.GetResponseDataByGet(System.String,System.Int32,System.String)">
+            <summary>
+            根据URL获取响应数据（Get）
+            </summary>
+            <param name="url">url地址</param>
+            <param name="timeout">超时时间</param>
+            <param name="contentType">内容类型，post方式需求</param>
+            <returns>响应数据</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HttpHelper.GetResponseResultByGet(System.String,System.Int32,System.String)">
+            <summary>
+            根据URL获取响应数据（Get）
+            </summary>
+            <param name="url">url地址</param>
+            <param name="timeout">超时时间</param>
+            <param name="contentType">内容类型，post方式需求</param>
+            <returns>响应数据</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HttpHelper.GetResponseDataByPost(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            根据URL获取响应数据(Post)
+            </summary>
+            <param name="url">url地址</param>
+            <param name="postParam">Post参数</param>
+            <param name="timeout">超时时间</param>
+            <param name="contentType">内容类型，post方式需求</param>
+            <returns>响应数据</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HttpHelper.GetResponseResultByPost(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            根据URL获取响应数据(Post)
+            </summary>
+            <param name="url">url地址</param>
+            <param name="postParam">Post参数</param>
+            <param name="timeout">超时时间</param>
+            <param name="contentType">内容类型，post方式需求</param>
+            <returns>响应数据</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HttpHelper.GetResponseResult(System.Net.HttpWebRequest)">
+            <summary>
+            根据URL获取响应结果
+            </summary>
+            <param name="request">Http请求</param>
+            <returns>响应数据</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HttpHelper.WriteDataIntoRequest(System.Net.HttpWebRequest,System.String,System.String,System.String,System.String)">
+            <summary>
+            将数据写入请求中
+            </summary>
+            <param name="request">Http请求</param>
+            <param name="method">请求方式：POST等</param>
+            <param name="data">数据</param>
+            <param name="requestCharset">请求时的字符集</param>
+            <param name="contentType">内容类型</param>
+            <returns>响应数据</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HttpHelper.GetResponseResult(System.String,System.String,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            根据URL获取响应结果
+            </summary>
+            <param name="url">url地址</param>
+            <param name="method">请求方式：GET，POST</param>
+            <param name="postParam">Post参数</param>
+            <param name="timeout">超时时间</param>
+            <param name="requestCharset">请求时的字符集</param>
+            <param name="contentType">内容类型，post方式需求</param>
+            <returns>响应数据</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HttpHelper.GetCertificate(System.String)">
+            <summary>
+            获取当前SSL证书
+            </summary>
+            <param name="sslCertStorPath">用以匹配的信任证书所存放的路径</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HttpHelper.SslCerValidateCallBack(Zeus.Common.Helper.Web.SslCertPolicyType,System.String)">
+            <summary>
+            SSL证书回调验证方法
+            </summary>
+            <param name="policyType">SSL认证策略</param>
+            <param name="sslCertStorPath">用以匹配的信任证书所存放的路径</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HttpHelper.CreateLinkString(System.Collections.Generic.IDictionary{System.String,System.String},System.Boolean,System.String,System.Boolean)">
+            <summary>
+            把数组所有元素,按照"参数=参数值"的模式用连接字符拼接成字符串
+            </summary>
+            <param name="dicArray">需要拼接的数组</param>
+            <param name="urlEncode">是否进行Url加密</param>
+            <param name="encode">Url加密字符集</param>
+            <param name="sortByKey">是否根据键排序</param>
+            <returns>拼接完成以后的字符串</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HttpHelper.GetRequestParam(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            通知消息转换成字典
+            </summary>
+            <param name="coll">键值集合</param>
+            <returns>request回来的信息组成的字典</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Web.HttpHelper.GetRequestParam(System.String)">
+            <summary>
+            通知消息转换成字典
+            </summary>
+            <param name="urlOrKeyValue">请求Url或者以"A=B连接符C=D"形式的参数字符串</param>
+            <returns>request回来的信息组成的字典</returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.Web.ResponseResult">
+            <summary>
+            响应结果
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.Web.ResponseResult.Status">
+            <summary>
+            响应状态
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.Web.ResponseResult.ResponseString">
+            <summary>
+            响应内容字符串
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.Web.ResponseResult.ExceptionMessages">
+            <summary>
+            异常消息
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Web.ResponseStatus">
+            <summary>
+            响应状态
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Web.ResponseStatus.Success">
+            <summary>
+            成功
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Web.ResponseStatus.Fail">
+            <summary>
+            失败
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Web.ResponseStatus.Exception">
+            <summary>
+            异常
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Web.SslCertPolicyType">
+            <summary>
+            SSL认证策略类型
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Web.SslCertPolicyType.Default">
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Web.SslCertPolicyType.Ignore">
+            <summary>
+            忽略
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Web.SslCertPolicyType.TrustStore">
+            <summary>
+            信任
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Log.FileLogHelper">
+            <summary>
+            编写文件日志
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Log.FileLogHelper.DefaultInfoLogDirectory">
+            <summary>
+            默认消息日志文件夹名称
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Log.FileLogHelper.DefaultErrorLogDirectory">
+            <summary>
+            默认错误日志文件夹名称
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Log.FileLogHelper.LogError">
+            <summary>
+            错误信息日志器
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Log.FileLogHelper.LogInfo">
+            <summary>
+            消息日志器
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Log.FileLogHelper.CurrentInfoAppender">
+            <summary>
+            当前使用的消息存储器
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Log.FileLogHelper.CurrentErrorAppender">
+            <summary>
+            当前使用的错误存储器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Log.FileLogHelper.#cctor">
+            <summary>
+            静态构造函数
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Log.FileLogHelper.WriteError(System.String,System.Exception,System.String)">
+            <summary>
+            错误信息记录
+            </summary>
+            <param name="description">简单描述</param>
+            <param name="ex">错误信息</param>
+            <param name="directory">文件夹名</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Log.FileLogHelper.WriteError(System.String,System.String)">
+            <summary>
+            错误信息记录
+            </summary>
+            <param name="message">简单描述</param>
+            <param name="directory">文件夹名</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Log.FileLogHelper.WriteInfo(System.Object,System.String)">
+            <summary>
+            一般信息记录
+            </summary>
+            <param name="message">一般信息</param>
+            <param name="directory">文件夹名</param>
+        </member>
+        <member name="T:Zeus.Common.Helper.TypeHelper">
+            <summary>
+            类型帮助类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.TypeHelper.Convert``1(System.Object)">
+            <summary>
+            通过反射将传入的对象转换为指定类型的对象
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.TypeHelper.Convert(System.Object,System.Type)">
+            <summary>
+            通过反射将传入的对象转换为指定类型的对象
+            </summary>
+            <param name="input"></param>
+            <param name="targetType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.Office.ExcelHelper">
+            <summary>
+            Excel文档处理类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.ExcelExport(System.Collections.IList,System.String,Zeus.Common.Helper.Office.HeaderGetWay,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            通过传入的对象列表导出excel文档，回发给客户端
+            </summary>
+            <param name="data">列表对象，json数据建议反序列化为IList&lt;Dictionary&lt;string,string&gt;&gt;</param>
+            <param name="fileName">导出文件名,不包含后缀（后缀系统统一为.xlsx）</param>
+            <param name="headerGetWay">Excel头的获取方式，选择通过头映射时，headerMap参数必填</param>
+            <param name="headerMap">Excel头与数据中的字段名映射关系，当headerGetWay选择通过头映射时，headerMap参数必填</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.ExcelExport(System.Collections.IList,System.String,System.String,System.Boolean,Zeus.Common.Helper.Office.HeaderGetWay,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            通过传入的对象列表导出excel文档,保存到指定路径
+            </summary>
+            <param name="data">列表对象，json数据建议反序列化为IList&lt;Dictionary&lt;string,string&gt;&gt;</param>
+            <param name="fileName">导出文件名,不包含后缀（后缀系统统一为.xlsx）</param>
+            <param name="shouldSend">保存成功后是否需要发送回客户端</param>
+            <param name="headerGetWay">Excel头的获取方式，选择通过头映射时，headerMap参数必填</param>
+            <param name="headerMap">Excel头与数据中的字段名映射关系，当headerGetWay选择通过头映射时，headerMap参数必填</param>
+            <param name="path">文件保存路径</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.ExcelExport(System.IO.Stream,System.Collections.IList,Zeus.Common.Helper.Office.HeaderGetWay,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            通过传入的对象列表导出excel文档，写入流
+            </summary>
+            <param name="documentStream">文件流</param>
+            <param name="data">列表对象，json数据建议反序列化为IList&lt;Dictionary&lt;string,string&gt;&gt;</param>
+            <param name="headerGetWay">Excel头的获取方式，选择通过头映射时，headerMap参数必填</param>
+            <param name="headerMap">Excel头与数据中的字段名映射关系，当headerGetWay选择通过头映射时，headerMap参数必填</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.ExcelImport``1(Zeus.Common.Helper.Office.ImportInfo@,System.String)">
+            <summary>
+            将导入Excel文档转换为列表对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.Send(System.IO.Stream,System.String)">
+            <summary>
+            将当前文档发送到浏览器
+            </summary>
+            <param name="documentStream">已写入文件的流</param>
+            <param name="fileName">导出的文件名</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.Save(System.IO.Stream,System.String,System.String)">
+            <summary>
+            将当前文档保存到指定位置
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.PreaperColumnInfo``1(DocumentFormat.OpenXml.Spreadsheet.Row,Zeus.Common.Helper.Office.ImportInfo,System.Collections.Generic.IList{DocumentFormat.OpenXml.Spreadsheet.SharedStringItem})">
+            <summary>
+            准备行信息
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="headerRow"></param>
+            <param name="importInfo"></param>
+            <param name="sharedStringItems"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.ReadDataRows``1(System.Collections.Generic.IEnumerable{DocumentFormat.OpenXml.Spreadsheet.Row},System.Collections.Generic.Dictionary{System.Int32,System.Reflection.PropertyInfo},Zeus.Common.Helper.Office.ImportInfo,System.Collections.Generic.IList{DocumentFormat.OpenXml.Spreadsheet.SharedStringItem})">
+            <summary>
+            读取数据行
+            </summary>
+            <param name="dataRows"></param>
+            <param name="propertyMaps"></param>
+            <param name="importInfo"></param>
+            <param name="sharedStringItems"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.ReadCellValue(DocumentFormat.OpenXml.Spreadsheet.Cell,System.Collections.Generic.IList{DocumentFormat.OpenXml.Spreadsheet.SharedStringItem})">
+            <summary>
+            读取SharedString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.CreateFont(DocumentFormat.OpenXml.Spreadsheet.Stylesheet,System.String,System.Nullable{System.Double},System.Boolean,System.Drawing.Color)">
+            <summary>
+            创建字体
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.CreateFill(DocumentFormat.OpenXml.Spreadsheet.Stylesheet,System.Drawing.Color)">
+            <summary>
+            创建填充对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.CreateCellFormat(DocumentFormat.OpenXml.Spreadsheet.Stylesheet,DocumentFormat.OpenXml.UInt32Value,DocumentFormat.OpenXml.UInt32Value,DocumentFormat.OpenXml.UInt32Value)">
+            <summary>
+            创建单元格格式
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.GetColumnName(System.Int32)">
+            <summary>
+            根据列序号获取对应的Excel列名
+            </summary>
+            <returns>1 = A, 2 = B... 27 = AA, etc.</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.GetColumnIndexByCellReference(System.String)">
+            <summary>
+            根据CellReference获取列号
+            </summary>
+            <param name="cellReference"></param>
+            <returns>A1=1,B1=2...AA1=27,etc.</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.CreateContentRow(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Int32}},System.Object,System.Int32)">
+            <summary>
+            创建行
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelHelper.CreateTextCell(System.Int32,System.Int32,System.Object,System.Nullable{System.UInt32})">
+            <summary>
+            创建文本单元格
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Office.HeaderGetWay">
+            <summary>
+            Excel头的获取方式
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Office.HeaderGetWay.DescriptionAttribute">
+            <summary>
+            描述特性中获取
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Office.HeaderGetWay.PropertyName">
+            <summary>
+            获取类的属性名称
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Helper.Office.HeaderGetWay.DicHeaderMap">
+            <summary>
+            指定的头映射
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.Office.ExcelPackageCreator">
+            <summary>
+            用来创建Excel文件包的类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelPackageCreator.GenerateWorkbookPartContent(DocumentFormat.OpenXml.Packaging.WorkbookPart)">
+            <summary>
+            创建工作表的内容
+            </summary>
+            <param name="workbookPart1"></param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelPackageCreator.GenerateWorksheetPartContent(DocumentFormat.OpenXml.Packaging.WorksheetPart)">
+            <summary>
+            创建工作表的的内容
+            </summary>
+            <param name="worksheetPart"></param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelPackageCreator.GenerateWorkbookStylesPartContent(DocumentFormat.OpenXml.Packaging.WorkbookStylesPart)">
+            <summary>
+            创建excel的样式内容
+            </summary>
+            <param name="workbookStylesPart"></param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelPackageCreator.GenerateThemePartContent(DocumentFormat.OpenXml.Packaging.ThemePart)">
+            <summary>
+            创建主题的内容
+            </summary>
+            <param name="themePart"></param>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ExcelPackageCreator.SetPackageProperties(DocumentFormat.OpenXml.Packaging.OpenXmlPackage)">
+            <summary>
+            设置包的属性
+            </summary>
+            <param name="document"></param>
+        </member>
+        <member name="T:Zeus.Common.Helper.Office.ImportInfo">
+            <summary>
+            导入信息
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.Office.ImportInfo.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.Office.ImportInfo.Sucessed">
+            <summary>
+            获取一个值表示是否导入成功
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.Office.ImportInfo.Errors">
+            <summary>
+            导入错误消息
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.Office.ImportInfo.ErrorCount">
+            <summary>
+            错误个数
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Helper.EnumHelper">
+            <summary>
+            枚举帮助类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.EnumHelper.GetEnumPropertyInfo(System.Type)">
+            <summary>
+            获取枚举属性信息
+            </summary>
+            <param name="type">枚举</param>
+            <returns>枚举属性信息</returns>
+        </member>
+        <member name="T:Zeus.Common.Helper.EnumPropertyInfo">
+            <summary>
+            枚举属性信息
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Helper.EnumPropertyInfo.Description">
+            <summary>
+            枚举的描述
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Helper.XmlHelper.DeserializeXml``1(System.String)">
+            <summary>
+            反序列化Xml
+            </summary>
+            <param name="xmlStr">Xml字符串</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.XmlHelper.DeserializeXml``1(System.IO.Stream)">
+            <summary>
+            反序列化Xml
+            </summary>
+            <param name="xmlStream">Xml数据流</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.XmlHelper.DeserializeXml``1(``0,System.String)">
+            <summary>
+            反序列化Xml
+            </summary>
+            <param name="target">对象实体</param>
+            <param name="xmlStr">Xml字符串</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.XmlHelper.DeserializeXml``1(``0,System.IO.Stream)">
+            <summary>
+            反序列化Xml
+            </summary>
+            <param name="target">对象实体</param>
+            <param name="xmlStream">Xml数据流</param>
+        </member>
+        <member name="M:Zeus.Common.Helper.XmlHelper.XmlToDictionary(System.String)">
+            <summary>
+            Xml内容转换字典参数，Xml元素为&lt;Key&gt;Value&lt;/Key&gt;的形式才能转化
+            </summary>
+            <param name="xmlContent">xml内容</param>
+            <returns>字典参数</returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.XmlHelper.DeserializeElement(System.Object,System.Xml.Linq.XElement)">
+            <summary>
+            反序列化XML元素的属性及其子对象
+            </summary>
+            <param name="target"></param>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Zeus.Common.Helper.XmlHelper.SetPropertiesFromXElenebtAttributes(System.Object,System.Xml.Linq.XElement)">
+            <summary>
+            根据XML元素为对象的属性赋值
+            </summary>
+            <param name="target"></param>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Zeus.Common.Helper.XmlHelper.GetPropertyInfo(System.Type,System.String)">
+            <summary>
+            获取对象的属性信息
+            </summary>
+            <param name="targetType"></param>
+            <param name="propertyName">不区分大小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Helper.XmlHelper.ConvertType(System.String,System.Type,System.Object@)">
+            <summary>
+            将传入的字符串值转换为指定的类型
+            </summary>
+            <param name="stringValue">字符串值</param>
+            <param name="targetType">欲转换的类型</param>
+            <param name="result">转换结果</param>
+            <returns>是否转换成功</returns>
+        </member>
+    </members>
+</doc>

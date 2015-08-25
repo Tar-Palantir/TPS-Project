@@ -1,0 +1,571 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zeus.Common.Log</name>
+    </assembly>
+    <members>
+        <member name="T:Zeus.Common.Log.BaseLogHandler`1">
+            <summary>
+            日志处理类的基类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Log.BaseLogHandler`1.LoadConfig">
+            <summary>
+            Loads the config.
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Log.BaseLogHandler`1.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Zeus.Common.Log.BaseLogHandler`1"/> class.
+            </summary>
+            <param name="loggerConfig">The logger config.</param>
+        </member>
+        <member name="M:Zeus.Common.Log.BaseLogHandler`1.WriteLog">
+            <summary>
+            写入日志
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.BaseLogHandler`1.LoggerConfig">
+            <summary>
+            Gets or sets the logger config.
+            </summary>
+            <value>The logger config.</value>
+        </member>
+        <member name="P:Zeus.Common.Log.BaseLogHandler`1.Log">
+            <summary>
+            日志对象
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Log.Entities.ExceptionLog">
+            <summary>
+            异常日志
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ExceptionLog.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ExceptionLog.OperateTime">
+            <summary>
+            操作时间
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ExceptionLog.LogonName">
+            <summary>
+            登录名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ExceptionLog.ExceptionType">
+            <summary>
+            异常类型
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ExceptionLog.Host">
+            <summary>
+            主机名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ExceptionLog.Runtime">
+            <summary>
+            运行时
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ExceptionLog.Message">
+            <summary>
+            异常消息
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ExceptionLog.StackTrace">
+            <summary>
+            栈追踪信息
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ExceptionLog.InnerException">
+            <summary>
+            内部异常
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ExceptionLog.ServiceExceptionId">
+            <summary>
+            服务异常Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ExceptionLog.RequestUrl">
+            <summary>
+            请求Url
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ExceptionLog.RequestData">
+            <summary>
+            请求数据
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Log.Entities.MonitorMember">
+            <summary>
+            系统性能监测的成员，包括一个服务器监测日志、多个进程监测日志、多个服务监测日志
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.MonitorMember.ServerMonitor">
+            <summary>
+            Gets or sets the server monitor.
+            </summary>
+            <value>The server monitor.</value>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.MonitorMember.ProcessMonitorLogs">
+            <summary>
+            Gets or sets the process monitor logs.
+            </summary>
+            <value>The process monitor logs.</value>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.MonitorMember.ServiceMonitorLogs">
+            <summary>
+            Gets or sets the service monitor logs.
+            </summary>
+            <value>The service monitor logs.</value>
+        </member>
+        <member name="T:Zeus.Common.Log.Entities.ProcessMonitorLog">
+            <summary>
+            进程监控日志
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ProcessMonitorLog.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ProcessMonitorLog.ServerMonitorLogId">
+            <summary>
+            服务监控日志ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ProcessMonitorLog.PID">
+            <summary>
+            进程ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ProcessMonitorLog.ProcessName">
+            <summary>
+            进程名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ProcessMonitorLog.CPUProportion">
+            <summary>
+            CPU占用率
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ProcessMonitorLog.CPUTimes">
+            <summary>
+            CPU周期
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ProcessMonitorLog.MemoryValue">
+            <summary>
+            内存值
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ProcessMonitorLog.SystemUserName">
+            <summary>
+            系统用户名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ProcessMonitorLog.ThreadsCount">
+            <summary>
+            线程数
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ProcessMonitorLog.HandleCount">
+            <summary>
+            句柄数
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Log.Entities.ServerMonitorLog">
+            <summary>
+            服务监控日志
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.ServerIP">
+            <summary>
+            服务器IP
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.ServerName">
+            <summary>
+            服务器名称
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.ReportTime">
+            <summary>
+            报告时间
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.CPUUsage">
+            <summary>
+            CPU使用情况
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.DiskUsage">
+            <summary>
+            磁盘使用情况
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.ProcessCount">
+            <summary>
+            进程数
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.ThreadCount">
+            <summary>
+            线程数
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.CommitLimit">
+            <summary>
+            内存提交极限值
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.CommitPeak">
+            <summary>
+            内存提交峰值
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.SystemCache">
+            <summary>
+            系统缓存
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.PhysicalAvailable">
+            <summary>
+            可用的物理内存
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.PhysicalTotal">
+            <summary>
+            总共的物理内存
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.KernelPaged">
+            <summary>
+            核心内存：分页
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.KernelNonpaged">
+            <summary>
+            核心内存：未分页
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.MemoryPercent">
+            <summary>
+            内存使用率
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.UsedPhysMemory">
+            <summary>
+            已使用物理内存
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServerMonitorLog.HandleCount">
+            <summary>
+            句柄数
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Log.Entities.ServiceCallLog">
+            <summary>
+            服务调用日志
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceCallLog.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceCallLog.OperateTime">
+            <summary>
+            操作时间
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceCallLog.LogonName">
+            <summary>
+            登录名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceCallLog.ClientAddress">
+            <summary>
+            客户端地址
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceCallLog.ServerAddress">
+            <summary>
+            服务器地址
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceCallLog.ContractName">
+            <summary>
+            契约名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceCallLog.MethodName">
+            <summary>
+            方法名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceCallLog.ExecutionTime">
+            <summary>
+            执行时间
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Log.Entities.ServiceMonitorLog">
+            <summary>
+            服务监控日志
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceMonitorLog.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceMonitorLog.ServerMonitorLogId">
+            <summary>
+            服务器监控日志Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceMonitorLog.ServiceName">
+            <summary>
+            服务名称
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceMonitorLog.DisplayName">
+            <summary>
+            显示名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceMonitorLog.PID">
+            <summary>
+            关联进程ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceMonitorLog.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.ServiceMonitorLog.ImagePath">
+            <summary>
+            图片路径
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Log.Entities.UserOperateLog">
+            <summary>
+            用户操作日志
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.OperateTime">
+            <summary>
+            操作时间
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.LogonName">
+            <summary>
+            登录名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.ClientIp">
+            <summary>
+            客户端IP
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.ServerIp">
+            <summary>
+            服务器IP
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.RequestContentLength">
+            <summary>
+            请求内容长度
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.RequestType">
+            <summary>
+            请求类型
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.Url">
+            <summary>
+            Url
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.UrlReferrer">
+            <summary>
+            Url引用
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.UserAgent">
+            <summary>
+            用户代理
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.ControllerName">
+            <summary>
+            控制器名称
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.ActionName">
+            <summary>
+            Action名称
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.ActionExecutionTime">
+            <summary>
+            Action执行时间
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.ResultExecutionTime">
+            <summary>
+            结果执行时间
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.ResponseStatus">
+            <summary>
+            相应状态
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.Entities.UserOperateLog.ExceptionLogId">
+            <summary>
+            异常日志Id
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Log.ExceptionLogHandler">
+            <summary>
+            异常日志处理器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Log.ExceptionLogHandler.#ctor(System.Exception)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="exception"></param>
+        </member>
+        <member name="M:Zeus.Common.Log.ExceptionLogHandler.#ctor(System.Exception,System.Guid)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="exception"></param>
+            <param name="id"></param>
+        </member>
+        <member name="M:Zeus.Common.Log.ExceptionLogHandler.#ctor(System.Exception,System.String,System.Guid)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="exception"></param>
+            <param name="currentUserLogonName"></param>
+            <param name="id"></param>
+        </member>
+        <member name="M:Zeus.Common.Log.ExceptionLogHandler.WriteLog">
+            <summary>
+            Writes the log.
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Log.MonitorLogHandler">
+            <summary>
+            系统监测日志处理器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Log.MonitorLogHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Zeus.Common.Log.MonitorLogHandler"/> class.
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Log.MonitorLogHandler.#ctor(Zeus.Common.Log.Entities.MonitorMember)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Zeus.Common.Log.MonitorLogHandler"/> class.
+            </summary>
+            <param name="member">The member.</param>
+        </member>
+        <member name="M:Zeus.Common.Log.MonitorLogHandler.WriteLog">
+            <summary>
+            Writes the log.
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Log.MonitorLogHandler.Log">
+            <summary>
+            日志对象
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Log.PropertyLayout">
+            <summary>
+            支持属性的布局方式
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Log.PropertyLayout.#ctor">
+            <summary>
+            构造函数
+            </summary>
+            <remarks>添加<see cref="T:Zeus.Common.Log.PropertyLayoutConverter"/></remarks>
+        </member>
+        <member name="T:Zeus.Common.Log.PropertyLayoutConverter">
+            <summary>
+            支持属性的布局转换器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Log.PropertyLayoutConverter.Convert(System.IO.TextWriter,log4net.Core.LoggingEvent)">
+            <summary>
+            重写基类的转换器，根据配置的property key 获取消息对象上的相应属性
+            </summary>
+            <param name="writer"></param>
+            <param name="loggingEvent"></param>
+        </member>
+        <member name="M:Zeus.Common.Log.PropertyLayoutConverter.LookupProperty(System.String,log4net.Core.LoggingEvent)">
+            <summary>
+            通过反射获取传入的日志对象的某个属性的值
+            </summary>
+            <param name="property"></param>
+            <param name="loggingEvent"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Zeus.Common.Log.ServiceCallLogHandler">
+            <summary>
+            服务调用日志处理器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Log.ServiceCallLogHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Zeus.Common.Log.ServiceCallLogHandler"/> class.
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Log.UserOperateLogHandler">
+            <summary>
+            用户操作日志处理器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Log.UserOperateLogHandler.#ctor(System.Web.HttpRequestBase)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Log.UserOperateLogHandler.ActionExecuted">
+            <summary>
+            Action执行完毕
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Log.UserOperateLogHandler.ResultExecuted(System.Web.HttpResponseBase)">
+            <summary>
+            Action的返回结果执行完毕
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Log.UserOperateLogHandler.HandlerException(System.Exception)">
+            <summary>
+            出现了异常
+            </summary>
+        </member>
+    </members>
+</doc>

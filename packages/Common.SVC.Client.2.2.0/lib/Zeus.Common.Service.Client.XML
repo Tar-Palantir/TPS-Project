@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zeus.Common.Service.Client</name>
+    </assembly>
+    <members>
+        <member name="T:Zeus.Common.Service.Client.CurrentUserBehavior">
+            <summary>
+            当前用户行为
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.CurrentUserBehavior.CreateBehavior">
+            <summary>
+            创建行为
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.CurrentUserBehavior.AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            添加绑定参数
+            未使用
+            </summary>
+            <param name="endpoint"></param>
+            <param name="bindingParameters"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.CurrentUserBehavior.ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.ClientRuntime)">
+            <summary>
+            应用客户端行为
+            </summary>
+            <param name="endpoint"></param>
+            <param name="clientRuntime"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.CurrentUserBehavior.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint,System.ServiceModel.Dispatcher.EndpointDispatcher)">
+            <summary>
+            应用行为
+            未使用
+            </summary>
+            <param name="endpoint"></param>
+            <param name="endpointDispatcher"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.CurrentUserBehavior.Validate(System.ServiceModel.Description.ServiceEndpoint)">
+            <summary>
+            验证
+            未使用
+            </summary>
+            <param name="endpoint"></param>
+        </member>
+        <member name="P:Zeus.Common.Service.Client.CurrentUserBehavior.CurrentUser">
+            <summary>
+            当前用户
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Service.Client.CurrentUserBehavior.BehaviorType">
+            <summary>
+            行为类型
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Service.Client.WCFClient.ChannelFactoryParamCache">
+             <summary>
+            创建ChannelFactory所用参数的缓存字典
+            key:契约名称（含命名空间）
+            value:ChannelFactory参数
+             </summary>
+        </member>
+        <member name="F:Zeus.Common.Service.Client.WCFClient._channelFactory">
+            <summary>
+            通道工厂
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.WCFClient.Dispose">
+            <summary>
+            释放连接
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.WCFClient.GetClientProxy``1(System.String)">
+            <summary>
+            获取客户端代理
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.WCFClient.CreateChannelFactory(System.Type,System.String,System.String)">
+            <summary>
+            创建通道工厂
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.WCFClient.GetChannelFactoryParam(System.Type,System.String,System.String)">
+            <summary>
+            获取创建通道工厂的参数
+            </summary>
+            <param name="contractType"></param>
+            <param name="contractName"></param>
+            <param name="serviceUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Zeus.Common.Service.Client.BindingConfigConverter">
+            <summary>
+            绑定配置文件解析器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.BindingConfigConverter.InitBindingFromXmlConfig(System.ServiceModel.Channels.Binding,System.String)">
+            <summary>
+            根据xml配置字符串初始化Binding类
+            </summary>
+            <param name="binding"></param>
+            <param name="bindingConfig"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.BindingConfigConverter.DeserializeElement(System.Object,System.Xml.Linq.XElement)">
+            <summary>
+            反序列化XML元素的属性及其子对象
+            </summary>
+            <param name="target"></param>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.BindingConfigConverter.SetPropertiesFromXElenebtAttributes(System.Object,System.Xml.Linq.XElement)">
+            <summary>
+            根据XML元素为对象的属性赋值
+            </summary>
+            <param name="target"></param>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.BindingConfigConverter.GetPropertyInfo(System.Object,System.String)">
+            <summary>
+            获取对象的属性信息
+            </summary>
+            <param name="target"></param>
+            <param name="propertyName">不区分大小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.BindingConfigConverter.ConvertType(System.String,System.Type,System.Object@)">
+            <summary>
+            将传入的字符串值转换为指定的类型
+            </summary>
+            <param name="stringValue"></param>
+            <param name="targetType"></param>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Zeus.Common.Service.Client.ChannelFactoryParam">
+            <summary>
+            创建ChannelFactory时使用的参数
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Service.Client.ChannelFactoryParam._commonBinding">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.ChannelFactoryParam.Create(System.Type,System.String,System.String)">
+            <summary>
+            创建ChannelFactoryParam的实例
+            </summary>
+            <param name="contractType"></param>
+            <param name="contractName"></param>
+            <param name="endpointUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.ChannelFactoryParam.CreateBindingInstance(System.String)">
+            <summary>
+            根据绑定类型名称创建绑定的实例
+            </summary>
+            <param name="bindTypeName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Zeus.Common.Service.Client.ChannelFactoryParam.ContractType">
+            <summary>
+            契约的类型
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Service.Client.ChannelFactoryParam.EndpointAddress">
+            <summary>
+            终结点地址
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Service.Client.ChannelFactoryParam.Binding">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Service.Client.IdentityHeaderInspector">
+            <summary>
+            用户标识头检查器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.IdentityHeaderInspector.AfterReceiveReply(System.ServiceModel.Channels.Message@,System.Object)">
+            <summary>
+            接收到回复之后
+            未使用
+            </summary>
+            <param name="reply"></param>
+            <param name="correlationState"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.IdentityHeaderInspector.BeforeSendRequest(System.ServiceModel.Channels.Message@,System.ServiceModel.IClientChannel)">
+            <summary>
+            在发送请求之前执行
+            </summary>
+            <remarks>在发送请求之前在消息头上附加用户信息</remarks>
+            <param name="request">请求</param>
+            <param name="channel">通道</param>
+            <returns></returns>
+        </member>
+        <member name="P:Zeus.Common.Service.Client.IdentityHeaderInspector.CurrentUser">
+            <summary>
+            当前用户
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Service.Client.WCFClientSection">
+            <summary>
+            总线客户端的配置节
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Service.Client.WCFClientSection.BindType">
+            <summary>
+            绑定类型
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Service.Client.WCFClientSection.BindingConfig">
+            <summary>
+            绑定配置
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Service.Client.WCFClientSectionHandler">
+            <summary>
+            总线客户端配置节Handler
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.Client.WCFClientSectionHandler.Create(System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            根据XML节创建WCFClientSection对象
+            </summary>
+            <param name="parent"></param>
+            <param name="configContext"></param>
+            <param name="section"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

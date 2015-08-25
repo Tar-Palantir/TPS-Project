@@ -1,0 +1,641 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zeus.Common.DataAccess.Implement</name>
+    </assembly>
+    <members>
+        <member name="T:Zeus.Common.DataAccess.Implement.DataChangeLoger`1">
+            <summary>
+            数据变更日志记录器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataChangeLoger`1.#ctor(System.Data.Entity.DbContext)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="activeContext"></param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataChangeLoger`1.BuildChangeLogs(`0,Zeus.Common.DataStatus.OperateType,System.Type,System.Collections.Generic.IEnumerable{Zeus.Common.DataAccess.Implement.DataLogConfig.LogConfig})">
+            <summary>
+            构建变更日志
+            </summary>
+            <param name="entity">实体</param>
+            <param name="operateType">操作方式</param>
+            <param name="entityType">实体数据类型</param>
+            <param name="logConfigs">配置</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataChangeLoger`1.BuildDescription(System.Text.StringBuilder,Zeus.Common.DataAccess.Implement.DataLogConfig.LogConfig,Zeus.Common.DataStatus.OperateType,System.String,System.String)">
+            <summary>
+            构建日志描述
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="config">The config.</param>
+            <param name="operateType">Type of the operate.</param>
+            <param name="oldValue">The old value.</param>
+            <param name="currentValue">The current value.</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataChangeLoger`1.AddChangeDescription(Zeus.Common.DataAccess.Entities.IDataChangeDescription,System.Text.StringBuilder,System.Guid,System.String,System.String,System.Guid)">
+            <summary>
+            插入变更描述记录
+            </summary>
+            <param name="description">The Description.</param>
+            <param name="builder">The builder.</param>
+            <param name="entityId">The entity id.</param>
+            <param name="entityName">Name of the entity.</param>
+            <param name="cudOperate">The cud operate.</param>
+            <param name="relationId">The relation id.</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataChangeLoger`1.RecordChangeLog(`0,Zeus.Common.DataStatus.OperateType)">
+            <summary>
+            记录数据变更日志
+            </summary>
+            <param name="entity">业务实体</param>
+            <param name="operateType">数据操作类型</param>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Implement.DataLogConfig">
+            <summary>
+            数据变更日志的配置
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataAccess.Implement.DataLogConfig.records">
+            <summary>
+            语言包
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataLogConfig.#cctor">
+            <summary>
+            静态构造函数
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataLogConfig.Load">
+            <summary>
+            从数据库加载语言包
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataLogConfig.ReadRecords">
+            <summary>
+            从数据库读取配置记录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataLogConfig.GetQueryString">
+            <summary>
+            获取查询字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataLogConfig.ReadConnectionString">
+            <summary>
+            获取数据库连接字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataLogConfig.Get(System.String,System.String)">
+            <summary>
+            Gets the specified assembly name.
+            </summary>
+            <param name="assemblyName">Name of the assembly.</param>
+            <param name="objectType">Type of the object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataLogConfig.HasConfig">
+            <summary>
+            是否已经有日志变更配置
+            </summary>
+            <returns>
+            	<c>true</c> 表示已经有配置; 否则为 <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Implement.DataLogConfig.LogConfig">
+            <summary>
+            日志配置
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.DataLogConfig.LogConfig.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Zeus.Common.DataAccess.Implement.DataLogConfig.LogConfig"/> class.
+            </summary>
+            <param name="assemblyName">Name of the assembly.</param>
+            <param name="objectType">Type of the object.</param>
+            <param name="propertyName">Name of the property.</param>
+            <param name="propertyNote"></param>
+            <param name="relateType"></param>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Implement.DataLogConfig.LogConfig.AssemblyName">
+            <summary>
+            Gets or sets the name of the assembly.
+            </summary>
+            <value>The name of the assembly.</value>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Implement.DataLogConfig.LogConfig.ObjectType">
+            <summary>
+            Gets or sets the type of the object.
+            </summary>
+            <value>The type of the object.</value>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Implement.DataLogConfig.LogConfig.PropertyName">
+            <summary>
+            Gets or sets the name of the property.
+            </summary>
+            <value>The name of the property.</value>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Implement.DataLogConfig.LogConfig.PropertyNote">
+            <summary>
+            Gets or sets the note of the property.
+            </summary>
+            <value>The name of the property.</value>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Implement.DataLogConfig.LogConfig.RelateType">
+            <summary>
+            关联的类型
+            </summary>
+            <value>The type of the relate.</value>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Implement.EntiretyRepository`2">
+            <summary>
+            具有整体结构的主数据的数据访问层操作基类
+            </summary>
+            <typeparam name="TEntirety">具有整体结构的主数据类</typeparam>
+            <typeparam name="TMain">业务主数据类</typeparam>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.GetById(System.Guid)">
+            <summary>
+            根据Id获取业务整体数据
+            </summary>
+            <param name="id">业务主数据标识</param>
+            <returns>业务整体数据</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.Insert(`0)">
+            <summary>
+            插入业务主数据到数据库
+            </summary>
+            <param name="entity">业务主数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.Delete(`1)">
+            <summary>
+            从数据库删除业务整体数据
+            </summary>
+            <param name="main">业务主数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.Update(`1,`0)">
+            <summary>
+            将当前业务整体数据更新到数据库
+            </summary>
+            <param name="originalMain">业务主数据原值</param>
+            <param name="current">业务整体数据当前值</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.Update(`0)">
+            <summary>
+            将当前业务整体数据更新到数据库
+            </summary>
+            <param name="entirety">业务整体数据当前值</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.GetMainById(System.Guid)">
+            <summary>
+            根据Id获取业务主数据
+            </summary>
+            <param name="id">业务主数据标识</param>
+            <returns>业务主数据</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.MainIsExist(System.Guid)">
+            <summary>
+            根据Id判断业务主数据是否存在
+            </summary>
+            <param name="id">业务主数据标识</param>
+            <returns>是否存在</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.AddMain(`1)">
+            <summary>
+            在数据上下文中创建抬头数据
+            </summary>
+            <param name="main">业务主数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.DeleteMain(`1)">
+            <summary>
+            在数据上下文中删除抬头数据
+            </summary>
+            <param name="main">业务主数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.UpdateMain(`1)">
+            <summary>
+            在数据上下文中更新抬头数据
+            </summary>
+            <param name="main">业务主数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.UpdateMain(`1,`1)">
+            <summary>
+            在数据上下文中更新抬头数据
+            </summary>
+            <param name="originalEntity">业务主数据原值</param>
+            <param name="currentEntity">业务主数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.GetQuickQuery(Zeus.Common.DataAccess.Entities.QuickQueryParam)">
+            <summary>
+            获取快速查询集
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.QuickQuery(Zeus.Common.DataAccess.Entities.QuickQueryParam)">
+            <summary>
+            根据查询参数执行快速查询，并生成分页信息
+            </summary>
+            <param name="queryParam">查询参数</param>
+            <returns>业务主数据查询结果</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.GetQuery``1(``0)">
+            <summary>
+            获取高级查询集
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.AdvQuery``1(``0)">
+            <summary>
+            根据查询参数执行高级查询，并生成分页信息
+            </summary>
+            <param name="queryParam">查询参数</param>
+            <returns>业务主数据查询结果</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.GetEntiretyItems``1(System.Guid)">
+            <summary>
+            获取指定类型的行项目数据
+            </summary>
+            <typeparam name="T">业务主数据行项目类</typeparam>
+            <param name="id">业务主数据标识</param>
+            <returns>行项目数据</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.GetFirstEntiretyItem``1(System.Guid)">
+            <summary>
+            获取指定类型的行项目第一条数据
+            </summary>
+            <typeparam name="T">业务主数据行项目类</typeparam>
+            <param name="id">业务主数据标识</param>
+            <returns>行项目第一条数据</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.GetNeedDelelteItems``1(`1,System.Collections.Generic.IList{``0})">
+            <summary>
+            获取指定类型的需要删除的行项目数据
+            </summary>
+            <typeparam name="T">业务主数据行项目类</typeparam>
+            <param name="main">业务主数据</param>
+            <param name="items">业务主数据行项目</param>
+            <returns>行项目数据</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.SaveItem``1(`1,``0)">
+            <summary>
+            保存行项目
+            </summary>
+            <typeparam name="T">业务主数据行项目类</typeparam>
+            <param name="item">行项目</param>
+            <param name="main">业务主数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.SaveItem``1(``0)">
+            <summary>
+            保存行项目
+            </summary>
+            <typeparam name="T">业务主数据行项目类</typeparam>
+            <param name="item">行项目</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.SaveEntiretyItems``1(`1,System.Collections.Generic.IList{``0})">
+            <summary>
+            保存指定类型的行项目数据
+            </summary>
+            <typeparam name="T">业务主数据行项目类</typeparam>
+            <param name="main">业务主数据</param>
+            <param name="items">业务主数据行项目数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.DeleteItem``1(System.Guid,System.Guid)">
+            <summary>
+            删除指定类型的行项目数据
+            </summary>
+            <typeparam name="T">业务主数据行项目类</typeparam>
+            <param name="mainId">业务主数据Id</param>
+            <param name="itemId">行项目Id</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.DeleteEntiretyItems``1(`1)">
+            <summary>
+            删除指定类型的行项目数据
+            </summary>
+            <typeparam name="T">业务主数据行项目类</typeparam>
+            <param name="main">业务主数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.GetBody(`0)">
+            <summary>
+            获取并生成所有行项目数据
+            </summary>
+            <param name="entirety">业务主数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.SaveBody(`0)">
+            <summary>
+            保存业务主体数据
+            </summary>
+            <param name="entirety">业务主体数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.DeleteBody(`1)">
+            <summary>
+            删除业务主体数据
+            </summary>
+            <param name="main">业务主数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.ApplyCurrentValues(`1)">
+            <summary>
+            应用当前数据变更
+            </summary>
+            <param name="entity">业务实体</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.ApplyCurrentValues``1(``0,``0)">
+            <summary>
+            应用当前数据变更
+            </summary>
+            <typeparam name="T">变更数据类型</typeparam>
+            <param name="originalEntity">旧实体</param>
+            <param name="currentEntity">新实体</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.GetCurrentUser(System.Boolean)">
+            <summary>
+            获取当前用户
+            </summary>
+            <param name="throwOnNoUser">用户不存在时是否抛出异常</param>
+            <returns>当前用户</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.GetDbEntityValidationExceptionStr(System.Exception)">
+            <summary>
+            获取异常信息
+            如果是实体验证错误，获取详细，如果是一般异常，获取message
+            </summary>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.Context">
+            <summary>
+            实体数据库
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.ObjectSet">
+            <summary>
+            业务主数据集合(操作)
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Implement.EntiretyRepository`2.ObjectQuery">
+            <summary>
+            业务主数据集合(查询)
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Implement.Repository`1">
+            <summary>
+            数据访问层操作实现基类
+            </summary>
+            <typeparam name="T">实体类</typeparam>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.AddObject(`0)">
+            <summary>
+            创建到数据环境
+            </summary>
+            <param name="entity">业务实体</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.Attach(`0)">
+            <summary>
+            附加到数据环境
+            </summary>
+            <param name="entity">业务实体</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.ApplyCurrentValues(`0)">
+            <summary>
+            应用当前数据变更
+            </summary>
+            <param name="entity">业务实体</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.ApplyCurrentValues``1(``0,``0)">
+            <summary>
+            应用当前数据变更
+            </summary>
+            <typeparam name="TItem">变更数据类型</typeparam>
+            <param name="originalEntity">旧实体</param>
+            <param name="currentEntity">新实体</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.AcceptChanges(`0)">
+            <summary>
+            实体接受所有变更,重置到UnChanged状态,用于缓存更新前
+            </summary>
+            <param name="entity">业务实体</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.DeleteObject(`0)">
+            <summary>
+            删除实体对象到数据环境
+            </summary>
+            <param name="entity">实体对象</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.GetByIdFromDataBase(System.Guid)">
+            <summary>
+            根据Id从数据库获取对象
+            </summary>
+            <param name="id">实体Id</param>
+            <returns>实体对象</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.GetAllFromDataBase">
+            <summary>
+            从数据库获取所有对象
+            </summary>
+            <returns>实体对象清单</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.GetCurrentUser(System.Boolean)">
+            <summary>
+            获取当前用户
+            </summary>
+            <param name="throwUserIsNull">用户不存在时是否抛出异常</param>
+            <returns>当前用户</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.GetById(System.Guid)">
+            <summary>
+            根据Id获取对象
+            </summary>
+            <param name="id">主键Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.GetById(System.Object)">
+            <summary>
+            根据Id获取对象
+            </summary>
+            <param name="id">主键Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.HeadIsExist(System.Guid)">
+            <summary>
+            根据Id判断业务主数据是否存在
+            </summary>
+            <param name="id">业务主数据标识</param>
+            <returns>是否存在</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.FirstOrDefault(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            返回序列中的第一个对象；如果序列中不包含任何对象，则返回默认值
+            </summary>
+            <param name="exp">条件表达式</param>
+            <returns>单个泛型对象</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.Insert(`0)">
+            <summary>
+            插入实体对象到数据库
+            </summary>
+            <param name="entity">实体对象</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.Delete(`0)">
+            <summary>
+            从数据库删除实体对象
+            </summary>
+            <param name="entity">业务实体对象</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.DeleteById(System.Object)">
+            <summary>
+            从数据库删除实体对象
+            </summary>
+            <param name="id">业务实体主键</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.DeleteById(System.Guid)">
+            <summary>
+            从数据库删除实体对象
+            </summary>
+            <param name="id">业务实体主键</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.Update(`0)">
+            <summary>
+            将已经附加的当前实体对象的变更更新到数据库
+            </summary>
+            <remarks>实体对象在变更前已经附加在数据库上下文中</remarks>
+            <param name="current">实体对象当前值</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.SaveEntiretyItems``1(`0,System.Collections.Generic.ICollection{``0})">
+            <summary>
+            保存指定类型的行项目数据
+            </summary>
+            <typeparam name="TItem">业务主数据行项目类</typeparam>
+            <param name="entity">业务主数据</param>
+            <param name="items">业务主数据行项目数据</param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.DeleteItems``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            删除行项目
+            </summary>
+            <typeparam name="TItem"></typeparam>
+            <param name="deleteItems"></param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.GetAll">
+            <summary>
+            获取所有对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.GetByValues(System.Collections.Generic.IList{System.Guid})">
+            <summary>
+            通过指定Id清单获取实体对象清单
+            </summary>
+            <param name="values">实体Id清单</param>
+            <returns>实体对象清单</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.QueryAll">
+            <summary>
+            获取泛型对象集合(不从缓存中查询)
+            </summary>
+            <returns>对象集合</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.QueryWhere(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据条件表达式, 获取泛型对象集合(不从缓存中查询)
+            </summary>
+            <param name="where">条件表达式</param>
+            <returns>符合条件的泛型对象集合</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.GetQuickQuery(Zeus.Common.DataAccess.Entities.QuickQueryParam)">
+            <summary>
+            获取快速查询集
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.QuickQuery(Zeus.Common.DataAccess.Entities.QuickQueryParam)">
+            <summary>
+            根据查询参数执行快速查询，并生成分页信息
+            </summary>
+            <param name="queryParam">查询参数</param>
+            <returns>业务对象查询结果</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.GetAdvQuery``1(``0)">
+            <summary>
+            获取高级查询集
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.AdvQuery``1(``0)">
+            <summary>
+            根据查询参数执行高级查询，并生成分页信息
+            </summary>
+            <param name="queryParam">查询参数</param>
+            <returns>业务对象查询结果</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.ExecuteSqlCommand(System.String,System.Object[])">
+            <summary>
+            执行T-sql语句
+            </summary>
+            <param name="sql">T-sql语句</param>
+            <param name="parameters">参数</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.ExcuteSqlQuery(System.String,System.Object[])">
+            <summary>
+            根据T-sql语句查询
+            </summary>
+            <param name="sql">T-sql语句</param>
+            <param name="parameters">参数</param>
+            <returns>查询结果</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.Repository`1.GetDbEntityValidationExceptionStr(System.Exception)">
+            <summary>
+            获取异常信息
+            如果是实体验证错误，获取详细，如果是一般异常，获取message
+            </summary>
+            <param name="e"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Implement.Repository`1.Context">
+            <summary>
+            实体数据库
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Implement.Repository`1.ObjectSet">
+            <summary>
+            实体对象集合(操作)
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Implement.Repository`1.ObjectQuery">
+            <summary>
+            实体对象集合（查询）
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Implement.RepositoryFactory">
+            <summary>
+             数据访问类工厂
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.RepositoryFactory.#cctor">
+            <summary>
+            静态构造函数
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.RepositoryFactory.GetRepositoryInstance``2">
+            <summary>
+            获取数据访问实例
+            </summary>
+            <typeparam name="TRepository">业务实体访问接口</typeparam>
+            <typeparam name="TEntity">业务实体</typeparam>
+            <returns>数据访问实例</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.RepositoryFactory.GetRepositoryInstance``1">
+            <summary>
+            获取数据访问实例
+            </summary>
+            <typeparam name="TRepository">数据访问接口</typeparam>
+            <returns>数据访问实例</returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Implement.RepositoryFactory.GetRepositoryInstance``1(System.String)">
+            <summary>
+            获取数据访问实例
+            </summary>
+            <typeparam name="TRepository">数据访问接口</typeparam>
+            <returns>数据访问实例</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zeus.Common.Service.MCService</name>
+    </assembly>
+    <members>
+        <member name="T:Zeus.Common.Service.MCService.BaseServiceController">
+            <summary>
+            基础服务控制器
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Service.MCService.BaseServiceController._userOperateLogHandler">
+            <summary>
+            用户操作日志处理器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.BaseServiceController.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.BaseServiceController.Initialize(System.Web.Routing.RequestContext)">
+            <summary>
+            初始化
+            </summary>
+            <param name="requestContext"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.BaseServiceController.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            Action开始执行
+            验证用户功能项权限
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.BaseServiceController.OnActionExecuted(System.Web.Mvc.ActionExecutedContext)">
+            <summary>
+            Action执行完毕
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.BaseServiceController.OnResultExecuting(System.Web.Mvc.ResultExecutingContext)">
+            <summary>
+            开始执行Action的返回结果
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.BaseServiceController.OnResultExecuted(System.Web.Mvc.ResultExecutedContext)">
+            <summary>
+            Action的返回结果执行完毕
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.BaseServiceController.OnException(System.Web.Mvc.ExceptionContext)">
+            <summary>
+            出现了异常
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.BaseServiceController.Service(Zeus.Common.DataStatus.OperateStatus)">
+            <summary>
+            返回服务结果
+            </summary>
+            <param name="status">服务调用状态结果</param>
+            <returns>服务结果</returns>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.BaseServiceController.ServiceForSuccess(System.Object)">
+            <summary>
+            返回服务结果-成功返回
+            </summary>
+            <param name="successReturn">成功的返回值</param>
+            <returns>服务结果</returns>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.BaseServiceController.ServiceForError(System.String)">
+            <summary>
+            返回服务结果-失败返回
+            </summary>
+            <param name="errorMsg">错误消息</param>
+            <returns>服务结果</returns>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.BaseServiceController.GetModelErrors">
+            <summary>
+            获取模型错误信息
+            </summary>
+            <returns>所有错误信息</returns>
+        </member>
+        <member name="P:Zeus.Common.Service.MCService.BaseServiceController.LogonName">
+            <summary>
+            日志记录中的登录名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Service.MCService.BaseServiceController.ShouldCloseLog">
+            <summary>
+            是否需要关闭日志记录，默认是false
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Service.MCService.MobileService.MobileBaseController">
+            <summary>
+            移动端服务基础控制器
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Service.MCService.MobileService.MobileBaseController.LogonName">
+            <summary>
+            日志记录中德登录名
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Service.MCService.MobileService.ReturnResult`1">
+            <summary>
+            移动终端服务返回对象
+            <remarks></remarks>
+            <returns>返回结果是json格式的字符串，如果集合中无数据则返回null</returns>
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.#ctor(`0)">
+            <summary>
+            通过返回数据初始化对象（操作成功时使用）
+            </summary>
+            <param name="data">返回数据</param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.#ctor(`0,Newtonsoft.Json.JsonConverter[])">
+            <summary>
+            通过返回数据和转换器集合初始化对象（操作成功时使用）
+            </summary>
+            <param name="data">返回数据</param>
+            <param name="converters">转换器</param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.#ctor(System.String,`0)">
+            <summary>
+            通过操作方法名称和返回数据初始化对象（操作成功时使用）
+            </summary>
+            <param name="actionName">操作方法名称</param>
+            <param name="data">返回数据</param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.#ctor(System.String,`0,Newtonsoft.Json.JsonConverter[])">
+            <summary>
+            通过操作方法名称、返回数据以及转换器集合初始化对象（操作成功时使用）
+            </summary>
+            <param name="actionName">操作方法名称</param>
+            <param name="data">返回数据</param>
+            <param name="converters">转换器</param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.#ctor(System.String,System.String)">
+            <summary>
+            通过错误信息编号以及错误信息初始化对象（操作失败时使用）
+            </summary>
+            <param name="errorId">错误信息编号</param>
+            <param name="errorMsg">错误信息</param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.#ctor(System.String,System.String,System.String)">
+            <summary>
+            通过操作方法名称、错误信息编号以及错误信息初始化对象（操作失败时使用）
+            </summary>
+            <param name="actionName">操作方法名称</param>
+            <param name="errorId">错误信息编号</param>
+            <param name="errorMsg">错误信息</param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.ExecuteResult(System.Web.Mvc.ControllerContext)">
+            <summary>
+            返回处理
+            </summary>
+            <param name="context">控制器上下文</param>
+        </member>
+        <member name="P:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.Action">
+            <summary>
+            操作方法名称
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.Result">
+            <summary>
+            操作是否成功
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.Data">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.ErrorId">
+            <summary>
+            错误信息编号
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.ErrorMsg">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.Service.MCService.MobileService.ReturnResult`1.Converters">
+            <summary>
+            转换器
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Service.MCService.MobileService.UnixDateTimeConverter">
+            <summary>
+            时间戳转换器
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Service.MCService.ServiceResult">
+            <summary>
+            服务结果
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Service.MCService.ServiceResult._status">
+            <summary>
+            服务操作状态
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.ServiceResult.#ctor(Zeus.Common.DataStatus.OperateStatus)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="status">服务操作结果状态</param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.ServiceResult.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="errorMsg">返回错误信息</param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.ServiceResult.#ctor(System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="returnValue">成功调用的返回值</param>
+            <param name="successMsg">成功调用的信息</param>
+        </member>
+        <member name="M:Zeus.Common.Service.MCService.ServiceResult.ExecuteResult(System.Web.Mvc.ControllerContext)">
+            <summary>
+            执行结果
+            </summary>
+            <param name="context">控制器上下文</param>
+        </member>
+    </members>
+</doc>

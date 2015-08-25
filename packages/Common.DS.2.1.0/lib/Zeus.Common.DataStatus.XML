@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zeus.Common.DataStatus</name>
+    </assembly>
+    <members>
+        <member name="T:Zeus.Common.DataStatus.AjaxResult">
+            <summary>
+            Ajax操作结果类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataStatus.AjaxResult.Create(Zeus.Common.DataStatus.OperateStatus)">
+            <summary>
+            根据OperateStatus创建操作结果
+            </summary>
+            <param name="operateStatus">操作状态</param>
+            <returns>ajax操作结果</returns>
+        </member>
+        <member name="P:Zeus.Common.DataStatus.AjaxResult.Message">
+            <summary>
+            操作消息
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataStatus.AjaxResult.Succeed">
+            <summary>
+            操作状态
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataStatus.AjaxResult.ReturnValue">
+            <summary>
+            操作返回值
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataStatus.FlowSign">
+            <summary>
+             流程状态标识
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.FlowSign.NoProcess">
+            <summary>
+            未进入流程
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.FlowSign.Processing">
+            <summary>
+            流程处理中
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.FlowSign.Completed">
+            <summary>
+            流程已处理完成
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.FlowSign.Terminated">
+            <summary>
+            流程已被终止
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataStatus.OperateStatus">
+            <summary>
+            操作状态
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataStatus.OperateStatus.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataStatus.OperateStatus.ResultSign">
+            <summary>
+            操作状态返回标识
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataStatus.OperateStatus.ReturnValue">
+            <summary>
+            操作返回值
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataStatus.OperateStatus.Message">
+            <summary>
+            消息字符串
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataStatus.OperateStatus.Results">
+            <summary>
+            消息的参数返回值
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataStatus.OperateType">
+            <summary>
+            操作类型
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.OperateType.Insert">
+            <summary>
+            创建/插入
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.OperateType.Update">
+            <summary>
+            修改/更新
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.OperateType.Delete">
+            <summary>
+            删除
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataStatus.ResultSign">
+            <summary>
+            操作状态返回标识
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.ResultSign.Success">
+            <summary>
+            操作成功
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.ResultSign.Warning">
+            <summary>
+            警告
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.ResultSign.Failed">
+            <summary>
+            失败
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataStatus.StateSign">
+            <summary>
+            数据状态标识
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.StateSign.Deleted">
+            <summary>
+            已删除
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.StateSign.Normal">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.StateSign.Disable">
+            <summary>
+            禁用
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataStatus.SystemDataSign">
+            <summary>
+            系统数据状态标识
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.SystemDataSign.False">
+            <summary>
+            非系统数据
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.SystemDataSign.True">
+            <summary>
+            系统数据    
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataStatus.VerifySign">
+            <summary>
+            审核状态标识
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.VerifySign.Waiting">
+            <summary>
+            未审核
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.VerifySign.Processing">
+            <summary>
+            审核进行中
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.VerifySign.Pass">
+            <summary>
+            通过
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.DataStatus.VerifySign.Failed">
+            <summary>
+            未通过
+            </summary>
+        </member>
+    </members>
+</doc>

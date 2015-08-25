@@ -1,0 +1,981 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zeus.Common.DataAccess.Entities</name>
+    </assembly>
+    <members>
+        <member name="T:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentActivity">
+            <summary>
+            活动实体
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentActivity.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentActivity.Name">
+            <summary>
+            活动名称
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentActivity.BusinessName">
+            <summary>
+            业务名称
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentActivity.IsBuildEnrollmentPage">
+            <summary>
+            是否已经生成报名页
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentActivity.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentActivity.EnrollmentUrl">
+            <summary>
+            报名页面地址
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentColumnObject">
+            <summary>
+            列值实体
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentColumnObject.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentColumnObject.ColumnID">
+            <summary>
+            列ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentColumnObject.ColumnName">
+            <summary>
+            列名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentColumnObject.ColumnCode">
+            <summary>
+            列Code
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentColumnObject.ColumnValue">
+            <summary>
+            列值
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.Enrollment.EnrollmentColumnObject.RowID">
+            <summary>
+            行数据ID
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.IEntiretyEntity`1">
+            <summary>
+             具有整体结构的业务实体接口
+            </summary>
+            <typeparam name="TMain">业务主数据实体类</typeparam>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IEntiretyEntity`1.MainData">
+            <summary>
+             业务主数据
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.INeedWriteChangeLog">
+            <summary>
+            需要记录变更日志
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.IEntityBase">
+            <summary>
+            业务实体类基础接口
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IEntityBase.ID">
+            <summary>
+            实体主键唯一标识
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.IEntiretyItem">
+            <summary>
+             业务行项目基接口
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IEntiretyItem.MainId">
+            <summary>
+             业务主数据Id
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.IEntiretyItem`1">
+            <summary>
+             业务行项目实体接口
+            </summary>
+            <typeparam name="TMain">主数据实体类</typeparam>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IEntiretyItem`1.EntiretyMain">
+            <summary>
+             业务主数据
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.IEntiretyMain">
+            <summary>
+             具有整体结构的业务主数据实体接口
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.IBusinessFlowStatus">
+            <summary>
+            业务流程处理状态
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IBusinessFlowStatus.FlowSign">
+            <summary>
+            流程处理状态
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.OrgAuthority.ExecutorAccount">
+            <summary>
+            登录账户
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.OrgAuthority.ExecutorAccount.LogonName">
+            <summary>
+            执行人的用户登录名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.OrgAuthority.ExecutorAccount.UserName">
+            <summary>
+            执行人的用户姓名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.OrgAuthority.ExecutorAccount.UserCode">
+            <summary>
+            执行人的用户代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.OrgAuthority.ExecutorAccount.LanguageCode">
+            <summary>
+            执行人的语言代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.OrgAuthority.ExecutorAccount.OrganizationName">
+            <summary>
+            执行人的组织结构名词
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.OrgAuthority.ExecutorAccount.OrganizationId">
+            <summary>
+            执行人的组织结构Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.OrgAuthority.ExecutorAccount.OrganizationCode">
+            <summary>
+            执行人的用户组织结构代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.OrgAuthority.ExecutorAccount.ID">
+            <summary>
+            执行人的用户Id(主键唯一标识)
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.OrgAuthority.ExecutorAccount.IsSysAdmin">
+            <summary>
+            是否为系统超级管理员
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.OrgAuthority.ExecutorAccount.IsMerchantUser">
+            <summary>
+            是否是商家用户
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.IDataChangeDescription">
+            <summary>
+            数据变更信息友好描述实体类接口
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeDescription.OperateTime">
+            <summary>
+            操作时间
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeDescription.LogonName">
+            <summary>
+            操作者
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeDescription.ObjectType">
+            <summary>
+            更改日志对应的实体对象
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeDescription.ObjectId">
+            <summary>
+            实体对象的数据ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeDescription.Description">
+            <summary>
+            数据描述(ObjectId对应的整条数据的描述，包括RelationId关联的描述)
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeDescription.CUDOperate">
+            <summary>
+            CUD操作方法
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeDescription.RelationId">
+            <summary>
+            关联的其他业务数据Id
+            </summary>
+            <value>The relation id.</value>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.IDataChangeLog">
+            <summary>
+            数据变更日志实体类接口
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeLog.DataChangeDescriptionId">
+            <summary>
+            变更描述Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeLog.OperateTime">
+            <summary>
+            操作时间
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeLog.LogonName">
+            <summary>
+            操作者
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeLog.OperatorId">
+            <summary>
+            操作者Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeLog.ObjectType">
+            <summary>
+            更改日志对应的实体对象
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeLog.ObjectId">
+            <summary>
+            对应的实体对象的ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeLog.PropertyName">
+            <summary>
+            对应的实体对象的属性
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeLog.CUDOperate">
+            <summary>
+            操作方法
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeLog.OldValue">
+            <summary>
+            原始值
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeLog.NewValue">
+            <summary>
+            更新的值
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IDataChangeLog.RelationId">
+            <summary>
+            与业务对象关联的Id
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.IRelationDataChange">
+            <summary>
+            数据变更中有关联关系的业务对象接口，实现此接口才可以在变更日志中获取其关联的业务变更数据
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IRelationDataChange.RelationId">
+            <summary>
+            设置或获取关联Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.IRelationDataChange.RelationDescription">
+            <summary>
+            关联描述
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.IWriteChangeLog">
+            <summary>
+            记录变更日志
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.NoConfigAttribute">
+            <summary>
+            数据变更配置中是否不记录到变更日志中
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.NoConfigAttribute.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.NoConfigAttribute.NoRecordChange">
+            <summary>
+            是否不记录到变更日志中
+            </summary>
+            <value>true：表示不配置; 否则：false.</value>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.PageParam">
+            <summary>
+            分页参数
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PageParam.StartIndex">
+            <summary>
+            获取起始记录
+            <para>从0开始</para>
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PageParam.Page">
+            <summary>
+            起始页码
+            <para>从1开始</para>
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PageParam.PageSize">
+            <summary>
+            每页记录数，默认10
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PageParam.SortOrder">
+            <summary>
+            排序方式，默认升序（asc）
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PageParam.SortName">
+            <summary>
+            用来排序的字段
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PageParam.LastInfoID">
+            <summary>
+            最后一条数据的ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PageParam.NewOrderString">
+            <summary>
+            自定义排序字符串（多重排序）
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PageParam.OrderString">
+            <summary>
+            获取排序字符串
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.PagerInfo">
+            <summary>
+            分页信息
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.PagerInfo.#ctor">
+            <summary>
+            默认构造函数，PageSize为10，StartIndex为0
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.PagerInfo.#ctor(Zeus.Common.DataAccess.Entities.PageParam)">
+            <summary>
+            根据查询参数初始化分页信息
+            </summary>
+            <param name="queryParam"></param>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.PagerInfo.ComputePageIndex(System.Int32,System.Int32)">
+            <summary>
+            计算页码
+            </summary>
+            <param name="total"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PagerInfo.TotalRowCount">
+            <summary>
+            获取或设置总记录数
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PagerInfo.PageSize">
+            <summary>
+            获取或设置每页记录数
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PagerInfo.StartIndex">
+            <summary>
+            获取或设置起始记录（从0开始）
+            </summary>        
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PagerInfo.LastInfoID">
+            <summary>
+            最后一条数据的ID
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PagerInfo.PageIndex">
+            <summary>
+            获取当前页码（从1开始）
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PagerInfo.HasPrev">
+            <summary>
+            是否有下一页
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PagerInfo.HasNext">
+            <summary>
+            是否有上一页
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PagerInfo.IsFirst">
+            <summary>
+            是否是第一页
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PagerInfo.IsLast">
+            <summary>
+            是否是最后一页
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PagerInfo.TotalPageCount">
+            <summary>
+            获取记录的总页数
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.PagedResults`1">
+            <summary>
+            分页查询结果
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.PagedResults`1.ConvertTo``1(System.Func{`0,``0})">
+            <summary>
+            根据传入的转换方法将分页结果转换为指定类型的分页结果
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PagedResults`1.PagerInfo">
+            <summary>
+            分页信息
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PagedResults`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.QueryableExtensions">
+            <summary>
+            IQueryable扩展
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.QueryableExtensions.ToPagedResults``1(System.Linq.IQueryable{``0},Zeus.Common.DataAccess.Entities.PageParam,System.Func{``0,System.Guid})">
+            <summary>
+            将查询语句转换为查询结果
+            </summary>
+            <typeparam name="T">查询结果的类型</typeparam>
+            <param name="source">查询语句</param>
+            <param name="queryParam">查询参数</param>
+            <param name="getIDFunc">获取数据中用于比较ID的方法</param>
+            <returns></returns>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.PrincipalUser">
+            <summary>
+            当前上下文中使用的用户信息
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.PrincipalUser.GetAnonymousUser">
+            <summary>
+            获取匿名用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.PrincipalUser.GetDebugUser(Zeus.Common.DataAccess.Entities.PrincipalUser@)">
+            <summary>
+            获取调试用户，仅在DEBUG配置下有效
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.PrincipalUser.GetWcfAppUserToken">
+            <summary>
+            获取WCF应用的用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.PrincipalUser.GetWebAppUserToken">
+            <summary>
+            获取WEB应用的用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.PrincipalUser.GetUserIdentity">
+            <summary>
+            获取当前用户身份认证实体类
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.LogonName">
+            <summary>
+            执行人的用户登录名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.UserName">
+            <summary>
+            执行人的用户姓名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.UserCode">
+            <summary>
+            执行人的用户代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.LanguageCode">
+            <summary>
+            执行人的语言代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.OrganizationName">
+            <summary>
+            执行人的组织结构名词
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.OrganizationId">
+            <summary>
+            执行人的组织结构Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.OrganizationCode">
+            <summary>
+            执行人的用户组织结构代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.ID">
+            <summary>
+            执行人的用户Id(主键唯一标识)
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.IsSysAdmin">
+            <summary>
+            是否为系统超级管理员
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.AuthenticationTicket">
+            <summary>
+            验证票据
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.IsMerchantUser">
+            <summary>
+            是否是商家用户
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.AnonymousUser">
+            <summary>
+             匿名用户
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.CurrentUser">
+            <summary>
+            获取当前用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.IsWcfApp">
+            <summary>
+            是否WCF应用
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.PrincipalUser.IsWebApp">
+            <summary>
+            是否WEB应用
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.QueryParam">
+            <summary>
+            查询参数的基类
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.QueryParam.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.QueryParam.StartTime">
+            <summary>
+             开始时间
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.QueryParam.EndTime">
+            <summary>
+             截止时间
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.QuickQueryParam">
+            <summary>
+            仅使用一个字段快速进行查询参数
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.QuickQueryParam.Value">
+            <summary>
+             字段的值
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.QuickQueryParam.AuthorizeOrgs">
+            <summary>
+             授权的组织机构Id清单(用于服务内部检查权限)
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.AdvQueryParam">
+            <summary>
+            高级查询参数
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.EntiretyQueryParam">
+            <summary>
+             具有整体结构的主数据高级查询参数基类
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.EntiretyQueryParam.WFBusinessNumber">
+            <summary>
+             业务编号
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.EntiretyQueryParam.Reasons">
+            <summary>
+             申请说明
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.EntiretyQueryParam.CreatorName">
+            <summary>
+             创建人姓名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.EntiretyQueryParam.TaskLevelId">
+            <summary>
+            任务优先级Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.EntiretyQueryParam.FlowSign">
+            <summary>
+             流程处理状态值
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.EntiretyQueryParam.AuthorizeOrgs">
+            <summary>
+             授权的组织机构Id清单(用于服务内部检查权限)
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.WF.Executor">
+            <summary>
+             业务流程中的任务执行人
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.WF.IExecutor">
+            <summary>
+            业务流程中的任务执行人接口
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IExecutor.LogonName">
+            <summary>
+             执行人的用户登录名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IExecutor.UserName">
+            <summary>
+            执行人的用户姓名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IExecutor.UserCode">
+            <summary>
+            执行人的用户代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IExecutor.LanguageCode">
+            <summary>
+            执行人的语言代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IExecutor.OrganizationName">
+            <summary>
+             执行人的用户组织机构名称
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IExecutor.OrganizationId">
+            <summary>
+            执行人的用户组织结构Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IExecutor.OrganizationCode">
+            <summary>
+            执行人的用户组织结构代码
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.WF.Executor.#ctor">
+            <summary>
+             无参构造函数
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.WF.Executor.#ctor(Zeus.Common.DataAccess.Entities.WF.IExecutor)">
+            <summary>
+             构造函数
+            </summary>
+            <param name="executor">执行人</param>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.Executor.LogonName">
+            <summary>
+            执行人的用户登录名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.Executor.UserName">
+            <summary>
+            执行人的用户姓名
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.Executor.UserCode">
+            <summary>
+            执行人的用户代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.Executor.LanguageCode">
+            <summary>
+            执行人的语言代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.Executor.OrganizationName">
+            <summary>
+            执行人的组织结构名词
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.Executor.OrganizationId">
+            <summary>
+            执行人的组织结构Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.Executor.OrganizationCode">
+            <summary>
+            执行人的用户组织结构代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.Executor.ID">
+            <summary>
+            执行人的用户Id(主键唯一标识)
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.WF.ExecutorParam">
+            <summary>
+             获取任务执行人的参数类
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.ExecutorParam.ID">
+            <summary>
+             业务实体Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.ExecutorParam.OrganizationId">
+            <summary>
+             业务实体的组织机构节点Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.ExecutorParam.Positions">
+            <summary>
+             执行人的岗位
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.ExecutorParam.PositionCategorys">
+            <summary>
+             执行人的岗位类别
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.ExecutorParam.StarterIsExecutor">
+            <summary>
+             由流程发起人执行
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.WF.FlowStatus">
+            <summary>
+             业务实体流程状态
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.FlowStatus.EntityId">
+            <summary>
+             业务实体Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.FlowStatus.InstanceId">
+            <summary>
+             工作流实例Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.FlowStatus.FlowTypeId">
+            <summary>
+             流程类型Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.FlowStatus.FlowTypeName">
+            <summary>
+             流程类型名称
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.FlowStatus.FlowSign">
+            <summary>
+             流程状态标识
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.FlowStatus.StatusRemark">
+            <summary>
+             流程状态说明
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.FlowStatus.FlowSignStr">
+            <summary>
+             流程状态标识说明(文字:未进入流程,流程处理中,流程已处理完成,流程已被终止)
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.FlowStatus.FlowSignNum">
+            <summary>
+             流程状态标识说明(数字：0,1,2,3)
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.FlowStatus.Executors">
+            <summary>
+             当前可以修改业务实体的执行人清单
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.WF.IBusinessFlowEntity">
+            <summary>
+            业务流程实体基类接口
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.DataAccess.Entities.WF.IBusinessFlowEntity.GetConditionEntity">
+            <summary>
+             工作流获取条件实体
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IBusinessFlowEntity.OrganizationId">
+            <summary>
+             业务实体的组织机构节点Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IBusinessFlowEntity.OrganizationName">
+            <summary>
+             业务实体的组织机构节点名称
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IBusinessFlowEntity.OrganizationCode">
+            <summary>
+            业务实体的组织结构节点代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IBusinessFlowEntity.TaskLevelId">
+            <summary>
+             业务实体的处理优先级Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IBusinessFlowEntity.TaskLevelCode">
+            <summary>
+             业务优先级代码
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IBusinessFlowEntity.TaskLevelName">
+            <summary>
+             业务优先级名称
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IBusinessFlowEntity.FlowStatus">
+            <summary>
+             当前流程状态
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IBusinessFlowEntity.WorkflowStatus">
+            <summary>
+            工作流当前程状态
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.IBusinessFlowEntity.WorkCaption">
+            <summary>
+             工作说明
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.WF.WFConditionEntity">
+            <summary>
+             业务流程实体的条件基类
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.WFConditionEntity.ID">
+            <summary>
+             实体Id
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.WF.WFConditionInfo">
+            <summary>
+             业务流程实体的条件信息
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.WFConditionInfo.WFConditionEntity">
+            <summary>
+             条件实体
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.DataAccess.Entities.WF.WorkflowStatus">
+            <summary>
+            工作流当前流程状态
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.WorkflowStatus.InstanceId">
+            <summary>
+            实例Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.WorkflowStatus.BusinessFlowId">
+            <summary>
+            业务流程Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.WorkflowStatus.BusinessEntityId">
+            <summary>
+            业务实体Id
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.WorkflowStatus.FlowStatus">
+            <summary>
+            业务流程状态值
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.WorkflowStatus.FlowStatusStr">
+            <summary>
+            业务流程状态值信息
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.WorkflowStatus.StartTime">
+            <summary>
+            流程启动时间
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.WorkflowStatus.EndTime">
+            <summary>
+            流程结束时间
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.WorkflowStatus.WFLogs">
+            <summary>
+            流程日志
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.WorkflowStatus.Result">
+            <summary>
+            执行状态
+            </summary>
+        </member>
+        <member name="P:Zeus.Common.DataAccess.Entities.WF.WorkflowStatus.ResultStr">
+            <summary>
+            执行状态信息
+            </summary>
+        </member>
+    </members>
+</doc>
