@@ -133,6 +133,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
+    <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\CustomMenuController.cs" />
     <Compile Include="Controllers\HiddenController.cs" />
     <Compile Include="Controllers\SendMsgController.cs" />
@@ -181,6 +182,10 @@
       <Project>{fc7c1967-c6b6-49ed-a376-ece4da7a62bf}</Project>
       <Name>TPS.WeiXin.Common.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.SrvcModel\TPS.WeiXin.Common.SrvcModel.csproj">
+      <Project>{5F11D342-C075-497D-A1BE-F0C8D9217AB0}</Project>
+      <Name>TPS.WeiXin.Common.SrvcModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.Utility\TPS.WeiXin.Common.Utility.csproj">
       <Project>{b10420dd-eedf-408d-a8f3-d1647376f399}</Project>
       <Name>TPS.WeiXin.Common.Utility</Name>
@@ -213,7 +218,9 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Contact\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

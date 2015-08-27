@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TPS.WeiXin.Common.Helper;
-using TPS.WeiXin.Common.Model;
+using TPS.WeiXin.Common.SrvcModel;
 using TPS.WeiXin.Entrance.Web.Models;
 using TPS.WeiXin.Extentions.IFunction.Normal.SendMsg;
 using Zeus.Common.DataStatus;

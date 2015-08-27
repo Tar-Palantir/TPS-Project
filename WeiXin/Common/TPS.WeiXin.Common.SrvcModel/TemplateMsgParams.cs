@@ -1,6 +1,6 @@
-﻿using TPS.WeiXin.Common.Model.Enums;
+﻿using TPS.WeiXin.Common.SrvcModel.Enums;
 
-namespace TPS.WeiXin.Common.Model
+namespace TPS.WeiXin.Common.SrvcModel
 {
     public class TemplateMsgParams
     {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WeiXin", "WeiXin", "{B4EA47F3-4D7D-4D22-8F30-6224FBC730F9}"
 EndProject
@@ -47,6 +47,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPS.WeiXin.Extentions.BaseCorpFunction", "WeiXin\Extentions\TPS.WeiXin.Extentions.BaseCorpFunction\TPS.WeiXin.Extentions.BaseCorpFunction.csproj", "{404CD23D-D0A4-4721-A384-CFD8C7749DCB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPS.WeiXin.Common.Helper", "WeiXin\Common\TPS.WeiXin.Common.Helper\TPS.WeiXin.Common.Helper.csproj", "{C102B8C2-285F-4D32-827F-2E2BE1AC2179}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPS.WeiXin.Common.SrvcModel", "WeiXin\Common\TPS.WeiXin.Common.SrvcModel\TPS.WeiXin.Common.SrvcModel.csproj", "{5F11D342-C075-497D-A1BE-F0C8D9217AB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -133,6 +135,12 @@ Global
 		{C102B8C2-285F-4D32-827F-2E2BE1AC2179}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C102B8C2-285F-4D32-827F-2E2BE1AC2179}.Test|Any CPU.ActiveCfg = Release|Any CPU
 		{C102B8C2-285F-4D32-827F-2E2BE1AC2179}.Test|Any CPU.Build.0 = Release|Any CPU
+		{5F11D342-C075-497D-A1BE-F0C8D9217AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F11D342-C075-497D-A1BE-F0C8D9217AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F11D342-C075-497D-A1BE-F0C8D9217AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F11D342-C075-497D-A1BE-F0C8D9217AB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F11D342-C075-497D-A1BE-F0C8D9217AB0}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{5F11D342-C075-497D-A1BE-F0C8D9217AB0}.Test|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,5 +163,6 @@ Global
 		{28EEBE1A-96B2-4CC4-B792-AD1B414F29D8} = {A7CD37AB-7A8F-40A6-8DBA-2F6F0945C71D}
 		{404CD23D-D0A4-4721-A384-CFD8C7749DCB} = {7C4C5E46-88A4-4D61-BC7F-D15073B08404}
 		{C102B8C2-285F-4D32-827F-2E2BE1AC2179} = {8F9725A5-4963-4077-9B92-A42D6B6C7458}
+		{5F11D342-C075-497D-A1BE-F0C8D9217AB0} = {8F9725A5-4963-4077-9B92-A42D6B6C7458}
 	EndGlobalSection
 EndGlobal

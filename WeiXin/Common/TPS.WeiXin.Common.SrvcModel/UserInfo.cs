@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using TPS.WeiXin.Common.Helper;
 
-namespace TPS.WeiXin.Common.Model
+namespace TPS.WeiXin.Common.SrvcModel
 {
     public class UserInfo
     {

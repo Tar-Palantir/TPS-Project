@@ -125,7 +125,7 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction.Common
                 return ret;
             }
             var strBuilder = new StringBuilder();
-            strBuilder.AppendFormat("<xml><Encrypt>)<![CDATA[{0}]]></Encrypt>", raw);
+            strBuilder.AppendFormat("<xml><Encrypt><![CDATA[{0}]]></Encrypt>", raw);
             strBuilder.AppendFormat("<MsgSignature><![CDATA[{0}]]></MsgSignature>", MsgSigature);
             strBuilder.AppendFormat("<TimeStamp><![CDATA[{0}]]></TimeStamp>", sTimeStamp);
             strBuilder.AppendFormat("<Nonce><![CDATA[{0}]]></Nonce></xml>", sNonce);
@@ -153,20 +153,16 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction.Common
             var rawList = new List<string> { sTimeStamp, sToken, sNonce, sMsgEncrypt };
             rawList.Sort();
             var rawStr = rawList.Aggregate(string.Empty, (s, c) => s + c);
-            HashCryptography.Sha1Encrypt(rawStr, EncryptResultType.Hexadecimal, "ascii");
-
-            string hash;
             try
             {
-                hash = HashCryptography.Sha1Encrypt(rawStr, EncryptResultType.Hexadecimal, "ascii");
-                hash = hash.ToLower();
+                sMsgSignature = HashCryptography.Sha1Encrypt(rawStr, EncryptResultType.Hexadecimal, "ascii");
+                sMsgSignature = sMsgSignature.ToLower();
             }
             catch (Exception)
             {
                 sMsgSignature = string.Empty;
                 return EnumWXBizMsgCryptErrorCode.ComputeSignature_Error;
             }
-            sMsgSignature = hash;
             return EnumWXBizMsgCryptErrorCode.OK;
         }
     }

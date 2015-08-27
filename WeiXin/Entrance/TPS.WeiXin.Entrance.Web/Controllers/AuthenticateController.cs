@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using TPS.WeiXin.Common.Helper;
-using TPS.WeiXin.Common.Model;
-using TPS.WeiXin.Common.Model.Enums;
+using TPS.WeiXin.Common.SrvcModel;
+using TPS.WeiXin.Common.SrvcModel.Enums;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.Entrance.Web.Models;
 using TPS.WeiXin.Extentions.IFunction.Corp.CustomMenu;

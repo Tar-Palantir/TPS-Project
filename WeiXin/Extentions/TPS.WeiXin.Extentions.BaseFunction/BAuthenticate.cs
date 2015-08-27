@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using TPS.WeiXin.Common.Model;
-using TPS.WeiXin.Common.Model.Enums;
+using TPS.WeiXin.Common.SrvcModel;
+using TPS.WeiXin.Common.SrvcModel.Enums;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.Extentions.IFunction.Normal.Authenticate;
 using Zeus.Common.Helper.Web;

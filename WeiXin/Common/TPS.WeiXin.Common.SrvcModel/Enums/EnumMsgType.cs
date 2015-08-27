@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace TPS.WeiXin.Common.Model.Enums
+namespace TPS.WeiXin.Common.SrvcModel.Enums
 {
     [DataContract]
     public enum EnumMsgType

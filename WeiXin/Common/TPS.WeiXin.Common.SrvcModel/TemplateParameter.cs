@@ -1,4 +1,4 @@
-﻿namespace TPS.WeiXin.Common.Model
+﻿namespace TPS.WeiXin.Common.SrvcModel
 {
     public class TemplateParameter
     {

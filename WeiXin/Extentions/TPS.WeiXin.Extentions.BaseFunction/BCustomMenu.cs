@@ -25,7 +25,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction
                 menu.AddButtons(menus);
 
                 var param = JsonConvert.SerializeObject(menu);
-                var responseResult = HttpHelper.GetResponseResultByPost(url, param);
+                var responseResult = HttpHelper.GetResponseResultByPost(url, param, contentType: "application/json");
 
                 if (responseResult.Status != ResponseStatus.Success)
                 {
@@ -33,16 +33,21 @@ namespace TPS.WeiXin.Extentions.BaseFunction
                 }
 
                 var result = JsonConvert.DeserializeObject<JObject>(responseResult.ResponseString);
-                if (result.Value<int>("errcode") == 0)
+                var errcode = result.Value<int>("errcode");
+                if (errcode == 0)
                 {
                     return new OperateStatus { ResultSign = ResultSign.Success };
                 }
-                return new OperateStatus { ResultSign = ResultSign.Failed, Message = "发送错误，" + result.Value<string>("errmsg") };
+                return new OperateStatus
+                {
+                    ResultSign = ResultSign.Failed,
+                    Message = string.Format("创建错误,错误码：{0}，错误信息：{1}", errcode, result.Value<string>("errmsg"))
+                };
 
             }
             catch (Exception ex)
             {
-                return new OperateStatus { ResultSign = ResultSign.Failed, Message = "发送异常，" + ex.Message };
+                return new OperateStatus { ResultSign = ResultSign.Failed, Message = "创建异常，" + ex.Message };
             }
         }
     }

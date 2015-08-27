@@ -9,7 +9,6 @@ using TPS.WeiXin.Common.Model;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.DataAccess.Entities.Enums;
 using TPS.WeiXin.DataAccess.Implement;
-using TPS.WeiXin.Extentions.BaseFunction.Exts;
 using TPS.WeiXin.Extentions.IEvent;
 using TPS.WeiXin.Extentions.IFunction.Normal.Receive;
 using Zeus.Common.DataStatus;
@@ -93,15 +92,22 @@ namespace TPS.WeiXin.Extentions.BaseFunction
                     }
                 case "subscribe":
                     {
-                        IList<IWeiXinEvent> sEvents;
+                        IEnumerable<IWeiXinEvent> sEvents;
                         Reply reply;
-                        if (!dicParams.ContainsKey("EventKey"))
+                        var responseStr = string.Empty;
+                        var eventKey = dicParams.ContainsKey("EventKey") ? dicParams["EventKey"] : string.Empty;
+
+                        if (string.IsNullOrEmpty(eventKey))
                         {
-                            sEvents = EventListenerProvider.GetEventListener<IWeiXinSubscribeEvent>(currentAccount.ID, "subscribe", out reply) as IList<IWeiXinEvent>;
+                            var subEvents = EventListenerProvider.GetEventListener<IWeiXinSubscribeEvent>(currentAccount.ID, "subscribe", out reply);
+                            sEvents = subEvents;
+
+                            var responseEvent = EventListenerProvider.GetSpecialEvent(subEvents, reply);
+                            responseStr = responseEvent.GetResponseString(dicParams, reply);
                         }
                         else
                         {
-                            sEvents = EventListenerProvider.GetEventListener<IWeiXinScanEvent>(currentAccount.ID, "subscribe:" + dicParams["EventKey"], out reply) as IList<IWeiXinEvent>;
+                            sEvents = EventListenerProvider.GetEventListener<IWeiXinScanEvent>(currentAccount.ID, "subscribe:" + eventKey, out reply);
                         }
                         if (sEvents != null)
                         {
@@ -110,7 +116,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction
                                 (s, c) => s + c.OnEventInvoke);
                             EventHelper.EventInvoke(events, dicParams, reply);
                         }
-                        return string.Empty;
+                        return responseStr;
                     }
                 case "unsubscribe":
                     {

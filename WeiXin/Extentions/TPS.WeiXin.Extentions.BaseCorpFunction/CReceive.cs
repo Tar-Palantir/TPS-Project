@@ -23,41 +23,29 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
         public OperateStatus Main(Account currentAccount, string signature, string timestamp, string nonce, string echostr)
         {
             WXBizMsgCryptHelper wxcrptyHelper = new WXBizMsgCryptHelper();
-            string replyEchoStr;
-            var ret = wxcrptyHelper.VerifyURL(currentAccount, signature, timestamp, nonce, echostr, out replyEchoStr);
-            if (ret != EnumWXBizMsgCryptErrorCode.OK)
+
+            if (!string.IsNullOrEmpty(echostr))
             {
-                return new OperateStatus { ResultSign = ResultSign.Failed, Message = "验签不通过" };
+                return VerifyUrl(currentAccount, signature, timestamp, nonce, echostr);
             }
 
-            if (!string.IsNullOrEmpty(replyEchoStr))
-            {
-                return new OperateStatus { ResultSign = ResultSign.Success, ReturnValue = replyEchoStr };
-            }
-
-            HttpContext.Current.Request.InputStream.Position = 0;
-            string content;
-            using (var reader = new StreamReader(HttpContext.Current.Request.InputStream))
-            {
-                content = reader.ReadToEnd();
-            }
-
+            var content = GetContent();
             FileLogHelper.WriteInfo("Content:" + content, "CorpInfoLog");
             if (string.IsNullOrEmpty(content))
             {
                 return new OperateStatus { ResultSign = ResultSign.Failed, Message = "请求参数内容不存在" };
             }
-            
+
             string deContent;
-            ret = wxcrptyHelper.DecryptMsg(currentAccount, signature, timestamp, nonce, content, out deContent);
+            var ret = wxcrptyHelper.DecryptMsg(currentAccount, signature, timestamp, nonce, content, out deContent);
             if (ret != EnumWXBizMsgCryptErrorCode.OK)
             {
-                return new OperateStatus { ResultSign = ResultSign.Failed, Message = "解密不通过" };
+                return new OperateStatus { ResultSign = ResultSign.Failed, Message = "解密不通过," + ret };
             }
             FileLogHelper.WriteInfo("DeCentent:" + deContent, "CorpInfoLog");
 
             var dicParams = XmlHelper.ConvertToDictionary(deContent);
-            FileLogHelper.WriteInfo(dicParams, "CorpInfoLog");
+            FileLogHelper.WriteInfo("DicParams:" + dicParams, "CorpInfoLog");
 
             if (!dicParams.ContainsKey("MsgType"))
             {
@@ -86,6 +74,7 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
                 return new OperateStatus { ResultSign = ResultSign.Failed, Message = "加密不通过" };
             }
 
+            FileLogHelper.WriteInfo("EncryptMsg:" + enResponseStr, "CorpInfoLog");
             return new OperateStatus { ResultSign = ResultSign.Success, ReturnValue = enResponseStr };
         }
 
@@ -122,7 +111,9 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
                                 (s, c) => s + c.OnEventInvoke);
                             EventHelper.EventInvoke(events, dicParams, reply);
                         }
-                        return string.Empty;
+                        var responseEvent = EventListenerProvider.GetSpecialEvent(sEvents, reply);
+
+                        return responseEvent.GetResponseString(dicParams, reply);
                     }
                 case "unsubscribe":
                     {
@@ -176,5 +167,28 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
 
             return returnReply.GetXmlString();
         }
+
+        private OperateStatus VerifyUrl(Account currentAccount, string signature, string timestamp, string nonce, string echostr)
+        {
+            WXBizMsgCryptHelper wxcrptyHelper = new WXBizMsgCryptHelper();
+            string replyEchoStr;
+            var ret = wxcrptyHelper.VerifyURL(currentAccount, signature, timestamp, nonce, echostr, out replyEchoStr);
+            if (ret != EnumWXBizMsgCryptErrorCode.OK)
+            {
+                return new OperateStatus { ResultSign = ResultSign.Failed, Message = "验签不通过" };
+            }
+
+            return new OperateStatus { ResultSign = ResultSign.Success, ReturnValue = replyEchoStr };
+        }
+
+        private string GetContent()
+        {
+            HttpContext.Current.Request.InputStream.Position = 0;
+            using (var reader = new StreamReader(HttpContext.Current.Request.InputStream))
+            {
+                return reader.ReadToEnd();
+            }
+        }
+
     }
 }

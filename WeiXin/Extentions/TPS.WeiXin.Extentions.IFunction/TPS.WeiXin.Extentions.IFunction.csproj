@@ -104,6 +104,10 @@
       <Project>{FC7C1967-C6B6-49ED-A376-ECE4DA7A62BF}</Project>
       <Name>TPS.WeiXin.Common.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.SrvcModel\TPS.WeiXin.Common.SrvcModel.csproj">
+      <Project>{5F11D342-C075-497D-A1BE-F0C8D9217AB0}</Project>
+      <Name>TPS.WeiXin.Common.SrvcModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\DataAccess\TPS.WeiXin.DataAccess.Entities\TPS.WeiXin.DataAccess.Entities.csproj">
       <Project>{59197B8C-7106-47D5-A057-D46B0B26AE25}</Project>
       <Name>TPS.WeiXin.DataAccess.Entities</Name>

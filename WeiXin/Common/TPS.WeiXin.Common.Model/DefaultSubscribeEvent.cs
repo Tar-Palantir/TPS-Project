@@ -4,7 +4,7 @@ using TPS.WeiXin.Extentions.IEvent;
 
 namespace TPS.WeiXin.Common.Model
 {
-    public sealed class DefaultClickEvent : IWeiXinClickEvent
+    public sealed class DefaultSubscribeEvent : IWeiXinSubscribeEvent
     {
         public string GetResponseString(IDictionary<string, string> dicParams, Reply reply)
         {

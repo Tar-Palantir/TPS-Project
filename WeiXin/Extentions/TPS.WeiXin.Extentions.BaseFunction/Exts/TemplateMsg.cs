@@ -2,8 +2,8 @@
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using TPS.WeiXin.Common.Model;
-using TPS.WeiXin.Common.Model.Enums;
+using TPS.WeiXin.Common.SrvcModel;
+using TPS.WeiXin.Common.SrvcModel.Enums;
 
 namespace TPS.WeiXin.Extentions.BaseFunction.Exts
 {

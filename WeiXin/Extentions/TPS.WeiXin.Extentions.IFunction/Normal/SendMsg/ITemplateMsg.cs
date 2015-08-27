@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TPS.WeiXin.Common.Model;
+using TPS.WeiXin.Common.SrvcModel;
 using TPS.WeiXin.DataAccess.Entities;
 using Zeus.Common.DataStatus;
 

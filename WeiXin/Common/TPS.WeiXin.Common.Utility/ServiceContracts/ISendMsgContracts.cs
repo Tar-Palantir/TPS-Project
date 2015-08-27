@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TPS.WeiXin.Common.Model;
+using TPS.WeiXin.Common.SrvcModel;
 using Zeus.Common.DataStatus;
 
 namespace TPS.WeiXin.Common.Utility.ServiceContracts

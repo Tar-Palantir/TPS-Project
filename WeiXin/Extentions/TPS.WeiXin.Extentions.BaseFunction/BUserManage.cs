@@ -1,6 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using TPS.WeiXin.Common.Model;
+using TPS.WeiXin.Common.SrvcModel;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.Extentions.BaseFunction.Common;
 using TPS.WeiXin.Extentions.IFunction.Normal.UserManage;
@@ -34,43 +35,67 @@ namespace TPS.WeiXin.Extentions.BaseFunction
 
         public OperateStatus CreateGroup(Account currentAccount, string name)
         {
-            var accessToken = AccessTokenHelper.GetAccessToken(currentAccount);
-            var postParams = new { group = new { name = name } };
-            var postParamsStr = JsonConvert.SerializeObject(postParams);
-
-            var url = string.Format(CreateGroupUrlFormat, accessToken);
-            var responseResult = HttpHelper.GetResponseResultByPost(url, postParamsStr, contentType: "application/json");
-            if (responseResult.Status != ResponseStatus.Success)
+            try
             {
-                return null;
-            }
-            var result = JsonConvert.DeserializeObject<JObject>(responseResult.ResponseString);
-            if (result.Value<int>("errcode") == 0)
-            {
-                return new OperateStatus { ResultSign = ResultSign.Success };
-            }
-            return new OperateStatus { ResultSign = ResultSign.Failed, Message = "创建错误，" + result.Value<string>("errmsg") };
+                var accessToken = AccessTokenHelper.GetAccessToken(currentAccount);
+                var postParams = new { group = new { name = name } };
+                var postParamsStr = JsonConvert.SerializeObject(postParams);
 
+                var url = string.Format(CreateGroupUrlFormat, accessToken);
+                var responseResult = HttpHelper.GetResponseResultByPost(url, postParamsStr,
+                    contentType: "application/json");
+                if (responseResult.Status != ResponseStatus.Success)
+                {
+                    return null;
+                }
+                var result = JsonConvert.DeserializeObject<JObject>(responseResult.ResponseString);
+                var errcode = result.Value<int>("errcode");
+                if (errcode == 0)
+                {
+                    return new OperateStatus { ResultSign = ResultSign.Success };
+                }
+                return new OperateStatus
+                {
+                    ResultSign = ResultSign.Failed,
+                    Message = string.Format("创建错误,错误码：{0}，错误信息：{1}", errcode, result.Value<string>("errmsg"))
+                };
+            }
+            catch (Exception ex)
+            {
+                return new OperateStatus { ResultSign = ResultSign.Failed, Message = "创建异常，" + ex.Message };
+            }
         }
 
         public OperateStatus MoveUser(Account currentAccount, string openID, string groupID)
         {
-            var accessToken = AccessTokenHelper.GetAccessToken(currentAccount);
-            var postParams = new { openid = openID, to_groupid = groupID };
-            var postParamsStr = JsonConvert.SerializeObject(postParams);
+            try
+            {
+                var accessToken = AccessTokenHelper.GetAccessToken(currentAccount);
+                var postParams = new { openid = openID, to_groupid = groupID };
+                var postParamsStr = JsonConvert.SerializeObject(postParams);
 
-            var url = string.Format(MoveUserUrlFormat, accessToken);
-            var responseResult = HttpHelper.GetResponseResultByPost(url, postParamsStr, contentType: "application/json");
-            if (responseResult.Status != ResponseStatus.Success)
-            {
-                return null;
+                var url = string.Format(MoveUserUrlFormat, accessToken);
+                var responseResult = HttpHelper.GetResponseResultByPost(url, postParamsStr, contentType: "application/json");
+                if (responseResult.Status != ResponseStatus.Success)
+                {
+                    return null;
+                }
+                var result = JsonConvert.DeserializeObject<JObject>(responseResult.ResponseString);
+                var errcode = result.Value<int>("errcode");
+                if (errcode == 0)
+                {
+                    return new OperateStatus { ResultSign = ResultSign.Success };
+                }
+                return new OperateStatus
+                {
+                    ResultSign = ResultSign.Failed,
+                    Message = string.Format("移动错误,错误码：{0}，错误信息：{1}", errcode, result.Value<string>("errmsg"))
+                };
             }
-            var result = JsonConvert.DeserializeObject<JObject>(responseResult.ResponseString);
-            if (result.Value<int>("errcode") == 0)
+            catch (Exception ex)
             {
-                return new OperateStatus { ResultSign = ResultSign.Success };
+                return new OperateStatus { ResultSign = ResultSign.Failed, Message = "移动异常，" + ex.Message };
             }
-            return new OperateStatus { ResultSign = ResultSign.Failed, Message = "创建错误，" + result.Value<string>("errmsg") };
         }
     }
 }
