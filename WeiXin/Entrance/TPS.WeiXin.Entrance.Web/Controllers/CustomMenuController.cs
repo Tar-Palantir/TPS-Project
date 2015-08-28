@@ -22,24 +22,8 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
 
         public ServiceResult CreateMenus(Guid accountID, IList<CustomMenu> menus)
         {
-            AccountServiceModel model = new AccountServiceModel();
-            var account = model.GetById(accountID);
-            if (account == null)
-            {
-                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账户不存在" });
-            }
-            OperateStatus status;
-            if (account.IsCorp)
-            {
-                var func = FunctionFactory.GetFunctionInstance<Extentions.IFunction.Corp.CustomMenu.ICreate>();
-                status = func.Create(account, menus);
-            }
-            else
-            {
-                var func = FunctionFactory.GetFunctionInstance<Extentions.IFunction.Normal.CustomMenu.ICreate>();
-                status = func.Create(account, menus);
-            }
-
+            CustomMenuServiceModel model = new CustomMenuServiceModel();
+            OperateStatus status = model.CreateMenus(accountID, menus);
             return new ServiceResult(status);
         }
 

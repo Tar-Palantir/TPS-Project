@@ -1,8 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
-using TPS.WeiXin.Common.Helper;
 using TPS.WeiXin.Entrance.Web.Models;
-using TPS.WeiXin.Extentions.IFunction.Normal.UserManage;
 using Zeus.Common.DataStatus;
 using Zeus.Common.Service.MCService;
 
@@ -20,41 +17,22 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
 
         public ServiceResult GetByOpenID(Guid accountID, string openID)
         {
-            AccountServiceModel model = new AccountServiceModel();
-            var account = model.GetById(accountID);
-            if (account == null)
-            {
-                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账户不存在" });
-            }
-            var func = FunctionFactory.GetFunctionInstance<IGetUserBaseInfo>();
-            var userInfo = func.GetByOpenID(account, openID);
-            var jsonResult = JsonConvert.SerializeObject(userInfo);
-            return new ServiceResult(jsonResult, "");
+            UserManageServiceModel model = new UserManageServiceModel();
+            OperateStatus status = model.GetByOpenID(accountID, openID);
+            return new ServiceResult(status);
         }
 
         public ServiceResult CreateGroup(Guid accountID, string name)
         {
-            AccountServiceModel model = new AccountServiceModel();
-            var account = model.GetById(accountID);
-            if (account == null)
-            {
-                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账户不存在" });
-            }
-            var func = FunctionFactory.GetFunctionInstance<IGroup>();
-            OperateStatus status = func.CreateGroup(account, name);
+            UserManageServiceModel model = new UserManageServiceModel();
+            OperateStatus status = model.CreateGroup(accountID, name);
             return new ServiceResult(status);
         }
 
         public ServiceResult MoveUser(Guid accountID, string openID, string groupID)
         {
-            AccountServiceModel model = new AccountServiceModel();
-            var account = model.GetById(accountID);
-            if (account == null)
-            {
-                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账户不存在" });
-            }
-            var func = FunctionFactory.GetFunctionInstance<IGroup>();
-            OperateStatus status = func.MoveUser(account, openID, groupID);
+            UserManageServiceModel model = new UserManageServiceModel();
+            OperateStatus status = model.MoveUser(accountID, openID, groupID);
             return new ServiceResult(status);
         }
     }

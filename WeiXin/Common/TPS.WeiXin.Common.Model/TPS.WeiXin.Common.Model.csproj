@@ -54,7 +54,6 @@
   <ItemGroup>
     <Compile Include="ArticleReply.cs" />
     <Compile Include="ArticleReplyItem.cs" />
-    <Compile Include="ArticleSendItem.cs" />
     <Compile Include="BaseReply.cs" />
     <Compile Include="DefaultSubscribeEvent.cs" />
     <Compile Include="DefaultClickEvent.cs" />

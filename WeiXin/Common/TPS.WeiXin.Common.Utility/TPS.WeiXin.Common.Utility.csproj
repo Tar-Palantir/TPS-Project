@@ -60,6 +60,10 @@
     <None Include="WCFClient.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TPS.WeiXin.Common.Model\TPS.WeiXin.Common.Model.csproj">
+      <Project>{FC7C1967-C6B6-49ED-A376-ECE4DA7A62BF}</Project>
+      <Name>TPS.WeiXin.Common.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TPS.WeiXin.Common.SrvcModel\TPS.WeiXin.Common.SrvcModel.csproj">
       <Project>{5F11D342-C075-497D-A1BE-F0C8D9217AB0}</Project>
       <Name>TPS.WeiXin.Common.SrvcModel</Name>

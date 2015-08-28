@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using TPS.WeiXin.Common.Helper;
 using TPS.WeiXin.Common.SrvcModel;
-using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.Entrance.Web.Models;
-using TPS.WeiXin.Extentions.IFunction.Corp.Contacts;
-using TPS.WeiXin.Extentions.IFunction.Normal.SendMsg;
 using Zeus.Common.DataStatus;
 using Zeus.Common.Service.MCService;
 
@@ -29,85 +21,43 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
 
         public ServiceResult CreateUser(Guid accountID, CorpUserInfo userInfo)
         {
-            AccountServiceModel model = new AccountServiceModel();
-            var currentAccount = model.GetById(accountID);
-            if (currentAccount == null)
-            {
-                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账号不存在" });
-            }
-
-            var func = FunctionFactory.GetFunctionInstance<IUserCreate>();
-            OperateStatus status = func.Create(currentAccount, userInfo);
+            ContactsServiceModel model = new ContactsServiceModel();
+            OperateStatus status = model.CreateUser(accountID, userInfo);
             return new ServiceResult(status);
         }
 
         public ServiceResult DeleteUser(Guid accountID, string userID)
         {
-            AccountServiceModel model = new AccountServiceModel();
-            var currentAccount = model.GetById(accountID);
-            if (currentAccount == null)
-            {
-                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账号不存在" });
-            }
-
-            var func = FunctionFactory.GetFunctionInstance<IUserDelete>();
-            OperateStatus status = func.Delete(currentAccount, userID);
+            ContactsServiceModel model = new ContactsServiceModel();
+            OperateStatus status = model.DeleteUser(accountID, userID);
             return new ServiceResult(status);
         }
 
         public ServiceResult GetUserByDeparment(Guid accountID, string departmentID, bool fetchChild, int enumStatus, bool getDetail)
         {
-            AccountServiceModel model = new AccountServiceModel();
-            var currentAccount = model.GetById(accountID);
-            if (currentAccount == null)
-            {
-                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账号不存在" });
-            }
-
-            var func = FunctionFactory.GetFunctionInstance<IUserGetByDepartment>();
-            OperateStatus status = func.GetByDepartment(currentAccount, departmentID, fetchChild, enumStatus, getDetail);
+            ContactsServiceModel model = new ContactsServiceModel();
+            OperateStatus status = model.GetUserByDeparment(accountID, departmentID, fetchChild, enumStatus, getDetail);
             return new ServiceResult(status);
         }
 
         public ServiceResult GetUserByID(Guid accountID, string userID)
         {
-            AccountServiceModel model = new AccountServiceModel();
-            var currentAccount = model.GetById(accountID);
-            if (currentAccount == null)
-            {
-                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账号不存在" });
-            }
-
-            var func = FunctionFactory.GetFunctionInstance<IUserGetByID>();
-            OperateStatus status = func.GetByID(currentAccount, userID);
+            ContactsServiceModel model = new ContactsServiceModel();
+            OperateStatus status = model.GetUserByID(accountID, userID);
             return new ServiceResult(status);
         }
 
         public ServiceResult InviteUser(Guid accountID, string userID)
         {
-            AccountServiceModel model = new AccountServiceModel();
-            var currentAccount = model.GetById(accountID);
-            if (currentAccount == null)
-            {
-                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账号不存在" });
-            }
-
-            var func = FunctionFactory.GetFunctionInstance<IUserInvite>();
-            OperateStatus status = func.Invite(currentAccount, userID);
+            ContactsServiceModel model = new ContactsServiceModel();
+            OperateStatus status = model.InviteUser(accountID, userID);
             return new ServiceResult(status);
         }
 
         public ServiceResult UpdateUser(Guid accountID, CorpUserInfo userInfo)
         {
-            AccountServiceModel model = new AccountServiceModel();
-            var currentAccount = model.GetById(accountID);
-            if (currentAccount == null)
-            {
-                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账号不存在" });
-            }
-
-            var func = FunctionFactory.GetFunctionInstance<IUserUpdate>();
-            OperateStatus status = func.Update(currentAccount, userInfo);
+            ContactsServiceModel model = new ContactsServiceModel();
+            OperateStatus status = model.UpdateUser(accountID, userInfo);
             return new ServiceResult(status);
         }
 

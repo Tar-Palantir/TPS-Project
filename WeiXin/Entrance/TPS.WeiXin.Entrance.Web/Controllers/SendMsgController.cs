@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using TPS.WeiXin.Common.Helper;
 using TPS.WeiXin.Common.SrvcModel;
 using TPS.WeiXin.Entrance.Web.Models;
-using TPS.WeiXin.Extentions.IFunction.Normal.SendMsg;
-using Zeus.Common.DataStatus;
 using Zeus.Common.Service.MCService;
 
 namespace TPS.WeiXin.Entrance.Web.Controllers
@@ -21,15 +18,30 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
 
         public ServiceResult TemplateMsg(Guid accountID, TemplateMsgParams templateMsgParams, IList<TemplateParameter> parameters)
         {
-            AccountServiceModel model = new AccountServiceModel();
-            var currentAccount = model.GetById(accountID);
-            if (currentAccount == null)
-            {
-                return new ServiceResult(new OperateStatus { ResultSign = ResultSign.Failed, Message = "账号不存在" });
-            }
+            SendMsgServiceModel model = new SendMsgServiceModel();
+            var status = model.TemplateMsg(accountID, templateMsgParams, parameters);
+            return new ServiceResult(status);
+        }
 
-            var func = FunctionFactory.GetFunctionInstance<ITemplateMsg>();
-            OperateStatus status = func.SendTemplateMsg(currentAccount, templateMsgParams, parameters);
+
+        public ServiceResult SendTextMessage(Guid accountID, SendMessageTarget target, string message)
+        {
+            SendMsgServiceModel model = new SendMsgServiceModel();
+            var status = model.SendTextMessage(accountID, target, message);
+            return new ServiceResult(status);
+        }
+
+        public ServiceResult SendArticleMessage(Guid accountID, SendMessageTarget target, IList<ArticleSendItem> message)
+        {
+            SendMsgServiceModel model = new SendMsgServiceModel();
+            var status = model.SendArticleMessage(accountID, target, message);
+            return new ServiceResult(status);
+        }
+
+        public ServiceResult SendNewsMesaage(Guid accountID, SendMessageTarget target, IList<NewsSendItem> message)
+        {
+            SendMsgServiceModel model = new SendMsgServiceModel();
+            var status = model.SendNewsMesaage(accountID, target, message);
             return new ServiceResult(status);
         }
     }
