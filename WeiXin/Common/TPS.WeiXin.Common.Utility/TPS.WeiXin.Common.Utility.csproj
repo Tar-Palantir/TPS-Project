@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,13 +54,21 @@
     <Compile Include="Client\WeiXinClient.cs" />
     <Compile Include="Helper\WeiXinHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceContracts\IAuthenticateContracts.cs" />
+    <Compile Include="ServiceContracts\IContactsContracts.cs" />
+    <Compile Include="ServiceContracts\ICustomMenuContracts.cs" />
     <Compile Include="ServiceContracts\ISendMsgContracts.cs" />
+    <Compile Include="ServiceContracts\IUserManageContracts.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="WCFClient.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DataAccess\TPS.WeiXin.DataAccess.Entities\TPS.WeiXin.DataAccess.Entities.csproj">
+      <Project>{59197B8C-7106-47D5-A057-D46B0B26AE25}</Project>
+      <Name>TPS.WeiXin.DataAccess.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TPS.WeiXin.Common.Model\TPS.WeiXin.Common.Model.csproj">
       <Project>{FC7C1967-C6B6-49ED-A376-ECE4DA7A62BF}</Project>
       <Name>TPS.WeiXin.Common.Model</Name>

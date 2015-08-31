@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TPS.WeiXin.Service.MixService.WCFService.ContactsService" CodeBehind="ContactsService.svc.cs" %>

@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Zeus.Common.Service.WCFExtension</name>
+    </assembly>
+    <members>
+        <member name="T:Zeus.Common.Service.WCFExtension.ExtensionElement.ServiceBehaviorExtensionElement">
+            <summary>
+            服务行为扩展的配置元素
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.WCFExtension.ExtensionElement.ServiceBehaviorExtensionElement.CreateBehavior">
+            <summary>
+            创建行为
+            </summary>
+            <returns>一个ServiceBehaviorExtensions类的实例</returns>
+        </member>
+        <member name="P:Zeus.Common.Service.WCFExtension.ExtensionElement.ServiceBehaviorExtensionElement.BehaviorType">
+            <summary>
+            获取behavior的类型
+            </summary>
+        </member>
+        <member name="T:Zeus.Common.Service.WCFExtension.Behavior.ServiceBehaviorExtensions">
+            <summary>
+            对WCF服务行为进行扩展的类
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Service.WCFExtension.Behavior.ServiceBehaviorExtensions.exceptionHandler">
+            <summary>
+            异常处理器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.WCFExtension.Behavior.ServiceBehaviorExtensions.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.WCFExtension.Behavior.ServiceBehaviorExtensions.Validate(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+            <summary>
+            用于检查服务宿主和服务说明，从而确定服务是否可成功运行。
+            <para>未使用</para>
+            </summary>
+            <param name="serviceDescription">服务说明</param>
+            <param name="serviceHostBase">当前正在构建的服务宿主</param>
+        </member>
+        <member name="M:Zeus.Common.Service.WCFExtension.Behavior.ServiceBehaviorExtensions.AddBindingParameters(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase,System.Collections.ObjectModel.Collection{System.ServiceModel.Description.ServiceEndpoint},System.ServiceModel.Channels.BindingParameterCollection)">
+            <summary>
+            用于向绑定元素传递自定义数据，以支持协定实现。
+            </summary>
+            <para>未使用</para>
+            <param name="serviceDescription"></param>
+            <param name="serviceHostBase"></param>
+            <param name="endpoints"></param>
+            <param name="bindingParameters"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.WCFExtension.Behavior.ServiceBehaviorExtensions.ApplyDispatchBehavior(System.ServiceModel.Description.ServiceDescription,System.ServiceModel.ServiceHostBase)">
+            <summary>
+            用于更改运行时属性值或插入自定义扩展对象
+            </summary>
+            <para>在此处对服务端的异常进行统一处理</para>
+            <param name="serviceDescription"></param>
+            <param name="serviceHostBase"></param>
+        </member>
+        <member name="T:Zeus.Common.Service.WCFExtension.Dispatcher.ExceptionHandler">
+            <summary>
+            WCF服务异常处理器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.WCFExtension.Dispatcher.ExceptionHandler.ProvideFault(System.Exception,System.ServiceModel.Channels.MessageVersion,System.ServiceModel.Channels.Message@)">
+            <summary>
+            启用创建从服务方法过程中的异常返回的自定义FaultException)。ProvideFault 方法在服务方法发生异常，WCF 返回异常消息，终止会话之前被调用。该方法通常被用来修改返回的异常消息，诸如进行重新包装等等。由于调用 ProvideFault 时，客户端处于阻塞状态，因此不要在其内部做长时间的处理，以免客户端超时。而 HandleError 在异常返回给客户端之后被触发，因此它不会阻塞通讯。多数时候只是用来完成异常记录，进行错误提示等操作。
+            </summary>
+            <param name="error"></param>
+            <param name="version"></param>
+            <param name="fault"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.WCFExtension.Dispatcher.ExceptionHandler.HandleError(System.Exception)">
+            <summary>
+            启用错误相关处理并返回一个值，该值指示调度程序在某些情况下是否中止会话和实例上下文。
+            </summary>
+            <param name="error"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Zeus.Common.Service.WCFExtension.Dispatcher.ServiceLogCallContextInitializer">
+            <summary>
+            服务调用日志记录器
+            </summary>
+        </member>
+        <member name="F:Zeus.Common.Service.WCFExtension.Dispatcher.ServiceLogCallContextInitializer.dispatchOperation">
+            <summary>
+            操作调度器
+            </summary>
+        </member>
+        <member name="M:Zeus.Common.Service.WCFExtension.Dispatcher.ServiceLogCallContextInitializer.#ctor(System.ServiceModel.Dispatcher.DispatchOperation)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="dispatchOperation"></param>
+        </member>
+        <member name="M:Zeus.Common.Service.WCFExtension.Dispatcher.ServiceLogCallContextInitializer.BeforeInvoke(System.ServiceModel.InstanceContext,System.ServiceModel.IClientChannel,System.ServiceModel.Channels.Message)">
+            <summary>
+            服务开始调用
+            </summary>
+            <param name="instanceContext"></param>
+            <param name="channel"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Zeus.Common.Service.WCFExtension.Dispatcher.ServiceLogCallContextInitializer.AfterInvoke(System.Object)">
+            <summary>
+            服务调用完毕
+            </summary>
+            <param name="correlationState"></param>
+        </member>
+    </members>
+</doc>
