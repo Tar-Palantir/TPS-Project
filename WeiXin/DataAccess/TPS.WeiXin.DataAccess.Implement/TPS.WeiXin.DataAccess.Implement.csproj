@@ -61,6 +61,9 @@
     <Reference Include="Zeus.Common.DataStatus">
       <HintPath>..\..\..\packages\Common.DS.2.1.0\lib\Zeus.Common.DataStatus.dll</HintPath>
     </Reference>
+    <Reference Include="Zeus.Common.Helper">
+      <HintPath>..\..\..\packages\Common.Helper.2.0.2\lib\Zeus.Common.Helper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountRepositoryl.cs" />
