@@ -40,7 +40,7 @@ namespace TPS.WeiXin.Entrance.Web.Controllers
                 }
                 if (account.IsCorp)
                 {
-                    var func = FunctionFactory.GetCorpFunctionInstance<Extentions.IFunction.Corp.Receive.IReceive>();
+                    var func = FunctionFactory.GetFunctionInstance<Extentions.IFunction.Corp.Receive.IReceive>();
                     status = func.Main(account, msg_signature, timestamp, nonce, echostr);
                 }
                 else

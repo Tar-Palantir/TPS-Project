@@ -43,7 +43,7 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
         {
             try
             {
-                string url = SendMessageUrlFormat + AccessTokenHelper.GetAccessToken(currentAccount);
+                string url = string.Format(SendMessageUrlFormat, AccessTokenHelper.GetAccessToken(currentAccount));
 
 
                 var param = JsonConvert.SerializeObject(msg);

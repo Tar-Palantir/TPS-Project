@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
-using TPS.WeiXin.Common.Model;
 using TPS.WeiXin.Common.SrvcModel;
 
 namespace TPS.WeiXin.Extentions.BaseCorpFunction.Exts
@@ -11,6 +10,10 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction.Exts
     {
         private SendMsg(int agentID, SendMessageTarget target)
         {
+            target.UserIDList = target.UserIDList ?? new List<string>();
+            target.DepartmentIDList = target.DepartmentIDList ?? new List<string>();
+            target.TagIDLIst = target.TagIDLIst ?? new List<string>();
+
             ToUser = target.IsSendAll ? "@all" : target.UserIDList.Aggregate(string.Empty, (s, c) => s + c + "|");
             ToParty = target.DepartmentIDList.Aggregate(string.Empty, (s, c) => s + c + "|");
             ToTag = target.TagIDLIst.Aggregate(string.Empty, (s, c) => s + c + "|");

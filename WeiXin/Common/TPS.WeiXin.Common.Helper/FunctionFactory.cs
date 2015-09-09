@@ -7,7 +7,6 @@ namespace TPS.WeiXin.Common.Helper
     public static class FunctionFactory
     {
         private static IUnityContainer container;
-        private static IUnityContainer corpContainer;
 
         #region ctor静态构造函数
         /// <summary>
@@ -16,7 +15,6 @@ namespace TPS.WeiXin.Common.Helper
         static FunctionFactory()
         {
             RefreshContainer();
-            RefreshCorpContainer();
         }
         #endregion
 
@@ -29,14 +27,6 @@ namespace TPS.WeiXin.Common.Helper
                 throw new ConfigurationErrorsException("funcUnity");
             section.Configure(container);
         }
-        public static void RefreshCorpContainer()
-        {
-            corpContainer = new UnityContainer();
-            UnityConfigurationSection section = (UnityConfigurationSection)ConfigurationManager.GetSection("funcCorpUnity");
-            if (section == null)
-                throw new ConfigurationErrorsException("funcCorpUnity");
-            section.Configure(corpContainer);
-        }
 
 
         /// <summary>
@@ -47,16 +37,6 @@ namespace TPS.WeiXin.Common.Helper
         public static IFunction GetFunctionInstance<IFunction>()
         {
             return container.Resolve<IFunction>();
-        }
-
-        /// <summary>
-        /// 获取方法实例
-        /// </summary>
-        /// <typeparam name="IFunction">方法接口</typeparam>
-        /// <returns>方法实例</returns>
-        public static IFunction GetCorpFunctionInstance<IFunction>()
-        {
-            return corpContainer.Resolve<IFunction>();
         }
     }
 }

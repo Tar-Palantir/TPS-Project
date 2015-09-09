@@ -193,6 +193,7 @@
     <Content Include="EventConfig.config" />
     <Content Include="FunctionIoc.config" />
     <Content Include="BusinessIoc.config" />
+    <None Include="Properties\PublishProfiles\Develop.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

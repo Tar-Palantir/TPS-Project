@@ -9,10 +9,10 @@ namespace TPS.WeiXin.DataAccess.Implement
     {
         private readonly DbContext _context = new WeiXinEntities();
 
-        public AccountRepository()
-        {
-            _context.Database.Log = msg => FileLogHelper.WriteInfo(msg, "SqlLog");
-        }
+        //public AccountRepository()
+        //{
+        //    _context.Database.Log = msg => FileLogHelper.WriteInfo(msg, "SqlLog");
+        //}
 
         /// <summary>
         /// 实体数据库
