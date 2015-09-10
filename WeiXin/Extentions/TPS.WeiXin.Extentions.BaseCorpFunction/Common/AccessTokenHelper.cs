@@ -29,6 +29,7 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction.Common
                 {
                     return accessToken.Value;
                 }
+                DicAccessToken.Remove(currentAccount.ID);
             }
 
             var result = HttpHelper.GetResponseResultByGet(string.Format(GetTokenUrlFormat_Corp, currentAccount.AppID, currentAccount.AppSecret));

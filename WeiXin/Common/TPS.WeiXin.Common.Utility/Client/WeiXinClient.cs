@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using TPS.WeiXin.Common.Utility.ServiceContracts;
 using Zeus.Common.Service.Client;
 
@@ -7,18 +8,17 @@ namespace TPS.WeiXin.Common.Utility.Client
     /// <summary>
     /// 发送信息服务客户端
     /// </summary>
-    public static class WeiXinClient
+    public class WeiXinClient : IDisposable
     {
         private static readonly string _wxServiceRootUrl = ConfigurationManager.AppSettings["WXServiceRootUrl"] ?? "";
-
+        private readonly WCFClient client = new WCFClient();
 
         /// <summary>
         /// 获取认证服务客户端代理
         /// </summary>
         /// <returns></returns>
-        public static IAuthenticateContracts GetAuthClientProxy()
+        public IAuthenticateContracts GetAuthClientProxy()
         {
-            WCFClient client = new WCFClient();
             return client.GetClientProxy<IAuthenticateContracts>(_wxServiceRootUrl + "/WCFService/AuthenticateService.svc");
         }
 
@@ -26,9 +26,8 @@ namespace TPS.WeiXin.Common.Utility.Client
         /// 获取通讯录服务客户端代理
         /// </summary>
         /// <returns></returns>
-        public static IContactsContracts GetContactsClientProxy()
+        public IContactsContracts GetContactsClientProxy()
         {
-            WCFClient client = new WCFClient();
             return client.GetClientProxy<IContactsContracts>(_wxServiceRootUrl + "/WCFService/ContactsService.svc");
         }
 
@@ -36,9 +35,8 @@ namespace TPS.WeiXin.Common.Utility.Client
         /// 获取自定义菜单服务客户端代理
         /// </summary>
         /// <returns></returns>
-        public static ICustomMenuContracts GetCustomMenuClientProxy()
+        public ICustomMenuContracts GetCustomMenuClientProxy()
         {
-            WCFClient client = new WCFClient();
             return client.GetClientProxy<ICustomMenuContracts>(_wxServiceRootUrl + "/WCFService/CustomMenuService.svc");
         }
 
@@ -46,9 +44,8 @@ namespace TPS.WeiXin.Common.Utility.Client
         /// 获取发送消息服务客户端代理
         /// </summary>
         /// <returns></returns>
-        public static ISendMsgContracts GetSendMsgClientProxy()
+        public ISendMsgContracts GetSendMsgClientProxy()
         {
-            WCFClient client = new WCFClient();
             return client.GetClientProxy<ISendMsgContracts>(_wxServiceRootUrl + "/WCFService/SendMsgService.svc");
         }
 
@@ -56,11 +53,17 @@ namespace TPS.WeiXin.Common.Utility.Client
         /// 获取用户管理服务客户端代理
         /// </summary>
         /// <returns></returns>
-        public static IUserManageContracts GetUserManageClientProxy()
+        public IUserManageContracts GetUserManageClientProxy()
         {
-            WCFClient client = new WCFClient();
             return client.GetClientProxy<IUserManageContracts>(_wxServiceRootUrl + "/WCFService/UserManageService.svc");
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            client.Dispose();
+        }
     }
 }
