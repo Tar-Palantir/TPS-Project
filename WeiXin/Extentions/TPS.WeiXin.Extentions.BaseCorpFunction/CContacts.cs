@@ -150,9 +150,7 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
                 var errcode = result.Value<int>("errcode");
                 if (errcode == 0)
                 {
-                    var userInfo = JsonConvert.DeserializeObject<CorpUserInfo>(responseResult.ResponseString);
-
-                    return new OperateStatus { ResultSign = ResultSign.Success, ReturnValue = JsonConvert.SerializeObject(userInfo) };
+                    return new OperateStatus { ResultSign = ResultSign.Success, ReturnValue = responseResult.ResponseString };
                 }
                 return new OperateStatus
                 {

@@ -29,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\TPS.WeiXin.Common.Utility.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -55,6 +56,7 @@
     <Compile Include="ServiceContracts\IAuthenticateContracts.cs" />
     <Compile Include="ServiceContracts\IContactsContracts.cs" />
     <Compile Include="ServiceContracts\ICustomMenuContracts.cs" />
+    <Compile Include="ServiceContracts\IJsSDKContracts.cs" />
     <Compile Include="ServiceContracts\ISendMsgContracts.cs" />
     <Compile Include="ServiceContracts\IUserManageContracts.cs" />
   </ItemGroup>

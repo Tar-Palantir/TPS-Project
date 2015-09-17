@@ -1,4 +1,4 @@
-﻿namespace TPS.WeiXin.Extentions.BaseCorpFunction.Exts
+﻿namespace TPS.WeiXin.Common.SrvcModel
 {
     /// <summary>
     /// 微信JS请求数据

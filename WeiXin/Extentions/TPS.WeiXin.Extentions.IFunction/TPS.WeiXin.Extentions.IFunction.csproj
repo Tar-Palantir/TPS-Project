@@ -51,6 +51,7 @@
     <Compile Include="Corp\CustomMenu\ICreate.cs" />
     <Compile Include="Corp\CustomMenu\IDelete.cs" />
     <Compile Include="Corp\CustomMenu\IGetAll.cs" />
+    <Compile Include="Corp\JsSDK\IJsSDK.cs" />
     <Compile Include="Corp\Receive\IRecieve.cs" />
     <Compile Include="Corp\SendMsg\ISend.cs" />
     <Compile Include="Normal\AccountManage\IGenerateQrcode.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Normal\CustomMenu\IDelete.cs" />
     <Compile Include="Normal\CustomMenu\IGetAll.cs" />
     <Compile Include="Normal\CustomMenu\IGetAllInfo.cs" />
+    <Compile Include="Normal\JsSDK\IJsSDK.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Normal\Receive\IRecieve.cs" />
     <Compile Include="Normal\SendMsg\ICustomerService.cs" />

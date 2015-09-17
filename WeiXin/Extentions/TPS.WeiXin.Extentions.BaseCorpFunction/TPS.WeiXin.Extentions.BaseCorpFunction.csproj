@@ -65,13 +65,12 @@
     <Compile Include="CCustomMenu.cs" />
     <Compile Include="Common\AccessTokenHelper.cs" />
     <Compile Include="Common\WXCryptHelper.cs" />
-    <Compile Include="Common\JsSDKHelper.cs" />
+    <Compile Include="CJsSDK.cs" />
     <Compile Include="Common\WXBizMsgCryptHelper.cs" />
     <Compile Include="CReceive.cs" />
     <Compile Include="CSendMsg.cs" />
     <Compile Include="Exts\EnumWXBizMsgCryptErrorCode.cs" />
     <Compile Include="Exts\SendMsg.cs" />
-    <Compile Include="Exts\WeiXinJsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

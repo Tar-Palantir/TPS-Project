@@ -29,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\TPS.WeiXin.Common.SrvcModel.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -61,6 +62,7 @@
     <Compile Include="TemplateMsgParams.cs" />
     <Compile Include="TemplateParameter.cs" />
     <Compile Include="UserInfo.cs" />
+    <Compile Include="WeiXinJsData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

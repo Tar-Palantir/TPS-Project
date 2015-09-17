@@ -142,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="WCFService\JsSDKService.svc" />
     <Content Include="WCFService\AuthenticateService.svc" />
     <Content Include="WCFService\ContactsService.svc" />
     <Content Include="WCFService\CustomMenuService.svc" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\JsSDKController.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\CustomMenuController.cs" />
@@ -161,6 +163,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\JsSDKServiceModel.cs" />
     <Compile Include="Models\AccountServiceModel.cs" />
     <Compile Include="Models\AuthenticateServiceModel.cs" />
     <Compile Include="Models\ContactsServiceModel.cs" />
@@ -168,6 +171,9 @@
     <Compile Include="Models\SendMsgServiceModel.cs" />
     <Compile Include="Models\UserManageServiceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WCFService\JsSDKService.svc.cs">
+      <DependentUpon>JsSDKService.svc</DependentUpon>
+    </Compile>
     <Compile Include="WCFService\AuthenticateService.svc.cs">
       <DependentUpon>AuthenticateService.svc</DependentUpon>
     </Compile>
@@ -191,7 +197,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="EventConfig.config" />
-    <Content Include="FunctionIoc.config" />
+    <Content Include="FunctionIoc.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="BusinessIoc.config" />
     <None Include="Properties\PublishProfiles\Develop.pubxml" />
     <None Include="Web.Debug.config">

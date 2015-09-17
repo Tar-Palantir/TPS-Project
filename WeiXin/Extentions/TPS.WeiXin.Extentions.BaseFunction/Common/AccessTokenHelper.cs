@@ -4,7 +4,6 @@ using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TPS.WeiXin.DataAccess.Entities;
-using TPS.WeiXin.DataAccess.Implement;
 using Zeus.Common.Helper.Web;
 
 namespace TPS.WeiXin.Extentions.BaseFunction.Common

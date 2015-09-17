@@ -5,7 +5,6 @@ using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.DataAccess.Entities.Enums;
 using Zeus.Common.DataAccess.Implement;
 using Zeus.Common.DataStatus;
-using Zeus.Common.Helper.Log;
 
 namespace TPS.WeiXin.DataAccess.Implement
 {
