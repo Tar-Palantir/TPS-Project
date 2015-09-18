@@ -76,35 +76,42 @@ namespace TPS.WeiXin.Extentions.BaseFunction
         private static string GetTicket(Account currentAccount)
         {
             Monitor.Enter(DicTicket);
-            Ticket ticket;
-            if (DicTicket.ContainsKey(currentAccount.ID))
+            try
             {
-                ticket = DicTicket[currentAccount.ID];
-                if (ticket.ExpireTime > DateTime.Now)
+                Ticket ticket;
+                if (DicTicket.ContainsKey(currentAccount.ID))
                 {
-                    return ticket.Value;
+                    ticket = DicTicket[currentAccount.ID];
+                    if (ticket.ExpireTime > DateTime.Now)
+                    {
+                        return ticket.Value;
+                    }
+                    DicTicket.Remove(currentAccount.ID);
                 }
-                DicTicket.Remove(currentAccount.ID);
-            }
 
-            var accessToken = AccessTokenHelper.GetAccessToken(currentAccount);
-            var result = HttpHelper.GetResponseResultByGet(string.Format(GetTicketUrlFormat, accessToken));
-            if (result.Status != ResponseStatus.Success)
+                var accessToken = AccessTokenHelper.GetAccessToken(currentAccount);
+                var result = HttpHelper.GetResponseResultByGet(string.Format(GetTicketUrlFormat, accessToken),
+                    timeout: 1000);
+                if (result.Status != ResponseStatus.Success)
+                {
+                    return "";
+                }
+                JObject jObject = JsonConvert.DeserializeObject<JObject>(result.ResponseString);
+                JToken value;
+                if (!jObject.TryGetValue("ticket", out value))
+                {
+                    return "";
+                }
+
+                ticket = new Ticket { Value = value.ToString(), ExpireTime = DateTime.Now.AddSeconds(7190) };
+                DicTicket.Add(currentAccount.ID, ticket);
+
+                return ticket.Value;
+            }
+            finally
             {
-                return "";
+                Monitor.Exit(DicTicket);
             }
-            JObject jObject = JsonConvert.DeserializeObject<JObject>(result.ResponseString);
-            JToken value;
-            if (!jObject.TryGetValue("ticket", out value))
-            {
-                return "";
-            }
-
-            ticket = new Ticket { Value = value.ToString(), ExpireTime = DateTime.Now.AddSeconds(7190) };
-            DicTicket.Add(currentAccount.ID, ticket);
-            Monitor.Exit(DicTicket);
-
-            return ticket.Value;
 
         }
 

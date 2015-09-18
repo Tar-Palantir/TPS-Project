@@ -57,6 +57,15 @@ namespace TPS.WeiXin.Common.Utility.Client
         {
             return client.GetClientProxy<IUserManageContracts>(_wxServiceRootUrl + "/WCFService/UserManageService.svc");
         }
+        
+        /// <summary>
+        /// 获取JsSDK服务客户端代理
+        /// </summary>
+        /// <returns></returns>
+        public IJsSDKContracts GetJsSDKClientProxy()
+        {
+            return client.GetClientProxy<IJsSDKContracts>(_wxServiceRootUrl + "/WCFService/JsSDKService.svc");
+        }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

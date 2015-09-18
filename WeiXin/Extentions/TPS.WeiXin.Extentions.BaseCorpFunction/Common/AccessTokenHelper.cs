@@ -21,34 +21,46 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction.Common
         public static string GetAccessToken(Account currentAccount)
         {
             Monitor.Enter(DicAccessToken);
-            AccessToken accessToken;
-            if (DicAccessToken.ContainsKey(currentAccount.ID))
+            try
             {
-                accessToken = DicAccessToken[currentAccount.ID];
-                if (accessToken.ExpireTime > DateTime.Now)
+                AccessToken accessToken;
+                if (DicAccessToken.ContainsKey(currentAccount.ID))
                 {
-                    return accessToken.Value;
+                    accessToken = DicAccessToken[currentAccount.ID];
+                    if (accessToken.ExpireTime > DateTime.Now)
+                    {
+                        return accessToken.Value;
+                    }
+                    DicAccessToken.Remove(currentAccount.ID);
                 }
-                DicAccessToken.Remove(currentAccount.ID);
-            }
 
-            var result = HttpHelper.GetResponseResultByGet(string.Format(GetTokenUrlFormat_Corp, currentAccount.AppID, currentAccount.AppSecret));
-            if (result.Status != ResponseStatus.Success)
+                var result =
+                    HttpHelper.GetResponseResultByGet(string.Format(GetTokenUrlFormat_Corp, currentAccount.AppID,
+                        currentAccount.AppSecret));
+                if (result.Status != ResponseStatus.Success)
+                {
+                    return "";
+                }
+                JObject jObject = JsonConvert.DeserializeObject<JObject>(result.ResponseString);
+                JToken value, time;
+                if (!jObject.TryGetValue("access_token", out value) || !jObject.TryGetValue("expires_in", out time))
+                {
+                    return "";
+                }
+
+                accessToken = new AccessToken
+                {
+                    Value = value.ToString(),
+                    ExpireTime = DateTime.Now.AddSeconds(time.ToObject<double>())
+                };
+                DicAccessToken.Add(currentAccount.ID, accessToken);
+
+                return accessToken.Value;
+            }
+            finally
             {
-                return "";
+                Monitor.Exit(DicAccessToken);
             }
-            JObject jObject = JsonConvert.DeserializeObject<JObject>(result.ResponseString);
-            JToken value, time;
-            if (!jObject.TryGetValue("access_token", out value) || !jObject.TryGetValue("expires_in", out time))
-            {
-                return "";
-            }
-
-            accessToken = new AccessToken { Value = value.ToString(), ExpireTime = DateTime.Now.AddSeconds(time.ToObject<double>()) };
-            DicAccessToken.Add(currentAccount.ID, accessToken);
-            Monitor.Exit(DicAccessToken);
-
-            return accessToken.Value;
         }
 
         class AccessToken

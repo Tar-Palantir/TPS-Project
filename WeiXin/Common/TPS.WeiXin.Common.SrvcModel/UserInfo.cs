@@ -1,7 +1,8 @@
 ﻿using System;
+using System.CodeDom;
 using Newtonsoft.Json;
-using TPS.WeiXin.Common.Helper;
 using TPS.WeiXin.Common.SrvcModel.Enums;
+using Zeus.Common.Helper.Json;
 
 namespace TPS.WeiXin.Common.SrvcModel
 {
@@ -73,8 +74,8 @@ namespace TPS.WeiXin.Common.SrvcModel
         /// <summary>
         /// 关注事件
         /// </summary>
-        [JsonProperty(PropertyName = "subscribe_time",
-            ItemConverterType = typeof(UnixDateTimeConverter))]
+        [JsonProperty(PropertyName = "subscribe_time")]
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime? SubscribeTime { get; set; }
 
         /// <summary>

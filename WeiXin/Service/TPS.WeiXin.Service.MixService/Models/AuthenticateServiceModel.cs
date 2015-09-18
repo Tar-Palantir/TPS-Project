@@ -68,12 +68,12 @@ namespace TPS.WeiXin.Service.MixService.Models
             UserInfo userInfo;
             if (account.IsCorp)
             {
-                var func = FunctionFactory.GetFunctionInstance<IOAuth>();
+                var func = FunctionFactory.GetFunctionInstance<Extentions.IFunction.Corp.Authenticate.IOAuth>();
                 userInfo = func.GetUserInfoByCode(account, code);
             }
             else
             {
-                var func = FunctionFactory.GetFunctionInstance<Extentions.IFunction.Corp.Authenticate.IOAuth>();
+                var func = FunctionFactory.GetFunctionInstance<IOAuth>();
                 userInfo = func.GetUserInfoByCode(account, code);
             }
             var jsonResult = JsonConvert.SerializeObject(userInfo);

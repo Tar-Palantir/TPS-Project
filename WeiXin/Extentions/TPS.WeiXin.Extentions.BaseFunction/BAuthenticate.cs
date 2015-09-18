@@ -2,6 +2,7 @@
 using TPS.WeiXin.Common.SrvcModel;
 using TPS.WeiXin.Common.SrvcModel.Enums;
 using TPS.WeiXin.DataAccess.Entities;
+using TPS.WeiXin.Extentions.BaseFunction.Common;
 using TPS.WeiXin.Extentions.IFunction.Normal.Authenticate;
 using Zeus.Common.Helper.Web;
 
@@ -13,8 +14,9 @@ namespace TPS.WeiXin.Extentions.BaseFunction
             "https://open.weixin.qq.com/connect/oauth2/authorize?appid={0}&redirect_uri={1}&response_type=code&scope={2}&state={3}#wechat_redirect";
         private const string GetAccessTokenUrlFormat =
             "https://api.weixin.qq.com/sns/oauth2/access_token?appid={0}&secret={1}&code={2}&grant_type=authorization_code";
-        private const string GetUserInfoUrlFOrmat =
-            "https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}&lang=zh_CN";
+        private const string GetUserInfoUrlFormat =
+            //"https://api.weixin.qq.com/sns/userinfo?access_token={0}&openid={1}&lang=zh_CN";
+        "https://api.weixin.qq.com/cgi-bin/user/info?access_token={0}&openid={1}&lang=zh_CN";
 
 
         public string GetAuthUrl(Account currentAccount, string redirectUrl, EnumGetAuthType getAuthType)
@@ -42,7 +44,9 @@ namespace TPS.WeiXin.Extentions.BaseFunction
                 return null;
             }
 
-            var url = string.Format(GetUserInfoUrlFOrmat, accessTokenInfo.AccessToken, accessTokenInfo.OpenID);
+            var accessToken = AccessTokenHelper.GetAccessToken(currentAccount);
+
+            var url = string.Format(GetUserInfoUrlFormat, accessToken, accessTokenInfo.OpenID);
             var responseResult = HttpHelper.GetResponseResultByGet(url);
             if (responseResult.Status != ResponseStatus.Success)
             {

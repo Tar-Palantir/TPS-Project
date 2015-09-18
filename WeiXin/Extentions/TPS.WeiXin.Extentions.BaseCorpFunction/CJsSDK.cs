@@ -30,7 +30,7 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
         /// <param name="currentAccount">账号</param>
         /// <param name="currentUrl">当前页面的Url</param>
         /// <returns>操作结果，WeiXinJsData</returns>
-        public OperateStatus GetJsData(Account currentAccount,string currentUrl)
+        public OperateStatus GetJsData(Account currentAccount, string currentUrl)
         {
             string noncestr = DateTime.Now.ToString("yyyyMMddHHmmss");
             string timestamp = DateTime.Now.ToTimestamp().ToString();
@@ -76,36 +76,41 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
         private static string GetTicket(Account currentAccount)
         {
             Monitor.Enter(DicTicket);
-            Ticket ticket;
-            if (DicTicket.ContainsKey(currentAccount.ID))
+            try
             {
-                ticket = DicTicket[currentAccount.ID];
-                if (ticket.ExpireTime > DateTime.Now)
+                Ticket ticket;
+                if (DicTicket.ContainsKey(currentAccount.ID))
                 {
-                    return ticket.Value;
+                    ticket = DicTicket[currentAccount.ID];
+                    if (ticket.ExpireTime > DateTime.Now)
+                    {
+                        return ticket.Value;
+                    }
+                    DicTicket.Remove(currentAccount.ID);
                 }
-                DicTicket.Remove(currentAccount.ID);
-            }
 
-            var accessToken = AccessTokenHelper.GetAccessToken(currentAccount);
-            var result = HttpHelper.GetResponseResultByGet(string.Format(GetTicketUrlFormat, accessToken));
-            if (result.Status != ResponseStatus.Success)
+                var accessToken = AccessTokenHelper.GetAccessToken(currentAccount);
+                var result = HttpHelper.GetResponseResultByGet(string.Format(GetTicketUrlFormat, accessToken));
+                if (result.Status != ResponseStatus.Success)
+                {
+                    return "";
+                }
+                JObject jObject = JsonConvert.DeserializeObject<JObject>(result.ResponseString);
+                JToken value;
+                if (!jObject.TryGetValue("ticket", out value))
+                {
+                    return "";
+                }
+
+                ticket = new Ticket { Value = value.ToString(), ExpireTime = DateTime.Now.AddSeconds(7190) };
+                DicTicket.Add(currentAccount.ID, ticket);
+
+                return ticket.Value;
+            }
+            finally
             {
-                return "";
+                Monitor.Exit(DicTicket);
             }
-            JObject jObject = JsonConvert.DeserializeObject<JObject>(result.ResponseString);
-            JToken value;
-            if (!jObject.TryGetValue("ticket", out value))
-            {
-                return "";
-            }
-
-            ticket = new Ticket { Value = value.ToString(), ExpireTime = DateTime.Now.AddSeconds(7190) };
-            DicTicket.Add(currentAccount.ID, ticket);
-            Monitor.Exit(DicTicket);
-
-            return ticket.Value;
-
         }
 
         /// <summary>

@@ -5,7 +5,6 @@ using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.DataAccess.Entities.Enums;
 using Zeus.Common.DataAccess.Implement;
 using Zeus.Common.DataStatus;
-using Zeus.Common.Helper.Log;
 
 namespace TPS.WeiXin.DataAccess.Implement
 {
@@ -13,10 +12,10 @@ namespace TPS.WeiXin.DataAccess.Implement
     {
         private readonly DbContext _context = new WeiXinEntities();
 
-        public ReplyRepository()
-        {
-            _context.Database.Log = msg => FileLogHelper.WriteInfo(msg, "SqlLog");
-        }
+        //public ReplyRepository()
+        //{
+        //    _context.Database.Log = msg => FileLogHelper.WriteInfo(msg, "SqlLog");
+        //}
 
         /// <summary>
         /// 实体数据库

@@ -42,6 +42,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Zeus.Common.DataAccess.Entities, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Common.DA.Entities.2.2.0\lib\Zeus.Common.DataAccess.Entities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Zeus.Common.DataStatus">
       <HintPath>..\..\..\packages\Common.DS.2.1.0\lib\Zeus.Common.DataStatus.dll</HintPath>
     </Reference>
@@ -61,6 +65,7 @@
     <Compile Include="ServiceContracts\IUserManageContracts.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="WCFClient.config" />
   </ItemGroup>

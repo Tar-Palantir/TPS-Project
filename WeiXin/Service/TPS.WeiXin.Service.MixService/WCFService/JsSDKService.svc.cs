@@ -5,7 +5,7 @@ using Zeus.Common.DataStatus;
 
 namespace TPS.WeiXin.Service.MixService.WCFService
 {
-    public class JsSDK : IJsSDKContracts
+    public class JsSDKService : IJsSDKContracts
     {
         /// <summary>
         /// 获取JS请求所需数据

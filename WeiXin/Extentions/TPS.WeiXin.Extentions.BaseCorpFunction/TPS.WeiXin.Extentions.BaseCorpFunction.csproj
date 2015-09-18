@@ -56,7 +56,7 @@
       <HintPath>..\..\..\packages\Common.DS.2.1.0\lib\Zeus.Common.DataStatus.dll</HintPath>
     </Reference>
     <Reference Include="Zeus.Common.Helper">
-      <HintPath>..\..\..\packages\Common.Helper.2.0.2\lib\Zeus.Common.Helper.dll</HintPath>
+      <HintPath>..\..\..\packages\Common.Helper.2.0.3.2\lib\Zeus.Common.Helper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -73,7 +73,6 @@
     <Compile Include="Exts\SendMsg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\Common\TPS.WeiXin.Common.Helper\TPS.WeiXin.Common.Helper.csproj">
       <Project>{C102B8C2-285F-4D32-827F-2E2BE1AC2179}</Project>

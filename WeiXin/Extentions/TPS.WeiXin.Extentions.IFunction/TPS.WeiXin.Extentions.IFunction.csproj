@@ -99,6 +99,7 @@
     <Folder Include="Normal\MsgEncrypt\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

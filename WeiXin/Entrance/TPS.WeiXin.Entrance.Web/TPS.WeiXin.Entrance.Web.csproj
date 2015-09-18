@@ -93,14 +93,16 @@
     <Reference Include="Zeus.Common.DataStatus">
       <HintPath>..\..\..\packages\Common.DS.2.1.0\lib\Zeus.Common.DataStatus.dll</HintPath>
     </Reference>
-    <Reference Include="Zeus.Common.Helper">
-      <HintPath>..\..\..\packages\Common.Helper.2.0.2\lib\Zeus.Common.Helper.dll</HintPath>
+    <Reference Include="Zeus.Common.Helper, Version=2.0.3.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Common.Helper.2.0.3.2\lib\Zeus.Common.Helper.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Zeus.Common.Log">
       <HintPath>..\..\..\packages\Common.Log.2.1.0\lib\Zeus.Common.Log.dll</HintPath>
     </Reference>
-    <Reference Include="Zeus.Common.Service.MCService">
-      <HintPath>..\..\..\packages\Common.SVC.MCService.2.1.0\lib\Zeus.Common.Service.MCService.dll</HintPath>
+    <Reference Include="Zeus.Common.Service.MCService, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Common.SVC.MCService.2.1.1\lib\Zeus.Common.Service.MCService.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Zeus.Common.Service.WCFExtension, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Common.SVC.WCFExt.2.1.0\lib\Zeus.Common.Service.WCFExtension.dll</HintPath>

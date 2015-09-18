@@ -1,7 +1,6 @@
 ﻿using System.Data.Entity;
 using TPS.WeiXin.DataAccess.Entities;
 using Zeus.Common.DataAccess.Implement;
-using Zeus.Common.Helper.Log;
 
 namespace TPS.WeiXin.DataAccess.Implement
 {

@@ -59,14 +59,13 @@
       <HintPath>..\..\..\packages\Common.DA.Interface.2.2.0\lib\Zeus.Common.DataAccess.Interface.dll</HintPath>
     </Reference>
     <Reference Include="Zeus.Common.Helper">
-      <HintPath>..\..\..\packages\Common.Helper.2.0.2\lib\Zeus.Common.Helper.dll</HintPath>
+      <HintPath>bin\Debug\Zeus.Common.Helper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventHelper.cs" />
     <Compile Include="EventListenerProvider.cs" />
     <Compile Include="FunctionFactory.cs" />
-    <Compile Include="JsonExtentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlHelper.cs" />
   </ItemGroup>
