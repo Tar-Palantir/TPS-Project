@@ -44,8 +44,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Zeus.Common.Helper, Version=2.0.3.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Common.Helper.2.0.3.2\lib\Zeus.Common.Helper.dll</HintPath>
+    <Reference Include="Zeus.Common.Helper, Version=2.0.3.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Common.Helper.2.0.3.3\lib\Zeus.Common.Helper.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

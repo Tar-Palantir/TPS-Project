@@ -56,7 +56,7 @@
       <HintPath>..\..\..\packages\Common.DS.2.1.0\lib\Zeus.Common.DataStatus.dll</HintPath>
     </Reference>
     <Reference Include="Zeus.Common.Helper">
-      <HintPath>..\..\..\packages\Common.Helper.2.0.3.2\lib\Zeus.Common.Helper.dll</HintPath>
+      <HintPath>..\..\..\packages\Common.Helper.2.0.3.3\lib\Zeus.Common.Helper.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +102,9 @@
       <Project>{EA2310DA-8889-4D8D-8784-217DCBC2C2F6}</Project>
       <Name>TPS.WeiXin.Extentions.IFunction</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
