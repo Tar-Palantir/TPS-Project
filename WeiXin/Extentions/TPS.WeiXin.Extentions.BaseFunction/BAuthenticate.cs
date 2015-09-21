@@ -23,7 +23,7 @@ namespace TPS.WeiXin.Extentions.BaseFunction
         {
             var scope = getAuthType == EnumGetAuthType.Base ? "snsapi_base" : "snsapi_userinfo";
 
-            return string.Format(GetAuthUrlFormat, currentAccount.AppID, redirectUrl, scope, "");
+            return string.Format(GetAuthUrlFormat, currentAccount.AppID, redirectUrl, scope, "getauthcode");
         }
 
         public string GetOpenIDByCode(Account currentAccount, string code)
