@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="TPS.WeiXin.Service.MixService.WCFService.AuthenticateService" CodeBehind="JsSDKService.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TPS.WeiXin.Service.MixService.WCFService.JsSDKService" CodeBehind="JsSDKService.svc.cs" %>
