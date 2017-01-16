@@ -112,6 +112,7 @@
       <DependentUpon>WeiXinEntitiesModel.edmx</DependentUpon>
       <LastGenOutput>WeiXinEntitiesModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="WeiXinEntitiesModel.sql" />
     <Content Include="WeiXinEntitiesModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WeiXinEntitiesModel.edmx</DependentUpon>
