@@ -188,3 +188,4 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 /.vs/config/applicationhost.config
+/WeiXin/Service/TPS.WeiXin.Service.MixService/GlobalExceptionLog
