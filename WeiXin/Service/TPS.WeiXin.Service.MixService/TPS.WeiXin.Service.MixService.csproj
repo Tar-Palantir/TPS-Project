@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -148,7 +149,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\enroll_pc\bm-bg.png" />
+    <Content Include="Content\images\enroll_pc\bm-bottom-1.png" />
+    <Content Include="Content\images\enroll_pc\bm-bottom.png" />
+    <Content Include="Content\images\enroll_pc\bm-code.jpg" />
+    <Content Include="Content\images\enroll_pc\bm-code.png" />
+    <Content Include="Content\images\enroll_pc\bm-head-1.png" />
+    <Content Include="Content\images\enroll_pc\bm-head.png" />
+    <Content Include="Content\images\enroll_pc\bm-pic.jpg" />
+    <Content Include="Content\images\enroll_wap\bm-bottom.png" />
+    <Content Include="Content\images\enroll_wap\bm-code.png" />
+    <Content Include="Content\images\enroll_wap\bm-head.png" />
+    <Content Include="Content\images\grey.gif" />
+    <Content Include="Content\images\red%402x.png" />
+    <Content Include="Content\images\red.png" />
+    <Content Include="Content\images\signin_wap\bm-bottom.png" />
+    <Content Include="Content\images\signin_wap\bm-code.png" />
+    <Content Include="Content\images\signin_wap\bm-head.png" />
+    <Content Include="Content\images\signup_wap\bm-bottom.png" />
+    <Content Include="Content\images\signup_wap\bm-code.png" />
+    <Content Include="Content\images\signup_wap\bm-head.png" />
+    <Content Include="Content\Style\base_m.css" />
+    <Content Include="Content\Style\base_pc.css" />
+    <Content Include="Content\Style\signin_m.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="WCFService\JsSDKService.svc" />
     <Content Include="WCFService\AuthenticateService.svc" />
     <Content Include="WCFService\ContactsService.svc" />
@@ -207,6 +232,7 @@
     <Content Include="BusinessIoc.config" />
     <None Include="Properties\PublishProfiles\134Release.pubxml" />
     <None Include="Properties\PublishProfiles\Develop.pubxml" />
+    <Content Include="Views\Authenticate\Binding.cshtml" />
     <None Include="Web.134Release.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

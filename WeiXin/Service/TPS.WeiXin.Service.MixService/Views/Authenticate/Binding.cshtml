@@ -1,0 +1,173 @@
+﻿@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>格格嫁到婚嫁体验中心-报名系统</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1.3,width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <meta name="keywords" content="一站式婚嫁体验中心,结婚分期,婚宴分期,婚嫁在线预定">
+    <meta name="description" content="格格嫁到智能婚嫁服务平台是腾讯大成网婚嫁频道的独家战略合作商，提供一站式的婚宴、喜宴预定服务。其在深度整合四川腾讯4200万QQ用户、逾300家婚宴酒店商家的基础上，为用户提供婚宴酒店在线咨询、在线预订、线下免费看场、线 下免费分享结婚攻略、新娘课堂等服务。">
+    <link rel="stylesheet" href="@Url.Content("~/Content/Style/signin_m.css")" type="text/css" media="screen">
+</head>
+<body>
+
+
+    <div class="section" id="signIn">
+        <div class="signin-tit">
+            <img src="@Url.Content("~/Content/images/signin_wap/bm-head.png")">
+        </div>
+        <!--form-->
+        <div class="section-form">
+            <div class="form-box">
+                <div class="form-box-one">
+
+                    <div class="form-item">
+                        <label class="form-tag"><span class="must">*</span>您的手机</label>
+                        <div class="form-con"><input type="tel" class="form-i" id="userPhone" maxlength="11"></div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="form-center">
+                    <a href="javascript:;" class="form-btn" id="user-btn">马上报名</a>
+                </div>
+                <div class="form-code">
+
+                </div>
+            </div>
+        </div>
+        <!--form end-->
+        <div class="form-bottom">
+            <img src="@Url.Content("~/Content/images/signin_wap/bm-bottom.png")">
+        </div>
+    </div>
+
+    <!--toast-->
+    <div class="pop-toast" id="toast" style="display:none;">
+        <div class="toast-mask"></div>
+        <div class="toast-body">
+            <p><span id="toast-text"></span></p>
+        </div>
+    </div>
+    <!--toast end-->
+    <!--script-->
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
+    <script type="text/javascript">
+
+        var marketingId = GetQueryString("marketingId");
+        var channelCode = GetQueryString("channelCode");
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+
+        $(function () {
+
+            // 获取报名数
+            $.post('http://home.gegejiadao.com/WeddingCRM/APIMarketing/GetEnrollCount', { marketingId: marketingId }, function (data) {
+                if (data != undefined) {
+                    $("#total").text(data);
+                }
+            });
+
+            // 判断是否为手机号
+            function isMobel(tel) {
+                var telReg = !!tel.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
+                return telReg;
+            }
+
+
+            //绑定申请按钮
+            var userBtn = $("#user-btn");
+            userBtn.on('click', formSend);
+            // 发送申请
+            function formSend() {
+                userBtn.off("click", formSend);
+                var userName = $("#userName").val();
+                var userPhone = $("#userPhone").val();
+                var weddingDay = $("#weddingDay").val();
+                var sex = $("input[name='Sex']:checked").val();
+                console.log(sex);
+                var IsPototGraphy = $("#IsPototGraphy").prop("checked");
+                var IsDress = $("#IsDress").prop("checked");
+                var IsHotel = $("#IsHotel").prop("checked");
+                var IsJewelary = $("#IsJewelary").prop("checked");
+                var IsPractitioner = $("#IsPractitioner").prop("checked");
+                var isGoods = $("#isGoods").prop("checked");
+                var IsHoneymoon = $("#IsHoneymoon").prop("checked");
+                var IsMastermind = $("#IsMastermind").prop("checked");
+
+                console.log(IsPototGraphy, IsDress, IsHotel, IsJewelary, IsPractitioner, isGoods, IsHoneymoon, IsMastermind);
+                var category = "";
+                $("input[name='category']").each(function () {
+                    if ($(this).prop("checked")) {
+                        category += $(this).val() + " "
+                    }
+                });
+
+                //手机格式验证
+                if (!isMobel(userPhone)) {
+                    openToast('请填写正确的手机号码');
+                    userBtn.on("click", formSend);
+                    return;
+                }
+
+                var data = {
+                    MarketingId: marketingId,
+                    ChannelCode: channelCode,
+                    Name: userName,
+                    Mobile: userPhone,
+                    //ForumNames: category,
+                    Sex: sex,
+                    BookingDate: weddingDay,
+
+                    IsPototGraphy: IsPototGraphy,
+                    IsDress: IsDress,
+                    IsHotel: IsHotel,
+                    IsJewelary: IsJewelary,
+                    IsPractitioner: IsPractitioner,
+                    isGoods: isGoods,
+                    IsHoneymoon: IsHoneymoon,
+                    IsMastermind: IsMastermind
+                };
+
+                $.post('http://home.gegejiadao.com/WeddingCRM/APIMarketing/Register', data, function (returndata) {
+                    if (returndata != undefined) {
+                        if (returndata.Result) {
+                            openToast('恭喜你,报名成功！');
+                        } else {
+                            openToast(returndata);
+                        }
+                        //var dataObj=eval("("+returndata+")");
+                        //if (dataObj.Succeed) {
+                        //	alert('报名成功！');
+                        //} else {
+                        //	alert(dataObj.Message);
+                        //}
+                        userBtn.on("click", formSend);
+                    }
+                }).error(function () {
+                    openToast('出错了,请刷新重试！');
+                    userBtn.on("click", formSend);
+                });
+
+
+            }
+        });
+
+    </script>
+
+</body>
+</html>
