@@ -185,6 +185,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\JsSDKController.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
@@ -232,7 +233,9 @@
     <Content Include="BusinessIoc.config" />
     <None Include="Properties\PublishProfiles\134Release.pubxml" />
     <None Include="Properties\PublishProfiles\Develop.pubxml" />
-    <Content Include="Views\Authenticate\Binding.cshtml" />
+    <Content Include="Views\Default\Binding.cshtml" />
+    <Content Include="Views\Default\Info.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Web.134Release.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

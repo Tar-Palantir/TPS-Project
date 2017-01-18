@@ -1,0 +1,119 @@
+﻿@model TPS.WeiXin.Common.SrvcModel.WeiXinJsData
+
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+@section Head
+{
+    @*<script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
+    <script type="text/javascript">
+        wx.config({
+            //debug:true,
+            appId: '@Model.AppID',
+            timestamp: @Model.Timestamp,
+            nonceStr: '@Model.NonceStr',
+            signature: '@Model.Signature',
+            jsApiList: []
+        });
+
+    </script>*@
+}
+<!--form-->
+<div class="section-form">
+    <div class="form-box">
+        <div class="form-box-one">
+
+            <div class="form-item">
+                <label class="form-tag"><span class="must">*</span>您的手机</label>
+                <div class="form-con"><input type="tel" class="form-i" id="userPhone" maxlength="11"></div>
+            </div>
+
+
+        </div>
+
+
+        <div class="form-center">
+            <a href="javascript:;" class="form-btn" id="user-btn">马上报名</a>
+        </div>
+        <div class="form-code">
+
+        </div>
+    </div>
+</div>
+<!--form end-->
+<div class="form-bottom">
+    <img src="@Url.Content("~/Content/images/signin_wap/bm-bottom.png")">
+</div>
+
+@section Foot
+{    <!--toast-->
+    <div class="pop-toast" id="toast" style="display:none;">
+        <div class="toast-mask"></div>
+        <div class="toast-body">
+            <p><span id="toast-text"></span></p>
+        </div>
+    </div>
+    <!--toast end-->
+    <!--script-->
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
+    <script type="text/javascript">
+
+        var marketingId = GetQueryString("marketingId");
+        var channelCode = GetQueryString("channelCode");
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+
+        $(function() {
+            //绑定申请按钮
+            var userBtn = $("#user-btn");
+
+            // 判断是否为手机号
+            function isMobel(tel) {
+                var telReg = !!tel.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
+                return telReg;
+            }
+
+            // 发送申请
+            function formSend() {
+                userBtn.off("click", formSend);
+                var userPhone = $("#userPhone").val();
+
+                //手机格式验证
+                if (!isMobel(userPhone)) {
+                    alert('请填写正确的手机号码');
+                    //openToast('请填写正确的手机号码');
+                    userBtn.on("click", formSend);
+                    return;
+                }
+
+                $.post('@Url.Action("Bind")', userPhone, function(returndata) {
+                    if (returndata != undefined) {
+                        if (returndata.Result) {
+                            alert('恭喜你,报名成功！');
+                            //openToast('恭喜你,报名成功！');
+                        } else {
+                            alert(returndata);
+                            //openToast(returndata);
+                        }
+                        userBtn.on("click", formSend);
+                    }
+                }).error(function() {
+                    alert('出错了,请刷新重试！');
+                    //openToast('出错了,请刷新重试！');
+                    userBtn.on("click", formSend);
+                });
+
+
+            }
+        
+            userBtn.on('click', formSend);
+        });
+
+    </script>
+}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.ModelBinding;
 using TPS.WeiXin.Common.SrvcModel;
 using TPS.WeiXin.Service.MixService.Models;
 using Zeus.Common.Service.MCService;

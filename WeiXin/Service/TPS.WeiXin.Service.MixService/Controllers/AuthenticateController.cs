@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web.Mvc;
 using TPS.WeiXin.Common.SrvcModel.Enums;
 using TPS.WeiXin.Service.MixService.Models;
 using Zeus.Common.Service.MCService;
@@ -35,11 +34,6 @@ namespace TPS.WeiXin.Service.MixService.Controllers
             AuthenticateServiceModel model = new AuthenticateServiceModel();
             var status = model.GetUserInfoByCode(accountID, code);
             return new ServiceResult(status);
-        }
-
-        public ActionResult Binding()
-        {
-            return View();
         }
     }
 }

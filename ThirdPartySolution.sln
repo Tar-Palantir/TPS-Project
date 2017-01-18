@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WeiXin", "WeiXin", "{B4EA47F3-4D7D-4D22-8F30-6224FBC730F9}"
 EndProject
@@ -53,6 +53,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{224BC144-3AEA-467B-9558-4F77D90FC1DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPS.WeiXin.Service.MixService", "WeiXin\Service\TPS.WeiXin.Service.MixService\TPS.WeiXin.Service.MixService.csproj", "{6D2140A2-35B0-4256-9770-BE7A6A1C8C1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{E4438024-C9D1-494B-864E-AB7AD414C79C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPS.Demo.WeiXin.Console", "Demo\TPS.Demo.WeiXin.Console\TPS.Demo.WeiXin.Console.csproj", "{6334E0F5-4F4D-440B-97D2-E3FE2335DEDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -182,6 +186,14 @@ Global
 		{6D2140A2-35B0-4256-9770-BE7A6A1C8C1A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D2140A2-35B0-4256-9770-BE7A6A1C8C1A}.Test|Any CPU.ActiveCfg = Release|Any CPU
 		{6D2140A2-35B0-4256-9770-BE7A6A1C8C1A}.Test|Any CPU.Build.0 = Release|Any CPU
+		{6334E0F5-4F4D-440B-97D2-E3FE2335DEDE}.134Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6334E0F5-4F4D-440B-97D2-E3FE2335DEDE}.134Release|Any CPU.Build.0 = Release|Any CPU
+		{6334E0F5-4F4D-440B-97D2-E3FE2335DEDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6334E0F5-4F4D-440B-97D2-E3FE2335DEDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6334E0F5-4F4D-440B-97D2-E3FE2335DEDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6334E0F5-4F4D-440B-97D2-E3FE2335DEDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6334E0F5-4F4D-440B-97D2-E3FE2335DEDE}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{6334E0F5-4F4D-440B-97D2-E3FE2335DEDE}.Test|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -207,5 +219,6 @@ Global
 		{5F11D342-C075-497D-A1BE-F0C8D9217AB0} = {8F9725A5-4963-4077-9B92-A42D6B6C7458}
 		{224BC144-3AEA-467B-9558-4F77D90FC1DE} = {B4EA47F3-4D7D-4D22-8F30-6224FBC730F9}
 		{6D2140A2-35B0-4256-9770-BE7A6A1C8C1A} = {224BC144-3AEA-467B-9558-4F77D90FC1DE}
+		{6334E0F5-4F4D-440B-97D2-E3FE2335DEDE} = {E4438024-C9D1-494B-864E-AB7AD414C79C}
 	EndGlobalSection
 EndGlobal
