@@ -103,7 +103,7 @@ namespace TPS.WeiXin.Service.MixService.Controllers
         /// <returns>True 通过，false 不通过</returns>
         private bool IsPassWeiXinAuthenticate(Guid accountId, out string openId)
         {
-            openId = Request.Cookies["IWD"]?.ToString() ?? "";
+            openId = Request.Cookies["IWD"]?.Value ?? "";
 
             //判断是否已认证
             if (!string.IsNullOrWhiteSpace(openId))
@@ -121,7 +121,7 @@ namespace TPS.WeiXin.Service.MixService.Controllers
                 if (status.ResultSign == ResultSign.Success)
                 {
                     openId = status.ReturnValue;
-                    Request.Cookies.Add(new HttpCookie("IWD", openId));
+                    Response.Cookies.Add(new HttpCookie("IWD", openId));
                     return true;
                 }
             }
