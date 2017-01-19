@@ -180,7 +180,9 @@
     <Content Include="WCFService\CustomMenuService.svc" />
     <Content Include="WCFService\SendMsgService.svc" />
     <Content Include="WCFService\UserManageService.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -232,6 +234,7 @@
     </Content>
     <Content Include="BusinessIoc.config" />
     <None Include="Properties\PublishProfiles\134Release.pubxml" />
+    <None Include="Properties\PublishProfiles\250Release.pubxml" />
     <None Include="Properties\PublishProfiles\Develop.pubxml" />
     <Content Include="Views\Default\Binding.cshtml" />
     <Content Include="Views\Default\Info.cshtml" />
@@ -239,6 +242,9 @@
     <None Include="Web.134Release.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.250Release.config">
+      <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -306,6 +312,15 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '134Release|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '250Release|AnyCPU'">
     <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>

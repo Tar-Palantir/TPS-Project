@@ -3,5 +3,6 @@
 @{
     Layout = "../Shared/_Layout.cshtml";
 }
-
-<label>@Model</label>
+<div class="form-center">
+    <label class="form-btn" @(ViewBag.IsError ? "style='background-color:white,color:red;'" : "")>@Model</label>
+</div>
