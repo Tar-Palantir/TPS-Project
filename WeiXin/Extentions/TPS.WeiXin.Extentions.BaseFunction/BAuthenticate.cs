@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using Newtonsoft.Json;
 using TPS.WeiXin.Common.SrvcModel;
 using TPS.WeiXin.Common.SrvcModel.Enums;
@@ -54,6 +55,11 @@ namespace TPS.WeiXin.Extentions.BaseFunction
                 return null;
             }
             return JsonConvert.DeserializeObject<UserInfo>(responseResult.ResponseString);
+        }
+
+        public bool DeleteAccessToken(Guid accountId)
+        {
+            return AccessTokenHelper.DeleteAccessToken(accountId);
         }
 
         private AccessTokenInfo GetAccessTokenInfo(Account currentAccount, string code)

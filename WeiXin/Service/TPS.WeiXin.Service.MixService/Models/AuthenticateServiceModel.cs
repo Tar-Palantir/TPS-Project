@@ -28,7 +28,7 @@ namespace TPS.WeiXin.Service.MixService.Models
 
             var func = FunctionFactory.GetFunctionInstance<IOAuth>();
             var result = func.GetAuthUrl(account, redirectUrl, getAuthType);
-            return new OperateStatus {ResultSign = ResultSign.Success, ReturnValue = result};
+            return new OperateStatus { ResultSign = ResultSign.Success, ReturnValue = result };
         }
 
         /// <summary>
@@ -79,5 +79,33 @@ namespace TPS.WeiXin.Service.MixService.Models
             var jsonResult = JsonConvert.SerializeObject(userInfo);
             return new OperateStatus { ResultSign = ResultSign.Success, ReturnValue = jsonResult };
         }
+        
+        /// <summary>
+        /// 删除通行令
+        /// </summary>
+        /// <param name="accountID">账号ID</param>
+        /// <returns>操作结果</returns>
+        public OperateStatus DeleteAccessToken(Guid accountID)
+        {
+            AccountServiceModel model = new AccountServiceModel();
+            var account = model.GetById(accountID);
+            if (account == null)
+            {
+                return new OperateStatus { ResultSign = ResultSign.Failed, Message = "账户不存在" };
+            }
+            bool result;
+            if (account.IsCorp)
+            {
+                var func = FunctionFactory.GetFunctionInstance<Extentions.IFunction.Corp.Authenticate.IOAuth>();
+                result = func.DeleteAccessToken(account.ID);
+            }
+            else
+            {
+                var func = FunctionFactory.GetFunctionInstance<IOAuth>();
+                result = func.DeleteAccessToken(account.ID);
+            }
+            return new OperateStatus { ResultSign = result ? ResultSign.Success : ResultSign.Failed };
+        }
+
     }
 }

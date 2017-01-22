@@ -35,5 +35,12 @@ namespace TPS.WeiXin.Service.MixService.Controllers
             var status = model.GetUserInfoByCode(accountID, code);
             return new ServiceResult(status);
         }
+        
+        public ServiceResult DeleteAccessToken(Guid accountID)
+        {
+            AuthenticateServiceModel model = new AuthenticateServiceModel();
+            var status = model.DeleteAccessToken(accountID);
+            return new ServiceResult(status);
+        }
     }
 }

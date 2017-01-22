@@ -63,6 +63,20 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction.Common
             }
         }
 
+        /// <summary>
+        /// 删除通行令
+        /// </summary>
+        /// <param name="accountId">账号id</param>
+        /// <returns>是否删除成功</returns>
+        public static bool DeleteAccessToken(Guid accountId)
+        {
+            if (DicAccessToken.ContainsKey(accountId))
+            {
+                return DicAccessToken.Remove(accountId);
+            }
+            return true;
+        }
+
         class AccessToken
         {
             public string Value { set; get; }

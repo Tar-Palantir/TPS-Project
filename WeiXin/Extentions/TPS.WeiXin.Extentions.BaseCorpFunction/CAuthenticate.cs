@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using TPS.WeiXin.Common.SrvcModel;
 using TPS.WeiXin.DataAccess.Entities;
 using TPS.WeiXin.Extentions.BaseCorpFunction.Common;
@@ -23,5 +24,11 @@ namespace TPS.WeiXin.Extentions.BaseCorpFunction
             }
             return JsonConvert.DeserializeObject<UserInfo>(responseResult.ResponseString);
         }
+
+        public bool DeleteAccessToken(Guid accountId)
+        {
+            return AccessTokenHelper.DeleteAccessToken(accountId);
+        }
+
     }
 }
