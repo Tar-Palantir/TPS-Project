@@ -149,31 +149,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\images\enroll_pc\bm-bg.png" />
-    <Content Include="Content\images\enroll_pc\bm-bottom-1.png" />
-    <Content Include="Content\images\enroll_pc\bm-bottom.png" />
-    <Content Include="Content\images\enroll_pc\bm-code.jpg" />
-    <Content Include="Content\images\enroll_pc\bm-code.png" />
-    <Content Include="Content\images\enroll_pc\bm-head-1.png" />
-    <Content Include="Content\images\enroll_pc\bm-head.png" />
-    <Content Include="Content\images\enroll_pc\bm-pic.jpg" />
-    <Content Include="Content\images\enroll_wap\bm-bottom.png" />
-    <Content Include="Content\images\enroll_wap\bm-code.png" />
-    <Content Include="Content\images\enroll_wap\bm-head.png" />
-    <Content Include="Content\images\grey.gif" />
-    <Content Include="Content\images\red%402x.png" />
-    <Content Include="Content\images\red.png" />
-    <Content Include="Content\images\signin_wap\bm-bottom.png" />
-    <Content Include="Content\images\signin_wap\bm-code.png" />
-    <Content Include="Content\images\signin_wap\bm-head.png" />
-    <Content Include="Content\images\signup_wap\bm-bottom.png" />
-    <Content Include="Content\images\signup_wap\bm-code.png" />
-    <Content Include="Content\images\signup_wap\bm-head.png" />
-    <Content Include="Content\Style\base_m.css" />
-    <Content Include="Content\Style\base_pc.css" />
-    <Content Include="Content\Style\signin_m.css" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="WCFService\JsSDKService.svc" />
     <Content Include="WCFService\AuthenticateService.svc" />
     <Content Include="WCFService\ContactsService.svc" />
@@ -187,7 +163,6 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\JsSDKController.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
@@ -236,9 +211,6 @@
     <None Include="Properties\PublishProfiles\134Release.pubxml" />
     <None Include="Properties\PublishProfiles\250Release.pubxml" />
     <None Include="Properties\PublishProfiles\Develop.pubxml" />
-    <Content Include="Views\Default\Binding.cshtml" />
-    <Content Include="Views\Default\Info.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Web.134Release.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -256,7 +228,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Scripts\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Common\TPS.Common.Event\TPS.Common.Event.csproj">
       <Project>{a48fdd4e-9b1b-4df6-a0aa-1f4f66dfd2db}</Project>
